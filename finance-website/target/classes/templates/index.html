@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="#{indexTitle}"></title>
+    <object th:replace="fragments/global_includes :: global_includes" th:remove="tag">...</object>
+</head>
+<body class="body">
+
+<div th:replace="fragments/header :: header">...</div>
+
+<div th:replace="fragments/header_logout :: header_logout">...</div>
+
+<div id="content" role="main">
+
+
+    <div th:if="!${username}">
+        <h1 class="heading-xlarge" th:text="#{headingIndex}"></h1>
+        <form th:action="@{/home}" method="post" class="form" novalidate="novalidate">
+            <div class="form-item-wrapper">
+                <div class="form-group">
+                    <button class="button" th:text="#{generateButton}"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div th:if="${username}">
+        <h1 class="heading-xlarge" th:text="#{headingAccount}"></h1>
+        <h2 class="heading-small" th:text="#{accountMessage}"></h2>
+        <br>
+        <h1 class="heading-small" th:text="${username}"></h1>
+        <br>
+        <form th:action="@{~/login}" method="get" class="form" novalidate="novalidate">
+            <button class="button" th:text="#{goToLoginButton}"></button>
+        </form>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>

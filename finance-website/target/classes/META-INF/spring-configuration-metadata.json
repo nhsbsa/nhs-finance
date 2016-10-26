@@ -1,0 +1,31 @@
+{
+  "groups": [],
+  "properties": [
+    {
+      "name": "api.backend.host",
+      "type": "java.lang.String",
+      "description": "Description for api.backend.host."
+    },
+    {
+      "name": "api.backend.port",
+      "type": "java.lang.String",
+      "description": "Description for api.backend.port."
+    },
+    {
+      "name": "api.backend.protocol",
+      "type": "java.lang.String",
+      "description": "Description for api.backend.protocol."
+    },
+    {
+      "name": "api.backend.url",
+      "type": "java.lang.String",
+      "description": "Description for api.backend.url."
+    },
+    {
+      "name": "use.mocked.login",
+      "type": "java.lang.String",
+      "description": "Description for use.mocked.login."
+    }
+  ],
+  "hints": []
+}
