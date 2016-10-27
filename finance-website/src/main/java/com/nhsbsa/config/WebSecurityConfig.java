@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] NO_SECURITY_URLS = {
             "/",
-            "/home",
+            "/start",
             "/css/*",
             "/fonts/*",
             "/images/*",

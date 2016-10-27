@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="#{titlePage}"></title>
+    <object th:replace="fragments/global_includes :: global_includes" th:remove="tag">...</object>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">...</div>
+
+<div th:replace="fragments/header_logout :: header_logout">...</div>
+
+
+<div id="content" role="main">
+
+    <div class="grid-row">
+        <div class="column-two-thirds">
+
+            <h1 class="heading-xlarge">Submit your monthly NHS Pension Contributions</h1>
+
+            <p class="lede">
+                This online service will allow you to notify NHS Pensions of the monthly amounts of employees and employers contributions payable, including any adjustments from previous months.
+                <br /><br />
+                Use this service to:</p>
+
+            <ul class="list-bullet">
+                <li>view previously submitted payments</li>
+                <li>schedule a payment</li>
+            </ul>
+
+            <a class="button button-get-started" href="login">Start now</a>
+
+
+        </div>
+
+        <div class="column-third">
+
+            <div class="sidebar">
+
+                <div class="sidebar-box">
+                    <h3 class="heading-medium">Related information</h3>
+                    <ul>
+                        <li><a href="#">A link to a related item or items</a></li>
+                        <li><a href="#">Another link to a related service or services.</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>
