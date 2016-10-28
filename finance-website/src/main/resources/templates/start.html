@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title th:text="#{titlePage}"></title>
+    <title th:text="#{start.Title}"></title>
     <object th:replace="fragments/global_includes :: global_includes" th:remove="tag">...</object>
 </head>
 <body>
@@ -13,23 +13,23 @@
     <div class="grid-row">
         <div class="column-two-thirds">
 
-            <h1 class="heading-xlarge">Penpay - Your monthly NHS Pension Scheme Contributions</h1>
+            <h1 class="heading-xlarge" th:text="#{start.Heading}">Penpay - Your monthly NHS Pension Scheme Contributions</h1>
 
-            <p class="lede">
+            <p class="lede" th:text="#{start.Submit}">
                 Submit your monthly NHS Pension Scheme contributions through this online portal.</p>
-            <p class="lede">
+            <p class="lede" th:text="#{start.UseService}">
                 Use this service to:</p>
 
             <ul class="list-bullet">
-                <li>Submit your employees monthly contributions</li>
-                <li>Submit your employer contributions</li>
-                <li>Submit any adjustments from previous months</li>
-                <li>View previously submitted contributions</li>
-                <li>Submit redundancy payments</li>
-                <li>Submit injury benefits payments</li>
+                <li th:text="#{start.UseServiceList1}">Submit your employees monthly contributions</li>
+                <li th:text="#{start.UseServiceList2}">Submit your employer contributions</li>
+                <li th:text="#{start.UseServiceList3}">Submit any adjustments from previous months</li>
+                <li th:text="#{start.UseServiceList4}">View previously submitted contributions</li>
+                <li th:text="#{start.UseServiceList5}">Submit redundancy payments</li>
+                <li th:text="#{start.UseServiceList6}">Submit injury benefits payments</li>
             </ul>
 
-            <a class="button button-get-started" href="login">Start now</a>
+            <a class="button button-get-started" href="login" th:text="#{startNow}">Start now</a>
 
         </div>
 
@@ -38,9 +38,9 @@
             <div class="sidebar">
 
                 <div class="sidebar-box">
-                    <h3 class="heading-medium">Related information</h3>
+                    <h3 class="heading-medium" th:text="#{relatedInfo}">Related information</h3>
                     <ul>
-                        <li><a href="http://www.nhsbsa.nhs.uk/Pensions/4078.aspx" target="_blank">NHSBSA Employers Hub</a></li>
+                        <li><a href="http://www.nhsbsa.nhs.uk/Pensions/4078.aspx" target="_blank" th:text="#{employersHub}">NHSBSA Employers Hub</a></li>
                     </ul>
                 </div>
 

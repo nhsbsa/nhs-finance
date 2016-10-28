@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/css/*",
             "/fonts/*",
             "/images/*",
-            "/javascripts/*",
+            "/javascripts/**",
             "/js/*",
             "/stylesheets/*",
             "/public/**/*",
