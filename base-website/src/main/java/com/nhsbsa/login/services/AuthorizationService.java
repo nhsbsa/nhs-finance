@@ -2,6 +2,7 @@ package com.nhsbsa.login.services;
 
 import com.nhsbsa.login.exceptions.UserNotFoundAuthenticationException;
 import com.nhsbsa.model.EmployingAuthorityAdmin;
+import com.nhsbsa.model.FinanceUser;
 import com.nhsbsa.model.Member;
 import com.nhsbsa.security.LoginRequest;
 import com.nhsbsa.security.AuthenticationResponse;
