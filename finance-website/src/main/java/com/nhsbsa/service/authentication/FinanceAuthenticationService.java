@@ -1,5 +1,6 @@
 package com.nhsbsa.service.authentication;
 
+import com.nhsbsa.login.controllers.UserLoginService;
 import com.nhsbsa.security.LoginRequest;
 import com.nhsbsa.service.BackendApiUriService;
 import com.nhsbsa.service.BackendUri;
@@ -18,16 +19,11 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class FinanceAuthenticationService {
 
-    private static final String ENDPOINT = "member/authentication/login";
-    private static final String NOT_A_VALID_USER = "not a valid user";
-    private final BackendUri backendUri;
-    private final RestTemplate restTemplate;
+    private final UserLoginService userLoginService;
 
     @Autowired
-    public FinanceAuthenticationService(final BackendApiUriService backendApiUriService,
-                                        final RestTemplate restTemplate) {
-        this.backendUri = backendApiUriService.path(ENDPOINT);
-        this.restTemplate = restTemplate;
+    public FinanceAuthenticationService(final UserLoginService userLoginService ){
+       this.userLoginService = userLoginService;
     }
 
     public Authentication getUser(final String name, final String password) {
