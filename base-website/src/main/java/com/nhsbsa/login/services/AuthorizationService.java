@@ -67,7 +67,7 @@ public class AuthorizationService {
         }
     }
 
-    public Object getFinanceLogin(final LoginRequest loginRequest) {
-        return null;
+    public FinanceUser getFinanceLogin(final LoginRequest loginRequest) {
+        return FinanceUser.builder().build();
     }
 }

@@ -1,11 +1,14 @@
 package com.nhsbsa.service.authentication;
 
 import com.nhsbsa.login.controllers.UserLoginService;
+import com.nhsbsa.login.exceptions.LoginAuthenticationException;
+import com.nhsbsa.model.Member;
 import com.nhsbsa.security.LoginRequest;
 import com.nhsbsa.service.BackendApiUriService;
 import com.nhsbsa.service.BackendUri;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
@@ -28,7 +31,7 @@ public class FinanceAuthenticationService {
 
     public Authentication getUser(final String name, final String password) {
 
-        this.userLoginService.financeLogin(name,password);
+        this.
         return null;
 //
 //        final String uri = this.backendUri.params();
@@ -45,6 +48,21 @@ public class FinanceAuthenticationService {
 //        } catch (Exception e) {
 //            log.error("Failed to log in", e);
 //        }
+
+        try {
+            final FinanceUser financeUser = userLoginService.financeLogin(name,password);
+            if (member != null) {
+                final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, member.getAuthorities());
+                usernamePasswordAuthenticationToken.setDetails(member);
+                return usernamePasswordAuthenticationToken;
+            } else {
+                throw new LoginAuthenticationException();
+            }
+        } catch (Exception e) {
+            log.error("Failed to log in", e);
+        }
+
+        throw new LoginAuthenticationException();
 
 
     }

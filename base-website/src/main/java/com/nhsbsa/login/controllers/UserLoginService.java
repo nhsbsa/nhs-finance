@@ -38,9 +38,9 @@ public class UserLoginService {
                 .build();
     }
 
-    public void financeLogin(final String username, final String password) {
+    public FinanceUser financeLogin(final String username, final String password) {
         areCredentialsPresent(username, password);
         final LoginRequest loginRequest = buildAuthenticationRequest(username, password);
-        authorizationService.getFinanceLogin(loginRequest);
+        return authorizationService.getFinanceLogin(loginRequest);
     }
 }
