@@ -48,7 +48,7 @@ public class FinanceAuthenticationService {
             final FinanceUser financeUser = userLoginService.financeLogin(name,password);
             if (financeUser != null) {
                 final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, member.getAuthorities());
-                usernamePasswordAuthenticationToken.setDetails(member);
+                usernamePasswordAuthenticationToken.setDetails(financeUser);
                 return usernamePasswordAuthenticationToken;
             } else {
                 throw new LoginAuthenticationException();
