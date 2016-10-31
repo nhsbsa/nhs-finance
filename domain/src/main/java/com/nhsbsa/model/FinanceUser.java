@@ -1,7 +1,6 @@
 package com.nhsbsa.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nhsbsa.model.BaseEntity;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
