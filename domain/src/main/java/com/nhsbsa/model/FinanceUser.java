@@ -1,4 +1,4 @@
-package com.nhsbsa.service.authentication;
+package com.nhsbsa.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nhsbsa.model.BaseEntity;
@@ -17,7 +17,6 @@ import java.util.Collections;
  */
 
 @Data
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

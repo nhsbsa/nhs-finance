@@ -2,17 +2,12 @@ package com.nhsbsa.service.authentication;
 
 import com.nhsbsa.login.controllers.UserLoginService;
 import com.nhsbsa.login.exceptions.LoginAuthenticationException;
-import com.nhsbsa.model.Member;
-import com.nhsbsa.security.LoginRequest;
-import com.nhsbsa.service.BackendApiUriService;
-import com.nhsbsa.service.BackendUri;
+import com.nhsbsa.model.FinanceUser;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by jeffreya on 19/08/2016.
