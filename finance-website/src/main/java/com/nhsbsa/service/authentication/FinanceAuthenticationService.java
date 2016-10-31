@@ -39,7 +39,5 @@ public class FinanceAuthenticationService {
         }
 
         throw new LoginAuthenticationException();
-
-
     }
 }
