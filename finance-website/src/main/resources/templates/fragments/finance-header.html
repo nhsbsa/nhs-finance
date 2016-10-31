@@ -1,0 +1,25 @@
+<!--Generic Website Header HTML-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div th:fragment="header">
+
+    <div th:replace="fragments/header :: header">...</div>
+
+    <div class="prototype-warning">
+        <div class="prototype-warning-container">
+            <p>
+                <strong class="phase-tag alpha">ALPHA</strong>
+                <span th:text="#{prototype}">This is a new service we are working on.</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="service-header">
+        <div class="service-name" th:text="#{serviceHeader}">
+            <p>NHS Pension Scheme Financial Information Collection</p>
+        </div>
+    </div>
+</div>
+</html>
+
