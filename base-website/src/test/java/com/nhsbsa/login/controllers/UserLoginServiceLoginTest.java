@@ -25,8 +25,5 @@ public class UserLoginServiceLoginTest {
         USER_LOGIN_SERVICE.financeLogin("abc", "123");
     }
 
-    @Test(expected = UserNotFoundAuthenticationException.class)
-    public void memberUserNotFound() throws Exception {
-    }
 
 }
