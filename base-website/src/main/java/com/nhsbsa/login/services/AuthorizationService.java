@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by jeffreya on 24/10/2016.
- *
  */
 
 @Service
@@ -25,11 +24,9 @@ public class AuthorizationService {
     @Value("${authorization.authenticate.url}")
     private String authorizationBackendUri;
 
-    @Value("${member.authenticate.url}")
-    private String memberAuthUrl;
+    @Value("${finance.authenticate.url}")
+    private String financeAuthUrl;
 
-    @Value("${employer.authenticate.url}")
-    private String employerAuthUrl;
 
     @Autowired
     protected AuthorizationService(final RestTemplate restTemplate) {
@@ -40,14 +37,9 @@ public class AuthorizationService {
         return getUuid(loginRequest);
     }
 
-    public Member getMember(final LoginRequest loginRequest) {
+    public FinanceUser getFinanceLogin(final LoginRequest loginRequest) {
         setUuidIfPresent(loginRequest);
-        return restTemplate.postForObject(memberAuthUrl, loginRequest, Member.class);
-    }
-
-    public EmployingAuthorityAdmin getEmployer(final LoginRequest loginRequest) {
-        setUuidIfPresent(loginRequest);
-        return restTemplate.postForObject(employerAuthUrl, loginRequest, EmployingAuthorityAdmin.class);
+        return restTemplate.postForObject(financeAuthUrl, loginRequest, FinanceUser.class);
     }
 
     private void setUuidIfPresent(LoginRequest loginRequest) {
@@ -68,7 +60,5 @@ public class AuthorizationService {
         }
     }
 
-    public FinanceUser getFinanceLogin(final LoginRequest loginRequest) {
-        return FinanceUser.builder().build();
-    }
+
 }
