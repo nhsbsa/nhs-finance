@@ -19,7 +19,7 @@
         </dependency>
 
         <dependency>
-            <groupId>nhs-bsa</groupId>
+            <groupId>nhs-bsa-shared</groupId>
             <artifactId>website-assets</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
