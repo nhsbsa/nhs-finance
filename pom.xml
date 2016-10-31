@@ -12,7 +12,7 @@
     <modules>
         <module>domain</module>
         <module>finance-website</module>
-        <module>finance-dao</module>
+        <module>dao</module>
     </modules>
 
     <parent>
