@@ -28,7 +28,7 @@ public class FinanceAuthenticationService {
         try {
             final FinanceUser financeUser = userLoginService.financeLogin(name,password);
             if (financeUser != null) {
-                final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, member.getAuthorities());
+                final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, financeUser.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(financeUser);
                 return usernamePasswordAuthenticationToken;
             } else {
