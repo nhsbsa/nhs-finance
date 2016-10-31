@@ -29,6 +29,7 @@ public class FinanceAuthenticationService {
     public Authentication getUser(final String name, final String password) {
 
         this.userLoginService.financeLogin(name,password);
+        return null;
 //
 //        final String uri = this.backendUri.params();
 //        try {
@@ -45,6 +46,6 @@ public class FinanceAuthenticationService {
 //            log.error("Failed to log in", e);
 //        }
 
-        };
+
     }
 }
