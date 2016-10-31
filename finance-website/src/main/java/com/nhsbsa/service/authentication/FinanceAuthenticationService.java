@@ -1,5 +1,6 @@
 package com.nhsbsa.service.authentication;
 
+import com.nhsbsa.security.LoginRequest;
 import com.nhsbsa.service.BackendApiUriService;
 import com.nhsbsa.service.BackendUri;
 import lombok.extern.log4j.Log4j;
@@ -30,10 +31,10 @@ public class FinanceAuthenticationService {
     }
 
     public Authentication getUser(final String name, final String password) {
-//        final AuthenticationRequest authenticationRequest = AuthenticationRequest.builder()
-//                .username(name)
-//                .password(password)
-//                .build();
+        final LoginRequest authenticationRequest = LoginRequest.builder()
+                .username(name)
+                .password(password)
+                .build();
 //
 //        final String uri = this.backendUri.params();
 //        try {
