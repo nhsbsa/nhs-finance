@@ -25,25 +25,6 @@ public class FinanceAuthenticationService {
     }
 
     public Authentication getUser(final String name, final String password) {
-
-        this.
-        return null;
-//
-//        final String uri = this.backendUri.params();
-//        try {
-//            final Member member = restTemplate.postForObject(uri, authenticationRequest, Member.class);
-//            if (member != null) {
-//                final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, member.getAuthorities());
-//                usernamePasswordAuthenticationToken.setDetails(member);
-//                return usernamePasswordAuthenticationToken;
-//            } else {
-//                throw new AuthenticationException(NOT_A_VALID_USER) {
-//                };
-//            }
-//        } catch (Exception e) {
-//            log.error("Failed to log in", e);
-//        }
-
         try {
             final FinanceUser financeUser = userLoginService.financeLogin(name,password);
             if (financeUser != null) {
