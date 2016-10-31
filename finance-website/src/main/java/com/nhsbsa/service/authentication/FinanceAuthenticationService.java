@@ -27,10 +27,8 @@ public class FinanceAuthenticationService {
     }
 
     public Authentication getUser(final String name, final String password) {
-        final LoginRequest authenticationRequest = LoginRequest.builder()
-                .username(name)
-                .password(password)
-                .build();
+
+        this.userLoginService.financeLogin(name,password);
 //
 //        final String uri = this.backendUri.params();
 //        try {
@@ -47,7 +45,6 @@ public class FinanceAuthenticationService {
 //            log.error("Failed to log in", e);
 //        }
 
-        throw new AuthenticationException(NOT_A_VALID_USER) {
         };
     }
 }
