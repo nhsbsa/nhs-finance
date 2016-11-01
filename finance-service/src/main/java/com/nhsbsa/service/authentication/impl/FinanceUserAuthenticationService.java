@@ -1,14 +1,14 @@
 package com.nhsbsa.service.authentication.impl;
 
-import com.nhsbsa.model.EmployingAuthorityAdmin;
 import com.nhsbsa.model.FinanceUser;
 import com.nhsbsa.security.LoginRequest;
 import com.nhsbsa.service.authentication.AuthenticationService;
 import com.nhsbsa.service.authentication.AuthorizationService;
-import controllers.FinanceUserRepository;
+import repository.FinanceUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import service.FinanceUserService;
 
 
 /**
@@ -17,23 +17,23 @@ import org.springframework.stereotype.Service;
  */
 
 @Slf4j
-@Service
+@Service(value = "financeUserAuthenticationService")
 public class FinanceUserAuthenticationService implements AuthenticationService<FinanceUser> {
 
-    private final FinanceUserRepository financeUserRepository;
+    private final FinanceUserService financeUserService;
 
     private final AuthorizationService authorizationService;
 
     @Autowired
-    public FinanceUserAuthenticationService(final FinanceUserRepository financeUserRepository,
+    public FinanceUserAuthenticationService(final FinanceUserService financeUserService,
                                             final AuthorizationService authorizationService) {
-        this.financeUserRepository = financeUserRepository;
+        this.financeUserService = financeUserService;
         this.authorizationService = authorizationService;
     }
 
     @Override
     public FinanceUser authenticateUser(final LoginRequest loginRequest) {
-        return financeUserRepository.findByUuid(loginRequest.getUuid());
+        return financeUserService.findByUuid(loginRequest.getUuid());
     }
 
     @Override

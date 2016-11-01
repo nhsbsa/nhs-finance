@@ -1,4 +1,4 @@
-package controllers;
+package repository;
 
 import com.nhsbsa.model.FinanceUser;
 import org.springframework.data.repository.PagingAndSortingRepository;
