@@ -1,4 +1,4 @@
-package repository;
+package com.nhsbsa.repos;
 
 import com.nhsbsa.model.FinanceUser;
 import org.springframework.data.repository.PagingAndSortingRepository;

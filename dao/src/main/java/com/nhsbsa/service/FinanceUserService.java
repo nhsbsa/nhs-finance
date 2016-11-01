@@ -1,9 +1,9 @@
-package service;
+package com.nhsbsa.service;
 
+import com.nhsbsa.repos.FinanceUserRepository;
 import com.nhsbsa.model.FinanceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.FinanceUserRepository;
 
 import javax.transaction.Transactional;
 
