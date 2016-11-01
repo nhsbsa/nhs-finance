@@ -9,10 +9,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by MArk Lishman on 31/10/2016.
+ * Created by matthewhood on 17/08/2016.
+ *
  */
-
-// TODO move to shared
 
 @ToString
 @EqualsAndHashCode
