@@ -1,0 +1,18 @@
+#Dev environment compose
+version: '2'
+
+services:
+
+  authorization:
+    image: nhs-bsa/authorization
+    ports:
+      - "8501:8501"
+    links:
+      - database
+    depends_on:
+      - database
+
+  database:
+    image: nhs-bsa/database
+    ports:
+         - "5432:5432"
