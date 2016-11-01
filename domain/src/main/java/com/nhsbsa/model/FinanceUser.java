@@ -20,7 +20,7 @@ import java.util.Collections;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString(of = {"id"})
+@Table(name = "finance_user")
 public class FinanceUser extends BaseEntity<Long> implements UserDetails {
 
 
