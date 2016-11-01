@@ -14,8 +14,7 @@ import java.util.Properties;
 public class NavigationManager {
 
     private static final URL applicationProperties = DriverManager.class.getClassLoader().getResource("application.properties");
-    public static String MEMBER_WEBSITE;
-    public static String EMPLOYER_WEBSITE;
+    public static String FINANCE_WEBSITE;
 
     public static String ACHECKER_WEBSITE;
     public static String ACHECKER_ID;
@@ -30,8 +29,7 @@ public class NavigationManager {
             input = new FileInputStream(applicationProperties.getFile());
             properties.load(input);
 
-            MEMBER_WEBSITE = System.getenv("member.frontend.url");
-            EMPLOYER_WEBSITE = System.getenv("employer.frontend.url");
+            FINANCE_WEBSITE = System.getenv("finance.frontend.url");
 
             ACHECKER_WEBSITE = properties.getProperty("achecker.webservice.url");
             ACHECKER_ID = properties.getProperty("achecker.webservice.id");
@@ -64,8 +62,5 @@ public class NavigationManager {
         DriverManager.navigate(BASE_URL + "/logout");
     }
 
-    public static void navigateToPersonalDetails() {
-        DriverManager.navigate(NavigationManager.MEMBER_WEBSITE + "/member/details");
-    }
 
 }
