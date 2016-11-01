@@ -3,6 +3,26 @@ version: '2'
 
 services:
 
+ finance-website:
+  image: nhs-bsa/finance-website
+  ports:
+    - "8080:8080"
+  links:
+    - finance-service
+    - authorization
+  depends_on:
+    - finance-service
+    - authorization
+
+ finance-service:
+  image: nhs-bsa/finance-service
+  ports:
+    - "8081:8081"
+  links:
+    - database
+  depends_on:
+    - database
+
   authorization:
     image: nhs-bsa/authorization
     ports:
