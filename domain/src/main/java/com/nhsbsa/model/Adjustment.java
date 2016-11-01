@@ -12,26 +12,20 @@ import java.util.Date;
 @Data
 @Builder
 @Entity
-@Table(name = "request_for_transfer")
+@Table(name = "adjustment")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class RequestForTransfer extends BaseEntity<Long> {
+public class Adjustment extends BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rft_id", insertable = false, updatable = false)
+    @Column(name = "adj_id", insertable = false, updatable = false)
     private Long id;
-
-    private Date transferDate;
-
-    private boolean isGp;
 
     private int contributionMonth;
 
     private int contributionYear;
-
-    private BigDecimal totalPensionablePay;
 
     private BigDecimal employeeContributions;
 
@@ -42,8 +36,4 @@ public class RequestForTransfer extends BaseEntity<Long> {
     private BigDecimal errbo;
 
     private BigDecimal employerContributions;
-
-    private BigDecimal totalDebitAmount;
-
-    private Date receivedDate;
 }
