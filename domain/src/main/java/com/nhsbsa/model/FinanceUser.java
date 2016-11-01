@@ -15,6 +15,7 @@ import java.util.Collections;
  *
  */
 
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
