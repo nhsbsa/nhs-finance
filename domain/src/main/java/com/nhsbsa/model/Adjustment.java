@@ -24,16 +24,10 @@ public class Adjustment extends BaseEntity<Long> {
     private Long id;
 
     private int contributionMonth;
-
     private int contributionYear;
-
     private BigDecimal employeeContributions;
-
     private BigDecimal employeeAddedYears;
-
     private BigDecimal additionalPension;
-
     private BigDecimal errbo;
-
     private BigDecimal employerContributions;
 }
