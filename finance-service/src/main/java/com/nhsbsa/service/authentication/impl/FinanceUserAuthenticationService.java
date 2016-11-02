@@ -4,11 +4,10 @@ import com.nhsbsa.model.FinanceUser;
 import com.nhsbsa.security.LoginRequest;
 import com.nhsbsa.service.authentication.AuthenticationService;
 import com.nhsbsa.service.authentication.AuthorizationService;
-import repository.FinanceUserRepository;
+import com.nhsbsa.service.FinanceUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.FinanceUserService;
 
 
 /**
