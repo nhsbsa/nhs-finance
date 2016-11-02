@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="#{schedule.Title}"></title>
+    <object th:replace="fragments/global_includes :: global_includes" th:remove="tag">...</object>
+</head>
+<body class="body">
+
+<div th:replace="fragments/finance-header :: header">...</div>
+
+<div id="content" role="main">
+    <h1 class="heading-xlarge" th:text="#{schedule.Heading}"> </h1>
+        <p class="lede" th:text="#{schedule.Heading1}"></p>
+
+
+    <div class="text">
+        <div class="validation-summary display-none">
+            <p th:text="#{errorSummary1}"><br />Please see the errors below.</p>
+        </div>
+    </div>
+
+    <form action="contributions-and-payment" method="get" class="form demo-validation-input" novalidate="novalidate">
+
+        <div class="form-item-wrapper error-layer">
+
+            <div class="inline-form-groups">
+                <fieldset>
+                    <legend class="form-label-bold" th:text="#{schedule.DateOfTransfer}"></legend>
+                    <p class="form-hint" th:text="#{schedule.DateHint}"></p>
+                    <p class="validation-message display-none" th:text="#{schedule.DateValidation}"></p>
+                    <div class="form-group">
+                        <label class="form-label" for="dob-day" th:text="#{schedule.DateLabel1}"></label>
+                        <input class="form-control form-control-2-chars" id="dob-day" type="number" min="0" max="31"> </input>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="dob-month" th:text="#{schedule.DateLabel2}"></label>
+                        <input class="form-control form-control-2-chars" id="dob-month" type="number" min="0" max="12"> </input>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="dob-year" th:text="#{schedule.DateLabel3}"></label>
+                        <input class="form-control form-control-4-chars" id="dob-year" type="number" min="0"> </input>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="form-item-wrapper error-layer">
+
+            <div class="form-groups">
+                <fieldset>
+                    <legend class="form-label-bold label-like" th:text="#{schedule.Contribution}"></legend>
+                    <p class="validation-message display-none" th:text="#{schedule.ContValidation}"></p>
+                    <div class="inline-form-groups">
+                        <div class="form-group">
+                            <label class="nhsbsa-radio" for="staff">
+                                <input type="radio" name="relates" value="staff" id="staff" > </input>
+                                <span class="input-text" th:text="#{schedule.ContLabel1}"></span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="nhsbsa-radio" for="gps">
+                                <input type="radio" name="relates" value="gps" id="gps" > </input>
+                                <span class="input-text" th:text="#{schedule.ContLabel2}"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+
+
+        </div>
+
+        <div class="form-item-wrapper error-layer">
+
+            <div class="inline-form-groups">
+                <fieldset>
+                    <legend class="form-label-bold" th:text="#{schedule.PaymentMonth}"></legend>
+                    <p class="form-hint" th:text="#{schedule.PaymentMonthHint}"></p>
+                    <p class="validation-message display-none" th:text="#{schedule.PaymentValidation}"></p>
+                    <div class="form-group">
+                        <label class="form-label" for="contribution-month" th:text="#{schedule.PaymentLabel1}"></label>
+                        <input class="form-control form-control-2-chars" id="contribution-month" type="number" min="0" max="12"> </input>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="contribution-year" th:text="#{schedule.PaymentLabel2}"></label>
+                        <input class="form-control form-control-4-chars" id="contribution-year" type="number" min="0"> </input>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="form-item-wrapper">
+            <div class="form-group">
+                <button class="button" th:text="#{nextStep}"></button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="pagination-simple">
+        <div class="back-link">
+            <a href="security-information" class="link">
+                <span class="prefix" th:text="#{back}"></span>
+                <span class="title" th:text="#{security}"></span>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>
