@@ -14,7 +14,7 @@ import static com.nhsbsa.finance.pageobjects.FinancePages.financeLoginPage;
 public class AuthenticationSteps {
 
     @Given("^user navigates to finance login page$")
-    public void user_navigates_to_member_login_page() {
+    public void user_navigates_to_finance_login_page() {
         NavigationManager.navigateToLogin(NavigationManager.FINANCE_WEBSITE + "/login");
         financeLoginPage = PageFactory.initElements(DriverManager.getDriver(), FinanceLoginPage.class);
     }
