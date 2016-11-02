@@ -53,7 +53,7 @@ public class LoginControllerTest {
 
     @Test
     public void shouldLogout() throws Exception {
-        mvc.perform(logout("/employer/logout"))
+        mvc.perform(logout("/finance/logout"))
                 .andExpect(redirectedUrl("http://localhost/login"));
     }
 
