@@ -5,4 +5,5 @@ package com.nhsbsa.finance.pageobjects;
  */
 public class FinancePages {
     public static FinanceLoginPage financeLoginPage;
+    public static EmployerAccountInfoPage employerAccountInfoPage;
 }

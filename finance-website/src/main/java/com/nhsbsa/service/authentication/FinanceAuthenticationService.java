@@ -1,7 +1,7 @@
 package com.nhsbsa.service.authentication;
 
-import com.nhsbsa.login.controllers.UserLoginService;
 import com.nhsbsa.login.exceptions.LoginAuthenticationException;
+import com.nhsbsa.login.services.UserLoginService;
 import com.nhsbsa.model.FinanceUser;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
