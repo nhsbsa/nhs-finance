@@ -6,16 +6,21 @@
 </head>
 <body class="body">
 
-<div th:replace="fragments/finance-header :: header">...</div>
+<div th:replace="fragments/finance-header-logout :: header_logout">...</div>
 
 <div id="content" role="main">
-    <h1 class="heading-xlarge" th:text="#{schedule.Heading}"> </h1>
-        <p class="lede" th:text="#{schedule.Heading1}"></p>
+    <div th:replace="fragments/back-link :: back">...</div>
+
+
+    <h1 class="heading-xlarge" th:text="#{schedule.Heading}" style="margin-bottom: 0px;">  </h1>
+    <h2 class="heading-large" th:text="#{schedule.Heading1}"> </h2>
+
 
 
     <div class="text">
         <div class="validation-summary display-none">
-            <p th:text="#{errorSummary1}"><br />Please see the errors below.</p>
+            <p th:text="#{errorSummary1}"></p>
+            <p th:text="#{errorSummary2}"></p>
         </div>
     </div>
 
