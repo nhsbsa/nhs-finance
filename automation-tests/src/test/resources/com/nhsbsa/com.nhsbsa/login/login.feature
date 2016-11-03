@@ -1,14 +1,24 @@
 @smokeTest
-Feature: Logging into the employer site
+Feature: Logging into the Finance site
 
-  Scenario: Login scenario test for Employer
+  Background:
 
-    Given navigate to employer login page
-    When employer logged in using username as userA and password as password
-    Then employer home page should be displayed
+    Given user navigates to finance start page
+    And finance start page is displayed
+    And click start now button on finance start page
+    And finance login page is displayed
 
-    Given navigate to invalid employer login page
-    Then employer home page should be displayed
+  Scenario: Error message is displayed for invalid user
 
-    Given navigate to employer login page
-    Then employer login page should pass accessibility checker
+    When user enters invalid email 'imposter@email.com' and password 'password'
+    Then error text should be displayed on finance login page
+
+  Scenario: User clicks logout on finance login page
+
+    When user clicks on logout button in finance login page
+    Then logout text should be displayed on finance login page
+
+  #Scenario: FUTURE!!! Valid username/password entered go to security page
+
+    #When user enters valid email 'sam.jones@email.com' and password 'password'
+    #Then security page is displayed

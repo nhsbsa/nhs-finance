@@ -3,22 +3,15 @@ package com.nhsbsa.webdriver.loginhelper;
 import com.nhsbsa.webdriver.NavigationManager;
 
 /**
- * Created by jeffreya on 05/09/2016.
+ * Created by ianfulcher on 01/11/2016.
  */
 public class LoginHelper {
 
 
-    public static void memberLogin() {
-
-        NavigationManager.navigateToLogin(NavigationManager.MEMBER_WEBSITE);
-
-
+    public static void financeStartPage() {
+        NavigationManager.navigateToStartPage(NavigationManager.FINANCE_WEBSITE);
     }
 
-    public static void employerLogin() {
+    public static void financeLoginPage() { NavigationManager.navigateToLoginPage(NavigationManager.FINANCE_WEBSITE); }
 
-        NavigationManager.navigateToLogin(NavigationManager.EMPLOYER_WEBSITE);
-
-
-    }
 }

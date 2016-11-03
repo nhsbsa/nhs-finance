@@ -8,9 +8,10 @@ import com.nhsbsa.webdriver.NavigationManager;
  */
 public class MemberNavigation extends NavigationManager {
 
+    /*
     public static void navigateToPersonalDetails() {
         DriverManager.navigate(NavigationManager.MEMBER_WEBSITE + "/details");
     }
-
+*/
 
 }
