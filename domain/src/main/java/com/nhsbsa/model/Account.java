@@ -22,7 +22,7 @@ public class Account extends BaseEntity<Long> {
     @Column(name = "account_id", insertable = false, updatable = false)
     private Long id;
     private String accountNumber;
-    private String name;
+    private String accountName;
     private String eaReference;
 
     @OneToMany()

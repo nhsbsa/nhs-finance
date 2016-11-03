@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Mark Lishman on 31/10/2016.
@@ -30,4 +30,8 @@ public class Adjustment extends BaseEntity<Long> {
     private BigDecimal additionalPension;
     private BigDecimal errbo;
     private BigDecimal employerContributions;
+
+    @OneToMany()
+    @JoinColumn(name = "adj_id")
+    private List<Adjustment> adjustmentList;
 }
