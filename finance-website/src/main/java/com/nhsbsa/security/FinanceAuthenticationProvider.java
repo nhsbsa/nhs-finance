@@ -22,11 +22,11 @@ public class FinanceAuthenticationProvider implements AuthenticationProvider {
     private boolean mockLogin = false;
 
 
-    private final FinanceAuthenticationService memberAuthenticationService;
+    private final FinanceAuthenticationService financeAuthenticationService;
 
     @Autowired
-    public FinanceAuthenticationProvider(final FinanceAuthenticationService memberAuthenticationService) {
-        this.memberAuthenticationService = memberAuthenticationService;
+    public FinanceAuthenticationProvider(final FinanceAuthenticationService financeAuthenticationService) {
+        this.financeAuthenticationService = financeAuthenticationService;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class FinanceAuthenticationProvider implements AuthenticationProvider {
     }
 
     private Authentication getAuthentication(final String name, final String password) {
-        return mockLogin ? getMockedAuthentication(name, password) : memberAuthenticationService.getUser(name, password);
+        return mockLogin ? getMockedAuthentication(name, password) : financeAuthenticationService.getUser(name, password);
     }
 
     private Authentication getMockedAuthentication(final String name, final String password) {

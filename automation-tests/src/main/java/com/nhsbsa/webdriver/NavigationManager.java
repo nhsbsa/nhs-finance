@@ -67,7 +67,9 @@ public class NavigationManager {
         DriverManager.navigate(BASE_URL + "/login");
     }
 
-    public static void navigateToInvalidLoginError(String BASE_URL) { DriverManager.navigate(BASE_URL + "/login?error"); }
+    public static void navigateToInvalidLoginError(String BASE_URL) {
+        DriverManager.navigate(BASE_URL + "/login?error");
+    }
 
     public static void navigateToLogout(String BASE_URL) {
         DriverManager.navigate(BASE_URL + "/logout");
