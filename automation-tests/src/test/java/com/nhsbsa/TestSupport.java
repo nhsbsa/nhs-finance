@@ -20,6 +20,7 @@ public class TestSupport {
 
     @Before
     public void before() {
+       // Script that pre-populates DB items so a generic starting point, if required.
        // ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
        // populator.addScripts(new ClassPathResource("/test-data/member.sql"));
        // populator.execute(dataSource);
