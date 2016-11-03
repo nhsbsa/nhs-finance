@@ -16,6 +16,7 @@ import java.util.List;
  *
  */
 
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
@@ -74,4 +75,8 @@ public class FinanceUser extends BaseEntity<Long> implements UserDetails {
     public boolean isEnabled() {
         return recStatus == 1;
     }
+
+
+
+
 }

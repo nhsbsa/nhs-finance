@@ -8,17 +8,11 @@ import com.nhsbsa.webdriver.NavigationManager;
 public class LoginHelper {
 
 
-    public static void memberLogin() {
+    public static void financeLogin() {
 
-        NavigationManager.navigateToLogin(NavigationManager.MEMBER_WEBSITE);
-
-
-    }
-
-    public static void employerLogin() {
-
-        NavigationManager.navigateToLogin(NavigationManager.EMPLOYER_WEBSITE);
+        NavigationManager.navigateToLogin(NavigationManager.FINANCE_WEBSITE);
 
 
     }
+
 }
