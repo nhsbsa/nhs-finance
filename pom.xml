@@ -10,8 +10,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>base-website</module>
         <module>domain</module>
         <module>finance-website</module>
+        <module>finance-service</module>
+        <module>dao</module>
     </modules>
 
     <parent>
@@ -154,6 +157,8 @@
             <artifactId>thymeleaf-extras-conditionalcomments</artifactId>
             <version>${thymeleaf.conditionalcomments.version}</version>
         </dependency>
+
+
     </dependencies>
 
     <build>

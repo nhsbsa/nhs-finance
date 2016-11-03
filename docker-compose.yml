@@ -1,0 +1,33 @@
+#Dev environment compose
+version: '2'
+
+services:
+
+  finance-website:
+    image: nhs-bsa/finance-website
+    ports:
+      - "8080:8080"
+    links:
+      - authorization
+      - finance-service
+
+  finance-service:
+    image: nhs-bsa/finance-service
+    ports:
+      - "8081:8081"
+    links:
+      - database
+
+  authorization:
+    image: nhs-bsa/authorization
+    ports:
+      - "8501:8501"
+    links:
+      - database
+    depends_on:
+      - database
+
+  database:
+    image: nhs-bsa/database
+    ports:
+      - "5432:5432"
