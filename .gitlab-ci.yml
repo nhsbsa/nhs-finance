@@ -18,7 +18,7 @@ stages:
   - clean
 
 maven build:
-  image: $DOCKER_REGISTRY/$NAMESPACE/app-builder:latest
+  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
   stage: build
   artifacts:
     paths:
@@ -42,7 +42,7 @@ maven build:
     - master
 
 maven build (no sonar):
-  image: $DOCKER_REGISTRY/$NAMESPACE/app-builder:latest
+  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
   stage: build
   before_script:
     - eval $(ssh-agent -s)
@@ -82,7 +82,7 @@ tag images:
     - docker
 
 clean docker:
-  image: $DOCKER_REGISTRY/$NAMESPACE/app-builder:latest
+  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
   stage: clean
   script:
     - $COMPOSE stop
