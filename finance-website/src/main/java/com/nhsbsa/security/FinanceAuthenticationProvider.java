@@ -1,5 +1,6 @@
 package com.nhsbsa.security;
 
+import com.nhsbsa.model.FinanceUser;
 import com.nhsbsa.service.authentication.FinanceAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,7 +46,9 @@ public class FinanceAuthenticationProvider implements AuthenticationProvider {
             throw new AuthenticationException("not a valid user") {
             };
         }
-        return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+        final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+        usernamePasswordAuthenticationToken.setDetails(FinanceUser.builder().build());
+        return usernamePasswordAuthenticationToken;
     }
 
     @Override
