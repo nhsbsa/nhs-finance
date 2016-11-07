@@ -1,0 +1,16 @@
+[submodule "modules/website-assets"]
+	path = modules/website-assets
+	url = git@gitlab.nhs-bsa.com:nhs-shared/website-assets.git
+	ignore = dirty
+[submodule "modules/nhs-base-docker"]
+	path = modules/nhs-base-docker
+	url = git@gitlab.nhs-bsa.com:nhs-shared/nhs-base-docker.git
+    ignore = dirty
+[submodule "modules/database-docker"]
+	path = modules/database-docker
+	url = git@gitlab.nhs-bsa.com:nhs-shared/database-docker
+	ignore = dirty
+[submodule "modules/authorization"]
+	path = modules/authorization
+	url = git@gitlab.nhs-bsa.com:nhs-shared/authorization
+	ignore = dirty

@@ -15,6 +15,10 @@
         <module>finance-website</module>
         <module>finance-service</module>
         <module>dao</module>
+        <module>modules/website-assets</module>
+        <module>modules/nhs-base-docker</module>
+        <module>modules/database-docker</module>
+        <module>modules/authorization</module>
     </modules>
 
     <parent>
