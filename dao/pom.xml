@@ -24,12 +24,13 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.2.3</version>
+                <version>${docker.maven.plugin.version}</version>
                 <configuration>
                     <skipDockerBuild>true</skipDockerBuild>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 
 </project>
