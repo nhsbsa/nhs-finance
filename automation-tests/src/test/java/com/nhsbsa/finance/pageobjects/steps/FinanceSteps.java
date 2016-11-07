@@ -1,4 +1,4 @@
-package com.nhsbsa.finance;
+package com.nhsbsa.finance.pageobjects.steps;
 
 import com.nhsbsa.finance.pageobjects.EmployerAccountInfoPage;
 import com.nhsbsa.webdriver.DriverManager;
@@ -10,6 +10,7 @@ import static com.nhsbsa.finance.pageobjects.FinancePages.employerAccountInfoPag
 
 /**
  * Created by MattHood on 02/11/2016.
+ * This is the page after the Finance Login, title "Security" and has the A/C Name/Number and EA Reference
  */
 public class FinanceSteps {
 

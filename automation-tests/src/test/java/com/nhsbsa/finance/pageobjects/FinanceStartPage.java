@@ -1,4 +1,4 @@
-package com.nhsbsa.pageobjects;
+package com.nhsbsa.finance.pageobjects;
 
 import com.nhsbsa.BasePage;
 import com.nhsbsa.webdriver.DriverManager;

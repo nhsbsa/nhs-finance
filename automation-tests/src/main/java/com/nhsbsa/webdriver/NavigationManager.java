@@ -34,10 +34,11 @@ public class NavigationManager {
             // Get all the environment variables (for testing only to see what is defined)
             //Map<String, String> env = System.getenv();
 
-            // Below is null, it needs to be set somewhere but isn't, comment out for now.
-            //FINANCE_WEBSITE = System.getenv("finance.frontend.url");
-            // Set the URL from what is in the application.properties for now.
-            FINANCE_WEBSITE = properties.getProperty("finance.frontend.url");
+            // Set the environment variable required. Noted that cannot use a . due to (see below):-
+            // export [-fn] [name[=word]] ...
+            // name   A word consisting only of alphanumeric characters and underscores, and beginning with an
+            // alphabetic character or an underscore. Also referred to as an identifier.
+            FINANCE_WEBSITE = System.getenv("finance_frontend_url");
 
             // application.properties under the src/test/resources/
             ACHECKER_WEBSITE = properties.getProperty("achecker.webservice.url");
@@ -63,7 +64,11 @@ public class NavigationManager {
         DriverManager.navigate(BASE_URL + "/start");
     }
 
+    public static void navigateToStartPageSlash(String BASE_URL) {
+        DriverManager.navigate(BASE_URL + "/");
+    }
     public static void navigateToLoginPage(String BASE_URL) {
+
         DriverManager.navigate(BASE_URL + "/login");
     }
 
@@ -74,11 +79,5 @@ public class NavigationManager {
     public static void navigateToLogout(String BASE_URL) {
         DriverManager.navigate(BASE_URL + "/logout");
     }
-
-    /*
-    public static void navigateToPersonalDetails() {
-        DriverManager.navigate(NavigationManager.MEMBER_WEBSITE + "/member/details");
-    }
-    */
 
 }

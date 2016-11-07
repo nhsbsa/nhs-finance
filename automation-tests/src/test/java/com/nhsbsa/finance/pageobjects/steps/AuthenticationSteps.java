@@ -1,7 +1,7 @@
-package com.nhsbsa.pageobjects.steps;
+package com.nhsbsa.finance.pageobjects.steps;
 
-import com.nhsbsa.pageobjects.FinanceStartPage;
-import com.nhsbsa.pageobjects.FinanceLoginPage;
+import com.nhsbsa.finance.pageobjects.FinanceStartPage;
+import com.nhsbsa.finance.pageobjects.FinanceLoginPage;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
@@ -11,8 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
-import static com.nhsbsa.pageobjects.FinancePages.financeStartPage;
-import static com.nhsbsa.pageobjects.FinancePages.financeLoginPage;
+import static com.nhsbsa.finance.pageobjects.FinancePages.financeStartPage;
+import static com.nhsbsa.finance.pageobjects.FinancePages.financeLoginPage;
+import com.nhsbsa.webdriver.accessibility.AccessibilityChecker;
 
 /**
  * Created by ianfulcher on 01/11/2016.
@@ -33,7 +34,11 @@ public class AuthenticationSteps {
         //} catch (InterruptedException ex) { }
     }
 
-
+    @Given("^user navigates to finance start page slash$")
+    public void user_navigates_to_finance_start_page_slash() {
+        NavigationManager.navigateToStartPageSlash(NavigationManager.FINANCE_WEBSITE);
+        financeStartPage = PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);
+    }
 
     // Then
 
@@ -73,7 +78,19 @@ public class AuthenticationSteps {
         DriverManager.shutdown();
     }
 
+    @Then("^finance login page should pass accessibility checker$")
+    public void checkPageAccessibility() throws InterruptedException {
+        AccessibilityChecker.checkAccessibility(NavigationManager.FINANCE_WEBSITE + "/login");
+    }
+
     // When
+
+    @When("^user enters valid email '(.*)' and password '(.*)'$")
+    public void user_enters_valid_email_and_password(String email, String password) {
+        financeLoginPage.enterUserName(email);
+        financeLoginPage.enterPassword(password);
+        financeLoginPage = financeLoginPage.submit();
+    }
 
     @When("^user enters invalid email '(.*)' and password '(.*)'$")
     public void user_enters_invalid_email_and_password(String email, String password) {

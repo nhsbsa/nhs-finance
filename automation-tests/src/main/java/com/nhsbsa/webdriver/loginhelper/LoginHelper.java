@@ -9,9 +9,12 @@ public class LoginHelper {
 
 
     public static void financeStartPage() {
+
         NavigationManager.navigateToStartPage(NavigationManager.FINANCE_WEBSITE);
     }
 
-    public static void financeLoginPage() { NavigationManager.navigateToLoginPage(NavigationManager.FINANCE_WEBSITE); }
+    public static void financeLoginPage() {
+        NavigationManager.navigateToLoginPage(NavigationManager.FINANCE_WEBSITE);
+    }
 
 }
