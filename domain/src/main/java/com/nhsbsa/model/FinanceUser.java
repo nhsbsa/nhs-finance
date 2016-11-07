@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by jeffreya on 31/10/2016.
@@ -35,12 +34,6 @@ public class FinanceUser extends BaseEntity<Long> implements UserDetails {
     private String username;
     private String firstName;
     private String lastName;
-    private String contactTelephone;
-    private String contactEmail;
-
-    @OneToMany()
-    @JoinColumn(name = "finance_user_id")
-    private List<Account> accountList;
 
     @Transient
     private String role = "ROLE_USER";
