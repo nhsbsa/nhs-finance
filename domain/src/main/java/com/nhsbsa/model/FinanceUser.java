@@ -39,8 +39,8 @@ public class FinanceUser extends BaseEntity<Long> implements UserDetails {
     private String contactEmail;
 
     @OneToMany()
-    @JoinColumn(name = "finance_user_id")
-    private List<Account> accountList;
+    @JoinColumn(name = "emp_auth_id")
+    private List<EmployingAuthority> employingAuthorityList;
 
     @Transient
     private String role = "ROLE_USER";

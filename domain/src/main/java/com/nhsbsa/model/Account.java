@@ -28,10 +28,4 @@ public class Account extends BaseEntity<Long> {
     @Column(name="acc_name")
     private String accountName;
 
-    private String eaReference;
-
-    @OneToMany()
-    @JoinColumn(name = "acc_id")
-    private List<RequestForTransfer> requestForTransferList;
-
 }
