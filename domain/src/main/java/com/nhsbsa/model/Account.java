@@ -19,14 +19,10 @@ public class Account extends BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id", insertable = false, updatable = false)
+    @Column(name = "acc_id", insertable = false, updatable = false)
     private Long id;
-    private String accountNumber;
-    private String name;
-    private String eaReference;
 
-    @OneToMany()
-    @JoinColumn(name = "account_id")
-    private List<RequestForTransfer> requestForTransferList;
+    private String number;
+    private String name;
 
 }

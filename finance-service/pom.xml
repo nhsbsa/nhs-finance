@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>nhs-bsa</groupId>
+            <groupId>nhs-bsa-finance</groupId>
             <artifactId>dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -66,7 +66,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.2.3</version>
+                <version>${docker.maven.plugin.version}</version>
                 <configuration>
                     <skipDockerBuild>false</skipDockerBuild>
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>

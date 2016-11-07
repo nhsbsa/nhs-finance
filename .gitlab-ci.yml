@@ -1,0 +1,93 @@
+variables:
+  DOCKER_PROJECT_ID: "pensions$CI_BUILD_REF"
+  COMPOSE: "docker-compose -f ${CI_PROJECT_DIR}/docker-compose.yml -p finance$CI_BUILD_REF"
+  DOCKER_REGISTRY: "docker-registry.nhs-bsa.aws:5000"
+  NAMESPACE: "nhs-finance"
+  MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2"
+  TAG_NAME: "build-$CI_PIPELINE_ID"
+  SONAR_URL: "http://sonar.nhs-bsa.aws:9000/"
+  ANSIBLE_DIR: "/ansible"
+  ANSIBLE_REPO: "git@gitlab.nhs-bsa.com:ansible/docker-deploy.git"
+  NODE_ENV: production
+
+stages:
+  - build
+  - test
+  - prepare
+  - deploy
+  - clean
+
+maven build:
+  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
+  stage: build
+  artifacts:
+    paths:
+      - liquibase/target/liquibase/migrate.sql
+      - modules/authorization/authorization-liquibase/target/liquibase/migrate.sql
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - git submodule update --init --recursive --remote
+  script:
+    - mvn clean install docker:build
+    - "$COMPOSE up -d"
+    - docker network connect "${DOCKER_PROJECT_ID}_default" $(docker ps | grep runner | awk '{print $1}')
+    - DB_HOST=$(docker inspect --format "{{ .NetworkSettings.Networks.${DOCKER_PROJECT_ID}_default.IPAddress }}" $(${COMPOSE} ps -q database))
+    - cd $CI_PROJECT_DIR/liquibase && mvn -Dliquibase.url="jdbc:postgresql://$DB_HOST:5432/backend" liquibase:updateSQL
+    - cd $CI_PROJECT_DIR/modules/authorization/authorization-liquibase && mvn -Dliquibase.url="jdbc:postgresql://$DB_HOST:5432/authentication" liquibase:updateSQL
+    - mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.projectName=nhs-finance -Dmaven.test.skip=true
+  tags:
+    - docker
+  only:
+    - master
+
+maven build (no sonar):
+  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
+  stage: build
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - git submodule update --init --recursive --remote
+  script:
+    - mvn clean install docker:build
+  tags:
+    - docker
+  except:
+    - master
+
+tests:
+  image: alpine:3.3
+  stage: test
+  script:
+    - sleep 1
+  tags:
+    - docker
+
+tag images:
+  image: docker:latest
+  stage: prepare
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $DOCKER_REGISTRY
+    - docker tag nhs-bsa/database $DOCKER_REGISTRY/$NAMESPACE/database:$TAG_NAME
+    - docker tag nhs-bsa/backend-api $DOCKER_REGISTRY/$NAMESPACE/finance-service:$TAG_NAME
+    - docker tag nhs-bsa/member-website $DOCKER_REGISTRY/$NAMESPACE/finance-website:$TAG_NAME
+    - docker tag nhs-bsa/authorization $DOCKER_REGISTRY/$NAMESPACE/authorization:$TAG_NAME
+    - docker push $DOCKER_REGISTRY/$NAMESPACE/database:$TAG_NAME
+    - docker push $DOCKER_REGISTRY/$NAMESPACE/finance-service:$TAG_NAME
+    - docker push $DOCKER_REGISTRY/$NAMESPACE/finance-website:$TAG_NAME
+    - docker push $DOCKER_REGISTRY/$NAMESPACE/authorization:$TAG_NAME
+  only:
+    - master
+  tags:
+    - docker
+
+clean docker:
+  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
+  stage: clean
+  script:
+    - $COMPOSE stop
+    - $COMPOSE down
+    - $COMPOSE rm -f
+  tags:
+    - docker
+  when: always
