@@ -1,5 +1,5 @@
 variables:
-  DOCKER_PROJECT_ID: "pensions$CI_BUILD_REF"
+  DOCKER_PROJECT_ID: "finance$CI_BUILD_REF"
   COMPOSE: "docker-compose -f ${CI_PROJECT_DIR}/docker-compose.yml -p finance$CI_BUILD_REF"
   DOCKER_REGISTRY: "***REMOVED***"
   NAMESPACE: "nhs-finance"
