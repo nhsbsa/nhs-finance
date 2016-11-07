@@ -22,10 +22,7 @@ public class Account extends BaseEntity<Long> {
     @Column(name = "acc_id", insertable = false, updatable = false)
     private Long id;
 
-    @Column(name="acc_number")
-    private String accountNumber;
-
-    @Column(name="acc_name")
-    private String accountName;
+    private String number;
+    private String name;
 
 }

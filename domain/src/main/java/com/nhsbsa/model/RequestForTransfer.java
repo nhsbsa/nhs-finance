@@ -1,5 +1,6 @@
 package com.nhsbsa.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,37 +25,19 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Column(name = "rft_id", insertable = false, updatable = false)
     private Long id;
 
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date transferDate;
-
     private boolean isGp;
-
-    @Column(name="rft_contribution_month")
     private int contributionMonth;
-
-    @Column(name="rft_contribution_year")
     private int contributionYear;
-
-    @Column(name="rft_total_pensionable_pay")
     private BigDecimal totalPensionablePay;
-
-    @Column(name="rft_employee_contributions")
     private BigDecimal employeeContributions;
-
-    @Column(name="rft_employee_added_years")
     private BigDecimal employeeAddedYears;
-
-    @Column(name="rft_additional_pension")
     private BigDecimal additionalPension;
-
-    @Column(name="rft_errbo")
     private BigDecimal errbo;
-
-    @Column(name="rft_employer_contributions")
     private BigDecimal employerContributions;
-
-    @Column(name="rft_total_debit_amount")
     private BigDecimal totalDebitAmount;
-
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date receivedDate;
 
     @OneToMany()
