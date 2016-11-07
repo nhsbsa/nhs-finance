@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * Created by matthewhood on 17/08/2016.
- * 
+ *
  */
 
 @ToString
