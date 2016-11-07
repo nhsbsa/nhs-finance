@@ -22,6 +22,7 @@ Feature: Logging into the Finance site
 
     When user enters valid email 'sam.jones@email.com' and password 'password'
     Then employer account info page should be displayed
+    Then driver shutdown at end of test
 
   Scenario: Entering Delete from table SQL Injection into the email field will fail
 
@@ -36,3 +37,4 @@ Feature: Logging into the Finance site
   Scenario: Finance login page should pass accessibility checker
 
     Then finance login page should pass accessibility checker
+    Then driver shutdown at end of test

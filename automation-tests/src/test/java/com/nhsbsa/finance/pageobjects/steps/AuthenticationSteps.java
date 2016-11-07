@@ -42,6 +42,11 @@ public class AuthenticationSteps {
 
     // Then
 
+    @Then("^driver shutdown at end of test$")
+    public void driver_shutdown_at_end_of_test() {
+        DriverManager.shutdown();
+    }
+
     @Then("^finance start page is displayed$")
     public void finance_start_page_is_displayed() {
         financeStartPage = PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);

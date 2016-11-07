@@ -5,3 +5,4 @@ Feature: Go to the start page of the Finance site
 
     Given user navigates to finance start page
     Then finance start page is displayed
+    Then driver shutdown at end of test
