@@ -97,6 +97,40 @@ Dev:
   tags:
     - docker
 
+Demo:
+  image: $DOCKER_REGISTRY/$NAMESPACE/deployer:latest
+  stage: deploy
+  environment: Demo
+  dependencies:
+    - "maven build"
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$INFRA_PRIVATE_KEY")
+  script:
+    - cd $ANSIBLE_DIR && ansible-playbook -i inventory/demo plays/deploy_docker.yml --extra-vars "docker_tag=$TAG_NAME slack_enabled=1 main_db_file=$CI_PROJECT_DIR/liquibase/target/liquibase/migrate.sql auth_db_file=$CI_PROJECT_DIR/modules/authorization/authorization-liquibase/target/liquibase/migrate.sql"
+  only:
+    - master
+  tags:
+    - docker
+  when: manual
+
+QA:
+  image: $DOCKER_REGISTRY/$NAMESPACE/deployer:latest
+  stage: deploy
+  environment: Demo
+  dependencies:
+    - "maven build"
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$INFRA_PRIVATE_KEY")
+  script:
+    - cd $ANSIBLE_DIR && ansible-playbook -i inventory/qa plays/deploy_docker.yml --extra-vars "docker_tag=$TAG_NAME slack_enabled=0 main_db_file=$CI_PROJECT_DIR/liquibase/target/liquibase/migrate.sql auth_db_file=$CI_PROJECT_DIR/modules/authorization/authorization-liquibase/target/liquibase/migrate.sql"
+  only:
+    - master
+  tags:
+    - docker
+  when: manual
+
 clean docker:
   image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
   stage: clean
