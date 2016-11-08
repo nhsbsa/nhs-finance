@@ -20,13 +20,16 @@ public class ValidFormDateValidator implements ConstraintValidator<ValidFormDate
     @Override
     public boolean isValid(FormDateValidator formDateValidator, ConstraintValidatorContext context) {
 
+        String date = formDateValidator.getDays() + "/" + formDateValidator.getMonth() + "/" + formDateValidator.getYear();
+
         try {
-            DATE_FORMAT.parse("11/11/2016");
+            DATE_FORMAT.parse(date);
             return true;
         } catch (ParseException e) {
-            // invalid
+            return false;
         }
-        return false;
     }
+
+
 
 }
