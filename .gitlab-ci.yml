@@ -69,8 +69,8 @@ tag images:
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $DOCKER_REGISTRY
     - docker tag nhs-bsa/database $DOCKER_REGISTRY/$NAMESPACE/database:$TAG_NAME
-    - docker tag nhs-bsa/backend-api $DOCKER_REGISTRY/$NAMESPACE/finance-service:$TAG_NAME
-    - docker tag nhs-bsa/member-website $DOCKER_REGISTRY/$NAMESPACE/finance-website:$TAG_NAME
+    - docker tag nhs-bsa/finance-service $DOCKER_REGISTRY/$NAMESPACE/finance-service:$TAG_NAME
+    - docker tag nhs-bsa/finance-website $DOCKER_REGISTRY/$NAMESPACE/finance-website:$TAG_NAME
     - docker tag nhs-bsa/authorization $DOCKER_REGISTRY/$NAMESPACE/authorization:$TAG_NAME
     - docker push $DOCKER_REGISTRY/$NAMESPACE/database:$TAG_NAME
     - docker push $DOCKER_REGISTRY/$NAMESPACE/finance-service:$TAG_NAME
