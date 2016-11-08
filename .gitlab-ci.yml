@@ -33,7 +33,7 @@ maven build:
     - "$COMPOSE up -d"
     - docker network connect "${DOCKER_PROJECT_ID}_default" $(docker ps | grep runner | awk '{print $1}')
     - DB_HOST=$(docker inspect --format "{{ .NetworkSettings.Networks.${DOCKER_PROJECT_ID}_default.IPAddress }}" $(${COMPOSE} ps -q database))
-    - cd $CI_PROJECT_DIR/liquibase && mvn -Dliquibase.url="jdbc:postgresql://$DB_HOST:5432/backend" liquibase:updateSQL
+    - cd $CI_PROJECT_DIR/liquibase && mvn -Dliquibase.url="jdbc:postgresql://$DB_HOST:5432/finance" liquibase:updateSQL
     - cd $CI_PROJECT_DIR/modules/authorization/authorization-liquibase && mvn -Dliquibase.url="jdbc:postgresql://$DB_HOST:5432/authentication" liquibase:updateSQL
     - mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.projectName=nhs-finance -Dmaven.test.skip=true
   tags:
