@@ -111,7 +111,7 @@ Demo:
   only:
     - master
   tags:
-    - dockers
+    - docker
   when: manual
 
 QA:
