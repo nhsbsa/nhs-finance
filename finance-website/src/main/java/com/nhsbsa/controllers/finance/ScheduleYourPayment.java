@@ -19,8 +19,9 @@ public class ScheduleYourPayment {
 
     @RequestMapping(value = "/scheduleyourpayment")
     public ModelAndView scheduleyourpayment() {
-        final Map<String, Object> modelMap = new HashMap<>();
-        return new ModelAndView("/scheduleyourpayment", modelMap);
+        ModelAndView modelAndView = new ModelAndView("/scheduleyourpayment");
+        modelAndView.addObject("rft", new RequestForTransfer());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/scheduleyourpayment", method = RequestMethod.POST)
@@ -28,7 +29,4 @@ public class ScheduleYourPayment {
         final Map<String, Object> modelMap = new HashMap<>();
         return new ModelAndView("/scheduleyourpayment", modelMap);
     }
-
-
-
 }
