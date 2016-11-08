@@ -1,11 +1,10 @@
 package com.nhsbsa.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,8 +24,12 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Column(name = "rft_id", insertable = false, updatable = false)
     private Long id;
 
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private Date transferDate;
+    // TODO pick up converter globally
+
+    @Valid
+    @Convert(converter = FormDateConverter.class)
+    private TransferFormDate transferDate = new TransferFormDate();
+
     private boolean isGp;
     private int contributionMonth;
     private int contributionYear;
@@ -37,8 +40,10 @@ public class RequestForTransfer extends BaseEntity<Long> {
     private BigDecimal errbo;
     private BigDecimal employerContributions;
     private BigDecimal totalDebitAmount;
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private Date receivedDate;
+
+    @Valid
+    @Convert(converter = FormDateConverter.class)
+    private FormDate receiveDate = new FormDate();
 
     @OneToMany()
     @JoinColumn(name = "rft_id")
