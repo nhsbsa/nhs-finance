@@ -2,6 +2,8 @@ package com.nhsbsa.controllers.finance;
 
 import com.nhsbsa.model.RequestForTransfer;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,8 +27,11 @@ public class ScheduleYourPayment {
     }
 
     @RequestMapping(value = "/scheduleyourpayment", method = RequestMethod.POST)
-    public ModelAndView savePaymentSchedule(final RequestForTransfer requestForTransfer) {
-        final Map<String, Object> modelMap = new HashMap<>();
-        return new ModelAndView("/scheduleyourpayment", modelMap);
+    public String savePaymentSchedule( final RequestForTransfer requestForTransfer,
+                                            final BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "scheduleyourpayment";
+        }
+        return "redirect:/scheduleyourpayment";
     }
 }
