@@ -22,6 +22,10 @@ public class FinanceService {
         this.requestForTransferRepository = requestForTransferRepository;
     }
 
+    public RequestForTransfer getRequestForTransfer(final long rftId) {
+        return requestForTransferRepository.findOne(rftId);
+    }
+
     public RequestForTransfer saveRequestForTransfer(final RequestForTransfer requestForTransfer) {
         return requestForTransferRepository.save(requestForTransfer);
     }
