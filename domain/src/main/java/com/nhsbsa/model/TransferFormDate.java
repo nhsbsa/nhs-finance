@@ -3,6 +3,7 @@ package com.nhsbsa.model;
 import com.nhsbsa.model.validaton.DateIsAfterToday;
 import com.nhsbsa.model.validaton.DateLessThan31DaysFromToday;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 public class TransferFormDate extends FormDate {
 
     @Override
+    @NotNull (message = "{transferDate.notBlank}")
     @DateIsAfterToday
     @DateLessThan31DaysFromToday
     public Date getDate() {

@@ -39,10 +39,11 @@ public class FormDate implements FormDateValidator {
 
         try {
             if (StringUtils.isNotEmpty(formattedDate)) {
+                DATE_FORMAT.setLenient(false);
                 return DATE_FORMAT.parse(formattedDate);
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+            return null;
         }
         return null;
     }
