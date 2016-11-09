@@ -15,16 +15,16 @@
     <h1 class="heading-xlarge" th:text="#{schedule.Heading}" style="margin-bottom: 0px;">  </h1>
     <h2 class="heading-large" th:text="#{schedule.Heading1}"> </h2>
 
+    <form th:action="@{/scheduleyourpayment}" method="post" class="form demo-validation-input" novalidate="novalidate" th:object="${rft}">
 
-
-    <div class="text">
-        <div class="validation-summary display-none">
-            <p th:text="#{errorSummary1}"></p>
-            <p th:text="#{errorSummary2}"></p>
+    <div class="grid-row" th:if="${#fields.hasAnyErrors()}">
+        <div class="column-two-thirds">
+             <div class="validation-summary">
+                <p th:text="#{errorSummary1}"></p>
+                <p th:text="#{errorSummary2}"></p>
+            </div>
         </div>
     </div>
-
-    <form th:action="@{/scheduleyourpayment}" method="post" class="form demo-validation-input" novalidate="novalidate" th:object="${rft}">
 
         <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('transferDate') or #fields.hasErrors('transferDate.date')}? validation-error">
 
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('isGp')}? validation-error">
 
             <div class="form-groups">
                 <fieldset>
