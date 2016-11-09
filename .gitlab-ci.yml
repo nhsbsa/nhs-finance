@@ -1,5 +1,5 @@
 variables:
-  DOCKER_PROJECT_ID: "pensions$CI_BUILD_REF"
+  DOCKER_PROJECT_ID: "finance$CI_BUILD_REF"
   COMPOSE: "docker-compose -f ${CI_PROJECT_DIR}/docker-compose.yml -p finance$CI_BUILD_REF"
   DOCKER_REGISTRY: "***REMOVED***"
   NAMESPACE: "nhs-finance"
@@ -33,7 +33,7 @@ maven build:
     - "$COMPOSE up -d"
     - docker network connect "${DOCKER_PROJECT_ID}_default" $(docker ps | grep runner | awk '{print $1}')
     - DB_HOST=$(docker inspect --format "{{ .NetworkSettings.Networks.${DOCKER_PROJECT_ID}_default.IPAddress }}" $(${COMPOSE} ps -q database))
-    - cd $CI_PROJECT_DIR/liquibase && mvn -Dliquibase.url="jdbc:postgresql://$DB_HOST:5432/backend" liquibase:updateSQL
+    - cd $CI_PROJECT_DIR/liquibase && mvn -Dliquibase.url="jdbc:postgresql://$DB_HOST:5432/finance" liquibase:updateSQL
     - cd $CI_PROJECT_DIR/modules/authorization/authorization-liquibase && mvn -Dliquibase.url="jdbc:postgresql://$DB_HOST:5432/authentication" liquibase:updateSQL
     - mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.projectName=nhs-finance -Dmaven.test.skip=true
   tags:
@@ -69,8 +69,8 @@ tag images:
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $DOCKER_REGISTRY
     - docker tag nhs-bsa/database $DOCKER_REGISTRY/$NAMESPACE/database:$TAG_NAME
-    - docker tag nhs-bsa/backend-api $DOCKER_REGISTRY/$NAMESPACE/finance-service:$TAG_NAME
-    - docker tag nhs-bsa/member-website $DOCKER_REGISTRY/$NAMESPACE/finance-website:$TAG_NAME
+    - docker tag nhs-bsa/finance-service $DOCKER_REGISTRY/$NAMESPACE/finance-service:$TAG_NAME
+    - docker tag nhs-bsa/finance-website $DOCKER_REGISTRY/$NAMESPACE/finance-website:$TAG_NAME
     - docker tag nhs-bsa/authorization $DOCKER_REGISTRY/$NAMESPACE/authorization:$TAG_NAME
     - docker push $DOCKER_REGISTRY/$NAMESPACE/database:$TAG_NAME
     - docker push $DOCKER_REGISTRY/$NAMESPACE/finance-service:$TAG_NAME
@@ -80,6 +80,56 @@ tag images:
     - master
   tags:
     - docker
+
+Dev:
+  image: $DOCKER_REGISTRY/$NAMESPACE/deployer:latest
+  stage: deploy
+  environment: Dev
+  dependencies:
+    - "maven build"
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$INFRA_PRIVATE_KEY")
+  script:
+    - cd $ANSIBLE_DIR && ansible-playbook -i inventory/dev plays/deploy_docker.yml --extra-vars "docker_tag=$TAG_NAME slack_enabled=0 main_db_file=$CI_PROJECT_DIR/liquibase/target/liquibase/migrate.sql auth_db_file=$CI_PROJECT_DIR/modules/authorization/authorization-liquibase/target/liquibase/migrate.sql"
+  only:
+    - master
+  tags:
+    - docker
+
+Demo:
+  image: $DOCKER_REGISTRY/$NAMESPACE/deployer:latest
+  stage: deploy
+  environment: Demo
+  dependencies:
+    - "maven build"
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$INFRA_PRIVATE_KEY")
+  script:
+    - cd $ANSIBLE_DIR && ansible-playbook -i inventory/demo plays/deploy_docker.yml --extra-vars "docker_tag=$TAG_NAME main_db_file=$CI_PROJECT_DIR/liquibase/target/liquibase/migrate.sql auth_db_file=$CI_PROJECT_DIR/modules/authorization/authorization-liquibase/target/liquibase/migrate.sql"
+  only:
+    - master
+  tags:
+    - docker
+  when: manual
+
+QA:
+  image: $DOCKER_REGISTRY/$NAMESPACE/deployer:latest
+  stage: deploy
+  environment: Demo
+  dependencies:
+    - "maven build"
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$INFRA_PRIVATE_KEY")
+  script:
+    - cd $ANSIBLE_DIR && ansible-playbook -i inventory/qa plays/deploy_docker.yml --extra-vars "docker_tag=$TAG_NAME slack_enabled=0 main_db_file=$CI_PROJECT_DIR/liquibase/target/liquibase/migrate.sql auth_db_file=$CI_PROJECT_DIR/modules/authorization/authorization-liquibase/target/liquibase/migrate.sql"
+  only:
+    - master
+  tags:
+    - docker
+  when: manual
 
 clean docker:
   image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest

@@ -35,12 +35,12 @@ public class FinanceUser extends BaseEntity<Long> implements UserDetails {
     private String username;
     private String firstName;
     private String lastName;
-    private String contactTelephone;
-    private String contactEmail;
+    //private String contactTelephone;
+    //private String contactEmail;
 
-    @OneToMany()
-    @JoinColumn(name = "emp_auth_id")
-    private List<EmployingAuthority> employingAuthorityList;
+//    @OneToMany()
+//    @JoinColumn(name = "emp_auth_id")
+//    private List<EmployingAuthority> employingAuthorityList;
 
     @Transient
     private String role = "ROLE_USER";
