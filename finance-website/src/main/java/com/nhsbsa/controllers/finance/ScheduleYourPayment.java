@@ -32,6 +32,6 @@ public class ScheduleYourPayment {
         if (bindingResult.hasErrors()) {
             return "scheduleyourpayment";
         }
-        return "redirect:/scheduleyourpayment";
+        return "redirect:/scheduleyourpaymentsummary";
     }
 }
