@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
      * Created by Mark Lishman on 26/08/2016.
      */
 
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE })
+    @Target({ METHOD, TYPE })
     @Retention(RUNTIME)
     @Constraint(validatedBy = DateIsAfterTodayValidator.class)
     @Documented

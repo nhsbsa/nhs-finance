@@ -2,7 +2,10 @@ package com.nhsbsa.model.validaton;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -20,10 +23,11 @@ public class DateLessThan31DaysFromTodayValidator implements ConstraintValidator
             return true;
         }
 
-        DateTimeFormatter dateFormat =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate now           = LocalDate.now();
-        LocalDate today         = LocalDate.parse(now.toString(), dateFormat);
-        LocalDate futureDate    = LocalDate.parse(value.toString(),dateFormat);
+        LocalDate today           = LocalDate.now();
+        // Have to create an Instant to convert Java.Util.Date to Java.Time LocalDate
+        Instant instant         = Instant.ofEpochMilli(value.getTime());
+        // Create variable of Instance
+        LocalDate futureDate    = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
         long daysBetween        = ChronoUnit.DAYS.between(today, futureDate);
         if (daysBetween > 31) {
             return false;

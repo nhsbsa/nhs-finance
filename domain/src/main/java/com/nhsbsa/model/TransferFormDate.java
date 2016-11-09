@@ -14,8 +14,8 @@ public class TransferFormDate extends FormDate {
     @Override
     @DateIsAfterToday
     @DateLessThan31DaysFromToday
-    public Date toDate() {
-        return super.toDate();
+    public Date getDate() {
+        return super.getDate();
     }
 
 }

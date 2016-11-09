@@ -27,7 +27,7 @@ public class FormDate implements FormDateValidator {
     private String year;
 
     @JsonIgnore
-    public Date toDate() {
+    public Date getDate() {
 
         if (StringUtils.isEmpty(days) ||
                 StringUtils.isEmpty(month) ||
