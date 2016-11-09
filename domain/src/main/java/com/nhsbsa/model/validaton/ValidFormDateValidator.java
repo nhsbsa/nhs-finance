@@ -23,6 +23,7 @@ public class ValidFormDateValidator implements ConstraintValidator<ValidFormDate
         String date = formDateValidator.getDays() + "/" + formDateValidator.getMonth() + "/" + formDateValidator.getYear();
 
         try {
+            DATE_FORMAT.setLenient(false);
             DATE_FORMAT.parse(date);
             return true;
         } catch (ParseException e) {

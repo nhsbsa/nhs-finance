@@ -11,10 +11,11 @@ import java.util.Date;
 
 public class TransferFormDate extends FormDate {
 
+    @Override
     @DateIsAfterToday
     @DateLessThan31DaysFromToday
-    public Date getDate() {
-        return super.getDate();
+    public Date toDate() {
+        return super.toDate();
     }
 
 }
