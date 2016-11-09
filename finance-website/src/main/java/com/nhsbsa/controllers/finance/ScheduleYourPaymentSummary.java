@@ -18,7 +18,7 @@ public class ScheduleYourPaymentSummary {
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody String scheduleyourpayment() {
         StringBuilder sb = new StringBuilder();
-        sb.append("<h1>Summary</h1>");
+        sb.append("<h1>Success</h1>");
 
 
         return sb.toString();
