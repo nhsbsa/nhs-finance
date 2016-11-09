@@ -1,6 +1,8 @@
 package com.nhsbsa.controllers.finance;
 
 import com.nhsbsa.model.RequestForTransfer;
+import com.nhsbsa.service.RequestForTransferService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,13 @@ import java.util.Map;
 @Controller
 public class ScheduleYourPayment {
 
+    private final RequestForTransferService requestForTransferService;
+
+    @Autowired
+    public ScheduleYourPayment(final RequestForTransferService requestForTransferService) {
+        this.requestForTransferService = requestForTransferService;
+    }
+
     @GetMapping(value = "/scheduleyourpayment")
     public ModelAndView scheduleyourpayment() {
         ModelAndView modelAndView = new ModelAndView("scheduleyourpayment");
@@ -32,6 +41,7 @@ public class ScheduleYourPayment {
         if (bindingResult.hasErrors()) {
             return "scheduleyourpayment";
         }
+        requestForTransferService.saveRequestForTransfer(requestForTransfer);
         return "redirect:/scheduleyourpaymentsummary";
     }
 }
