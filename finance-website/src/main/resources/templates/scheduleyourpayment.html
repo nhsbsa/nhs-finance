@@ -32,7 +32,6 @@
                 <fieldset>
                     <legend class="form-label-bold" th:text="#{schedule.DateOfTransfer}"></legend>
                     <p class="form-hint" th:text="#{schedule.DateHint}"></p>
-                    <p class="validation-message display-none" th:text="#{schedule.DateValidation}"></p>
                     <p class="validation-message" th:errors="*{transferDate}"></p>
                     <div class="form-group">
                         <label class="form-label" for="dob-day" th:text="#{schedule.DateLabel1}"></label>
@@ -55,17 +54,19 @@
             <div class="form-groups">
                 <fieldset>
                     <legend class="form-label-bold label-like" th:text="#{schedule.Contribution}"></legend>
-                    <p class="validation-message display-none" th:text="#{schedule.ContValidation}"></p>
+                    <p class="validation-message" th:errors="*{isGp}"></p>
                     <div class="inline-form-groups">
                         <div class="form-group">
                             <label class="nhsbsa-radio" for="staff">
-                                <input type="radio" name="relates" value="staff" id="staff" > </input>
+                                <input type="radio" id="staff" name="relates"
+                                       th:field="${rft.isGp}" value="0"/>
                                 <span class="input-text" th:text="#{schedule.ContLabel1}"></span>
                             </label>
                         </div>
                         <div class="form-group">
                             <label class="nhsbsa-radio" for="gps">
-                                <input type="radio" name="relates" value="gps" id="gps" > </input>
+                                <input type="radio" id="gps" name="relates"
+                                       th:field="${rft.isGp}" value="1"/>
                                 <span class="input-text" th:text="#{schedule.ContLabel2}"></span>
                             </label>
                         </div>

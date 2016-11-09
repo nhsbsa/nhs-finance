@@ -1,6 +1,7 @@
 package com.nhsbsa.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -32,8 +33,9 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @NotNull(message = "{transferDate.notBlank}")
     private TransferFormDate transferDate = new TransferFormDate();
 
-  //  @NotBlank(message = "{isGp.notBlank}")
-    private boolean isGp;
+    @NotNull(message = "{isGp.notNull}")
+    private Boolean isGp;
+
     @NotNull (message = "{contributionMonth.notBlank}")
     private int contributionMonth;
     @NotNull (message = "{contributionYear.notBlank}")
