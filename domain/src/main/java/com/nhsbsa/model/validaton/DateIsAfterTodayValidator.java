@@ -15,6 +15,9 @@ public class DateIsAfterTodayValidator implements ConstraintValidator<DateIsAfte
     public final boolean isValid(final Date value,
                                  final ConstraintValidatorContext context) {
 
+        if (value == null) {
+            return true;
+        }
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date today = new Date();
 

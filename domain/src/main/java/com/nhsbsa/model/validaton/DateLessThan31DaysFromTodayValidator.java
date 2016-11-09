@@ -16,6 +16,10 @@ public class DateLessThan31DaysFromTodayValidator implements ConstraintValidator
     public final boolean isValid(final Date value,
                                  final ConstraintValidatorContext context) {
 
+        if (value == null) {
+            return true;
+        }
+
         DateTimeFormatter dateFormat =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate now           = LocalDate.now();
         LocalDate today         = LocalDate.parse(now.toString(), dateFormat);

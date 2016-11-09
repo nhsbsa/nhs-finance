@@ -2,10 +2,10 @@ package com.nhsbsa.controllers.finance;
 
 import com.nhsbsa.model.RequestForTransfer;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -19,16 +19,16 @@ import java.util.Map;
 @Controller
 public class ScheduleYourPayment {
 
-    @RequestMapping(value = "/scheduleyourpayment")
+    @GetMapping(value = "/scheduleyourpayment")
     public ModelAndView scheduleyourpayment() {
-        ModelAndView modelAndView = new ModelAndView("/scheduleyourpayment");
+        ModelAndView modelAndView = new ModelAndView("scheduleyourpayment");
         modelAndView.addObject("rft", new RequestForTransfer());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/scheduleyourpayment", method = RequestMethod.POST)
-    public String savePaymentSchedule( final RequestForTransfer requestForTransfer,
-                                            final BindingResult bindingResult) {
+    @PostMapping(value = "/scheduleyourpayment")
+    public String savePaymentSchedule(@Validated @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
+                                      final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "scheduleyourpayment";
         }
