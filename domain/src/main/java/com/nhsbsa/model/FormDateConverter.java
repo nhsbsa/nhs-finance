@@ -13,7 +13,7 @@ public class FormDateConverter implements AttributeConverter<FormDate, Date> {
 
     @Override
     public Date convertToDatabaseColumn(FormDate formDate) {
-        return formDate.toDate();
+        return formDate.getDate();
     }
 
     @Override
