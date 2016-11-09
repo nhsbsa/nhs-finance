@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,9 +47,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     private BigDecimal errbo;
     private BigDecimal employerContributions;
     private BigDecimal totalDebitAmount;
-
-    @Convert(converter = FormDateConverter.class)
-    private FormDate receiveDate = new FormDate();
+    private Date receiveDate = new Date();
 
     @OneToMany()
     @JoinColumn(name = "rft_id")
