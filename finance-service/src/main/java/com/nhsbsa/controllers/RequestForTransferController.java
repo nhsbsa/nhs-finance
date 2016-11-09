@@ -4,10 +4,7 @@ import com.nhsbsa.model.RequestForTransfer;
 import com.nhsbsa.service.FinanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,7 +24,13 @@ public class RequestForTransferController {
         this.financeService = financeService;
     }
 
-    @RequestMapping(value = "/rft", method = RequestMethod.POST)
+    @GetMapping(value = "/rft/{rftId}")
+    public ResponseEntity<RequestForTransfer> getRequestForTransfer(@PathVariable("rftId") final Long rftId) {
+        RequestForTransfer rft = financeService.getRequestForTransfer(rftId);
+        return ResponseEntity.ok(rft);
+    }
+
+    @PostMapping(value = "/rft")
     public ResponseEntity<RequestForTransfer> saveRequestForTransfer(@RequestBody @Valid final RequestForTransfer requestForTransfer) {
         RequestForTransfer rft = financeService.saveRequestForTransfer(requestForTransfer);
         return ResponseEntity.ok(rft);
