@@ -41,7 +41,7 @@ public class ScheduleYourPayment {
         if (bindingResult.hasErrors()) {
             return "scheduleyourpayment";
         }
-        requestForTransferService.saveRequestForTransfer(requestForTransfer);
+        //requestForTransferService.saveRequestForTransfer(requestForTransfer);
         return "redirect:/scheduleyourpaymentsummary";
     }
 }
