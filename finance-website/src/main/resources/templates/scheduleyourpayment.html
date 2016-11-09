@@ -26,7 +26,7 @@
 
     <form th:action="@{/scheduleyourpayment}" method="post" class="form demo-validation-input" novalidate="novalidate" th:object="${rft}">
 
-        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('transferDate') or #fields.hasErrors('transferDate.date')}? validation-error">
 
             <div class="inline-form-groups">
                 <fieldset>
