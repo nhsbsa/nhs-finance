@@ -1,7 +1,7 @@
 package com.nhsbsa.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nhsbsa.model.validaton.FormDateValidator;
+import com.nhsbsa.model.validaton.ValidFormDate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +16,8 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class FormDate implements FormDateValidator {
+@ValidFormDate
+public class FormDate {
 
     // TODO move to shared
 
