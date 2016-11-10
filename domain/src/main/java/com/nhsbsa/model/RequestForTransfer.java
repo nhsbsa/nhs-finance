@@ -37,8 +37,10 @@ public class RequestForTransfer extends BaseEntity<Long> {
 
     @NotNull (message = "{contributionMonth.notBlank}")
     private int contributionMonth;
+
     @NotNull (message = "{contributionYear.notBlank}")
     private int contributionYear;
+
     private BigDecimal totalPensionablePay;
     private BigDecimal employeeContributions;
     private BigDecimal employeeAddedYears;
