@@ -14,6 +14,10 @@ public class BackendUri {
         this.uriComponents = uriComponents;
     }
 
+    public String toUri() {
+        return params();
+    }
+
     public String params(Object... params) {
         return uriComponents
                 .expand((Object[]) params)
