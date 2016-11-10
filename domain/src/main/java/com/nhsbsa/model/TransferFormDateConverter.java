@@ -10,16 +10,18 @@ import java.util.Date;
  */
 
 @Converter
-public class FormDateConverter implements AttributeConverter<FormDate, Date> {
+public class TransferFormDateConverter implements AttributeConverter<TransferFormDate, Date> {
+
+    // TODO duplicate with FormDateConverter
 
     @Override
-    public Date convertToDatabaseColumn(FormDate formDate) {
+    public Date convertToDatabaseColumn(TransferFormDate formDate) {
         return formDate.getDate();
     }
 
     @Override
-    public FormDate convertToEntityAttribute(Date date) {
-        final FormDate formDate = new FormDate();
+    public TransferFormDate convertToEntityAttribute(Date date) {
+        final TransferFormDate formDate = new TransferFormDate();
         if (date == null) {
             return formDate;
         }
