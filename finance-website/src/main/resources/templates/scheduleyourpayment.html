@@ -79,13 +79,15 @@
 
         </div>
 
-        <div class="form-item-wrapper error-layer">
-
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('contributionMonth') or #fields.hasErrors('contributionYear')}? validation-error">
             <div class="inline-form-groups">
                 <fieldset>
+                    <p class="validation-message" th:errors="*{contributionMonth}"></p>
+                    <p class="validation-message" th:errors="*{contributionYear}"></p>
                     <legend class="form-label-bold" th:text="#{schedule.PaymentMonth}"></legend>
                     <p class="form-hint" th:text="#{schedule.PaymentMonthHint}"></p>
                     <p class="validation-message display-none" th:text="#{schedule.PaymentValidation}"></p>
+
                     <div class="form-group">
                         <label class="form-label" for="contribution-month" th:text="#{schedule.PaymentLabel1}"></label>
                         <input class="form-control form-control-2-chars" id="contribution-month" type="number" min="0" max="12" th:field="*{contributionMonth}" th:errorclass="error"> </input>
