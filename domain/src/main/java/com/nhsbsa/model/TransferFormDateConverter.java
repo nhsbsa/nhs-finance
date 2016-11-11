@@ -12,8 +12,6 @@ import java.util.Date;
 @Converter
 public class TransferFormDateConverter implements AttributeConverter<TransferFormDate, Date> {
 
-    // TODO duplicate with FormDateConverter
-
     @Override
     public Date convertToDatabaseColumn(TransferFormDate formDate) {
         return formDate.getDate();
