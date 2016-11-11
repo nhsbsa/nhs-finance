@@ -26,7 +26,7 @@ public class TestSupport {
        // populator.execute(dataSource);
     }
 
-    @After("@smokeTest, @mobileNumber")
+    @After("@smokeTest")
     public void after() {
         DriverManager.shutdown();
     }
