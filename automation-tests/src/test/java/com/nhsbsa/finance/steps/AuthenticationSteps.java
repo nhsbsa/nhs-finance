@@ -1,4 +1,4 @@
-package com.nhsbsa.finance.pageobjects.steps;
+package com.nhsbsa.finance.steps;
 
 import com.nhsbsa.finance.pageobjects.FinanceStartPage;
 import com.nhsbsa.finance.pageobjects.FinanceLoginPage;

@@ -7,5 +7,6 @@ public class FinancePages {
     public static FinanceStartPage financeStartPage;
     public static FinanceLoginPage financeLoginPage;
     public static EmployerAccountInfoPage employerAccountInfoPage;
+    public static SchedulePaymentPage schedulePaymentPage;
 
 }
