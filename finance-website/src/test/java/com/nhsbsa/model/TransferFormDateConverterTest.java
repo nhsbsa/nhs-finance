@@ -16,7 +16,6 @@ import static org.junit.Assert.*;
  * Created by Mark Lishman on 10/11/2016.
  */
 public class TransferFormDateConverterTest {
-
     private TransferFormDateConverter converter;
 
     @Before
