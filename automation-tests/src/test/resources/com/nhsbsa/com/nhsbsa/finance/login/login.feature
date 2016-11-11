@@ -27,7 +27,7 @@ Feature: Logging into the Finance site
   Scenario: Entering Delete from table SQL Injection into the email field will fail
 `
     When user enters invalid email 'DELETE FROM FINANCE_USER WHERE USERNAME = sam.jones@email.com;' and password 'password'
-    Then error text should be displayed on finance login page
+    Then error text should be displayed on finance login page`
 
   Scenario: Entering Select * from table SQL Injection into the email field will fail
 
