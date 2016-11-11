@@ -13,6 +13,8 @@ import junit.framework.Assert;
 import org.openqa.selenium.By;
 import static com.nhsbsa.finance.pageobjects.FinancePages.financeStartPage;
 import static com.nhsbsa.finance.pageobjects.FinancePages.financeLoginPage;
+import static com.nhsbsa.finance.pageobjects.FinancePages.schedulePaymentPage;
+
 import com.nhsbsa.webdriver.accessibility.AccessibilityChecker;
 
 /**
@@ -94,7 +96,7 @@ public class AuthenticationSteps {
     public void user_enters_valid_email_and_password(String email, String password) {
         financeLoginPage.enterUserName(email);
         financeLoginPage.enterPassword(password);
-        financeLoginPage = financeLoginPage.submit();
+        schedulePaymentPage = financeLoginPage.submit();
     }
 
     @When("^user enters invalid email '(.*)' and password '(.*)'$")
