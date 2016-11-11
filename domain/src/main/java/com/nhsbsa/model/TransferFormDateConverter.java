@@ -10,23 +10,23 @@ import java.util.Date;
  */
 
 @Converter
-public class FormDateConverter implements AttributeConverter<FormDate, Date> {
+public class TransferFormDateConverter implements AttributeConverter<TransferFormDate, Date> {
 
     @Override
-    public Date convertToDatabaseColumn(FormDate formDate) {
+    public Date convertToDatabaseColumn(TransferFormDate formDate) {
         return formDate.getDate();
     }
 
     @Override
-    public FormDate convertToEntityAttribute(Date date) {
-        final FormDate formDate = new FormDate();
+    public TransferFormDate convertToEntityAttribute(Date date) {
+        final TransferFormDate formDate = new TransferFormDate();
         if (date == null) {
             return formDate;
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         formDate.setDays(String.valueOf(calendar.get(Calendar.DATE)));
-        formDate.setMonth(String.valueOf(calendar.get(Calendar.MONTH)));
+        formDate.setMonth(String.valueOf(calendar.get(Calendar.MONTH) + 1));
         formDate.setYear(String.valueOf(calendar.get(Calendar.YEAR)));
         return formDate;
     }
