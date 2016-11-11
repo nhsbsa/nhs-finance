@@ -1,6 +1,8 @@
 package com.nhsbsa.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -35,11 +37,13 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @NotNull(message = "{isGp.notNull}")
     private Boolean isGp;
 
-    @NotNull (message = "{contributionMonth.notBlank}")
-    private int contributionMonth;
+    @Range(min = 1, max = 12, message = "{contributionMonth.valid}")
+    @NotNull(message = "{contributionMonth.notBlank}")
+    private Integer contributionMonth;
 
-    @NotNull (message = "{contributionYear.notBlank}")
-    private int contributionYear;
+    @Range(min = 2001, max = 9999, message = "{contributionYear.valid}")
+    @NotNull(message = "{contributionYear.notBlank}")
+    private Integer contributionYear;
 
     private BigDecimal totalPensionablePay;
     private BigDecimal employeeContributions;
