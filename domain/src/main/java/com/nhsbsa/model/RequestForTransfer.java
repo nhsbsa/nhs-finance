@@ -31,13 +31,13 @@ public class RequestForTransfer extends BaseEntity<Long> {
 
     @Valid
     @Convert(converter = FormDateConverter.class)
-    private TransferFormDate transferDate = new TransferFormDate();
+    private TransferFormDate transferDate = TransferFormDate.builder().build();
 
     @NotNull(message = "{isGp.notNull}")
     private Boolean isGp;
 
     @Embedded
-    private ContributionDate contributionDate;
+    private ContributionDate contributionDate = ContributionDate.builder().build();
 
     private BigDecimal totalPensionablePay;
     private BigDecimal employeeContributions;
