@@ -3,9 +3,12 @@ package com.nhsbsa.model;
 import com.nhsbsa.model.validaton.DateIsAfterToday;
 import com.nhsbsa.model.validaton.DateLessThan31DaysFromToday;
 import com.nhsbsa.model.validaton.FormDateNotBlank;
+import lombok.Builder;
+import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +16,9 @@ import java.util.Date;
  */
 
 @FormDateNotBlank
-public class TransferFormDate extends FormDate {
+@Builder
+@Data
+public class TransferFormDate extends FormDate implements Serializable{
 
     @Override
     @DateIsAfterToday
