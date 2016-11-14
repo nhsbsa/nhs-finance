@@ -2,13 +2,11 @@ package com.nhsbsa.model.validaton;
 
 
 import com.nhsbsa.model.ContributionDate;
-import org.apache.tomcat.jni.Local;
+import org.joda.time.DateTime;
+import org.joda.time.Months;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
 
 public class ContributionDateValidator implements ConstraintValidator<ContributionDateValid, ContributionDate> {
 
@@ -27,27 +25,26 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
             return false;
         }
 
-        final LocalDateTime now = getNow();
-        final LocalDateTime advanceLimitDate = now.plusMonths(monthsInAdvanceLimit);
-        final LocalDateTime dateEntered = advanceLimitDate
-                .withYear(contributionDate.getContributionYear())
-                .withMonth(contributionDate.getContributionMonth());
+        final DateTime now = getNow();
+        final DateTime advanceLimitDate = now.plusMonths(monthsInAdvanceLimit);
+        final DateTime dateEntered = contributionDateToDateTime(contributionDate, now);
 
-        Months.
+        final int months = Months.monthsBetween(dateEntered, advanceLimitDate).getMonths();
+        return months >= 0;
+    }
 
-        final int months = Period.between(dateEntered.toLocalDate(), advanceLimitDate.toLocalDate()).getMonths();
-        if (months <= monthsInAdvanceLimit) {
-            return true;
-        }
-
-        return true;
+    private DateTime contributionDateToDateTime(final ContributionDate contributionDate, final DateTime now) {
+        return getNow()
+                    .withYear(contributionDate.getContributionYear())
+                    .withMonthOfYear(contributionDate.getContributionMonth())
+                    .withDayOfMonth(now.getDayOfMonth());
     }
 
     private boolean checkForNull(final ContributionDate contributionDate) {
         return contributionDate.getContributionMonth() == null || contributionDate.getContributionYear() == null;
     }
 
-    public LocalDateTime getNow() {
-        return LocalDateTime.now();
+    public DateTime getNow() {
+        return DateTime.now();
     }
 }
