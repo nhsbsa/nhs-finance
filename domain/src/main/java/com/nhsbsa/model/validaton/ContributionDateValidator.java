@@ -1,13 +1,12 @@
 package com.nhsbsa.model.validaton;
 
-/**
- * Created by
- */
 
 import com.nhsbsa.model.ContributionDate;
+import org.apache.tomcat.jni.Local;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 
@@ -28,9 +27,15 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
             return false;
         }
 
-        final LocalDateTime now = LocalDateTime.now();
+        final LocalDateTime now = getNow();
         final LocalDateTime advanceLimitDate = now.plusMonths(monthsInAdvanceLimit);
-        final int months = Period.between(now.toLocalDate(), advanceLimitDate.toLocalDate()).getMonths();
+
+        final LocalDate dateToCompare = LocalDate.of(
+                contributionDate.getContributionYear(),
+                contributionDate.getContributionMonth(),
+                now.getDayOfMonth());
+
+        final int months = Period.between(dateToCompare, advanceLimitDate.toLocalDate()).getMonths();
         if (months <= monthsInAdvanceLimit) {
             return true;
         }
@@ -40,5 +45,9 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
 
     private boolean checkForNull(final ContributionDate contributionDate) {
         return contributionDate.getContributionMonth() == null || contributionDate.getContributionYear() == null;
+    }
+
+    public LocalDateTime getNow() {
+        return LocalDateTime.now();
     }
 }
