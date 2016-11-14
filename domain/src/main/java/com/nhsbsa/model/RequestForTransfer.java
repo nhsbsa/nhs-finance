@@ -30,8 +30,8 @@ public class RequestForTransfer extends BaseEntity<Long> {
     private Long id;
 
     @Valid
-    @Convert(converter = FormDateConverter.class)
-    private TransferFormDate transferDate = TransferFormDate.builder().build();
+    @Convert(converter = TransferFormDateConverter.class)
+    private TransferFormDate transferDate = new TransferFormDate();
 
     @NotNull(message = "{isGp.notNull}")
     private Boolean isGp;
