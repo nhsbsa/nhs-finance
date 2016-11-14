@@ -12,27 +12,28 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class RequestForTransferService {
 
-    // TODO rename rft to requestfortransfer
-
-    private static final String REQUEST_FOR_TRANSFER_PATH = "/finance/rft";
+    private static final String GET_REQUEST_FOR_TRANSFER_PATH = "/finance/requestfortransfer/{rftId}";
+    private static final String SAVE_REQUEST_FOR_TRANSFER_PATH = "/finance/requestfortransfer";
 
     private final RestTemplate restTemplate;
-    private final BackendUri requestForTransferUri;
+    private final BackendUri getRequestForTransferUri;
+    private final BackendUri saveRequestForTransferUri;
 
     @Autowired
     public RequestForTransferService(final BackendApiUriService backendApiUriService,
                                      final RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.requestForTransferUri = backendApiUriService.path(REQUEST_FOR_TRANSFER_PATH);
+        this.getRequestForTransferUri = backendApiUriService.path(GET_REQUEST_FOR_TRANSFER_PATH);
+        this.saveRequestForTransferUri = backendApiUriService.path(SAVE_REQUEST_FOR_TRANSFER_PATH);
     }
 
     public RequestForTransfer getRequestForTransfer(final String rftId) {
-        final String uri = requestForTransferUri.params(rftId);
+        final String uri = getRequestForTransferUri.params(rftId);
         return restTemplate.getForObject(uri, RequestForTransfer.class);
     }
 
     public RequestForTransfer saveRequestForTransfer(final RequestForTransfer requestForTransfer) {
-        final String uri = requestForTransferUri.toUri();
+        final String uri = saveRequestForTransferUri.toUri();
         return restTemplate.postForObject(uri, requestForTransfer, RequestForTransfer.class);
     }
 
