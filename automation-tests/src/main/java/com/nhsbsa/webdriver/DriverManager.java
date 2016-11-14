@@ -3,29 +3,33 @@ package com.nhsbsa.webdriver;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import java.io.File;
 
-import java.net.URL;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by jeffreya on 23/08/2016.
+ * Created/Modified by jeffreya/ianfulcher.
  */
+@Slf4j
 public class DriverManager {
 
     private static WebDriver WEB_DRIVER;
 
-    private static final URL chromeDriver;
+    // In your .profile setup environment variable to point to where the chromedriver exe is downloaded, like
+    // /Users/joebloggs/software/chromedriver/chromedriver
+    private static final String CHROME_DRIVER = System.getenv("CHROME_DRIVER");
 
     static {
-        String driverName = "chromedriver";
-        if (StringUtils.contains(System.getProperty("os.name").toLowerCase(), "windows")) {
-            driverName += ".exe";
+        if (StringUtils.isBlank(CHROME_DRIVER)) {
+            log.error("No chrome driver ENV found, set CHROME_DRIVER in .profile");
+            System.exit(-1);
+        } else {
+            System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);
         }
-        chromeDriver = DriverManager.class.getClassLoader().getResource(driverName);
-        System.setProperty("webdriver.chrome.driver", chromeDriver.getPath());
+
     }
 
-    public static void navigate(final String url) {
-        System.out.println("the url:" + url);
+    static void navigate(final String url) {
         getDriver().get(url);
     }
 

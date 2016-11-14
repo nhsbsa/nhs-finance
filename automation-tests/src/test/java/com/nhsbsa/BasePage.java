@@ -12,10 +12,14 @@ import static java.lang.String.format;
 public class BasePage {
     protected WebDriver driver;
 
+    /*
+     * driver - WebDriver for calls to the browser for information
+     * title  - User entered text for comparison with actual browser text (in titles)
+     */
     public BasePage(WebDriver driver, String title) {
         this.driver = driver;
         if (!StringUtils.equals(driver.getTitle(), title)) {
-            throw new IllegalStateException(format("This is not the %s page", title));
+            throw new IllegalStateException(format("Page title is %s, title looking for is %s", driver.getTitle(), title));
         }
     }
 
