@@ -6,6 +6,7 @@ import com.nhsbsa.model.validaton.FormDateNotBlank;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -20,6 +21,10 @@ public class TransferFormDate extends FormDate {
     @DateLessThan31DaysFromToday
     public Date getDate() {
         return super.getDate();
+    }
+
+    public LocalDate getLocalDate() {
+        return LocalDate.now();
     }
 
 }
