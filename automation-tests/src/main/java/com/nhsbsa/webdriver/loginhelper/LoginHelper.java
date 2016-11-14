@@ -3,16 +3,18 @@ package com.nhsbsa.webdriver.loginhelper;
 import com.nhsbsa.webdriver.NavigationManager;
 
 /**
- * Created by jeffreya on 05/09/2016.
+ * Created by ianfulcher on 01/11/2016.
  */
 public class LoginHelper {
 
 
-    public static void financeLogin() {
+    public static void financeStartPage() {
 
-        NavigationManager.navigateToLogin(NavigationManager.FINANCE_WEBSITE);
+        NavigationManager.navigateToStartPage(NavigationManager.FINANCE_WEBSITE);
+    }
 
-
+    public static void financeLoginPage() {
+        NavigationManager.navigateToLoginPage(NavigationManager.FINANCE_WEBSITE);
     }
 
 }
