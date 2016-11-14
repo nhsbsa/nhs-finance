@@ -34,4 +34,9 @@ public class DateIsAfterTodayValidator implements ConstraintValidator<DateIsAfte
        return futureDate.isAfter(today);
     }
 
+    public LocalDate getDate() {
+        return LocalDate.now();
+    }
+
+
 }
