@@ -8,35 +8,37 @@ import com.nhsbsa.model.ContributionDate;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.Period;
 
-public class ContributionDateValidator implements ConstraintValidator<FormDateNotBlank, ContributionDate> {
+public class ContributionDateValidator implements ConstraintValidator<ContributionDateValid, ContributionDate> {
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+
+    private int monthsInAdvanceLimit;
 
     @Override
-    public void initialize(FormDateNotBlank constraintAnnotation) {
+    public void initialize(ContributionDateValid constraintAnnotation) {
+        monthsInAdvanceLimit = constraintAnnotation.monthsInAdvanceLimit();
     }
 
     @Override
     public boolean isValid(ContributionDate contributionDate, ConstraintValidatorContext context) {
 
-
-        if (checkForNull(contributionDate)) return false;
+        if (checkForNull(contributionDate)) {
+            return false;
+        }
 
         final LocalDateTime now = LocalDateTime.now();
-        final LocalDateTime twoMonthsFromNow = now.withDayOfMonth(now.getMonthValue() + 2);
-        //new LocalDateTime().with
+        final LocalDateTime advanceLimitDate = now.plusMonths(monthsInAdvanceLimit);
+        final int months = Period.between(now.toLocalDate(), advanceLimitDate.toLocalDate()).getMonths();
+        if (months <= monthsInAdvanceLimit) {
+            return true;
+        }
 
         return true;
     }
 
-    private boolean checkForNull(ContributionDate contributionDate) {
-        if (contributionDate.getContributionMonth() == null || contributionDate.getContributionYear() == null) {
-            return true;
-
-        }
-        return false;
+    private boolean checkForNull(final ContributionDate contributionDate) {
+        return contributionDate.getContributionMonth() == null || contributionDate.getContributionYear() == null;
     }
 }

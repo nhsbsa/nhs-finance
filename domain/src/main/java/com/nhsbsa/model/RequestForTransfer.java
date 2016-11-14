@@ -1,7 +1,7 @@
 package com.nhsbsa.model;
 
+import com.nhsbsa.model.validaton.ContributionDateValid;
 import lombok.*;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -36,6 +36,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @NotNull(message = "{isGp.notNull}")
     private Boolean isGp;
 
+    @Valid
     @Embedded
     private ContributionDate contributionDate = ContributionDate.builder().build();
 
