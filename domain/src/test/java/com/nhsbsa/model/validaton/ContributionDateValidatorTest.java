@@ -59,7 +59,7 @@ public class ContributionDateValidatorTest {
         });
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{index}: contribution({0}) expected: {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {null, false},
