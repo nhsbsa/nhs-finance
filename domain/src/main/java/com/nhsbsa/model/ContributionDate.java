@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Embeddable
 @Data
 @Builder
-@ContributionDateValid
+@ContributionDateValid(message = "{contributionDate.in.range}")
 public class ContributionDate implements Serializable {
 
     @Range(min = 1, max = 12, message = "{contributionMonth.valid}")
