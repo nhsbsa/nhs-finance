@@ -29,13 +29,13 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
 
         final LocalDateTime now = getNow();
         final LocalDateTime advanceLimitDate = now.plusMonths(monthsInAdvanceLimit);
+        final LocalDateTime dateEntered = advanceLimitDate
+                .withYear(contributionDate.getContributionYear())
+                .withMonth(contributionDate.getContributionMonth());
 
-        final LocalDate dateToCompare = LocalDate.of(
-                contributionDate.getContributionYear(),
-                contributionDate.getContributionMonth(),
-                now.getDayOfMonth());
+        Months.
 
-        final int months = Period.between(dateToCompare, advanceLimitDate.toLocalDate()).getMonths();
+        final int months = Period.between(dateEntered.toLocalDate(), advanceLimitDate.toLocalDate()).getMonths();
         if (months <= monthsInAdvanceLimit) {
             return true;
         }
