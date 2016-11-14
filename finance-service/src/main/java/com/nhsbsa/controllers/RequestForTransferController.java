@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 /**
- * Created by jeffreya on 16/08/2016.
+ * Created by marklishman on 5/11//2016.
  *
  */
 
@@ -24,13 +24,13 @@ public class RequestForTransferController {
         this.financeService = financeService;
     }
 
-    @GetMapping(value = "/rft/{rftId}")
+    @GetMapping(value = "/requestfortransfer/{rftId}")
     public ResponseEntity<RequestForTransfer> getRequestForTransfer(@PathVariable("rftId") final Long rftId) {
         RequestForTransfer rft = financeService.getRequestForTransfer(rftId);
         return ResponseEntity.ok(rft);
     }
 
-    @PostMapping(value = "/rft")
+    @PostMapping(value = "/requestfortransfer")
     public ResponseEntity<RequestForTransfer> saveRequestForTransfer(@RequestBody @Valid final RequestForTransfer requestForTransfer) {
         RequestForTransfer rft = financeService.saveRequestForTransfer(requestForTransfer);
         return ResponseEntity.ok(rft);

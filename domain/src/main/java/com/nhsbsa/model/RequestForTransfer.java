@@ -26,10 +26,8 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Column(name = "rft_id", insertable = false, updatable = false)
     private Long id;
 
-    // TODO pick up converter globally
-
     @Valid
-    @Convert(converter = FormDateConverter.class)
+    @Convert(converter = TransferFormDateConverter.class)
     private TransferFormDate transferDate = new TransferFormDate();
 
     @NotNull(message = "{isGp.notNull}")
