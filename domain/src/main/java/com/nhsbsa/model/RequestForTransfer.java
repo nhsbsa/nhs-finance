@@ -33,9 +33,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @NotNull(message = "{isGp.notNull}")
     private Boolean isGp;
 
-    @NotNull (message = "{contributionMonth.notBlank}")
     private int contributionMonth;
-    @NotNull (message = "{contributionYear.notBlank}")
     private int contributionYear;
     private BigDecimal totalPensionablePay;
     private BigDecimal employeeContributions;
