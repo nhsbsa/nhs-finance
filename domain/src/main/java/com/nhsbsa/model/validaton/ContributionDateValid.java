@@ -21,6 +21,8 @@ public @interface ContributionDateValid {
 
     String message() default "{formDate.notBlank}";
 
+    int monthsInAdvanceLimit() default 2;
+
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
