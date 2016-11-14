@@ -35,13 +35,13 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
 
     private DateTime contributionDateToDateTime(final ContributionDate contributionDate, final DateTime now) {
         return getNow()
-                    .withYear(contributionDate.getContributionYear())
-                    .withMonthOfYear(contributionDate.getContributionMonth())
-                    .withDayOfMonth(now.getDayOfMonth());
+                .withYear(contributionDate.getContributionYear())
+                .withMonthOfYear(contributionDate.getContributionMonth())
+                .withDayOfMonth(now.getDayOfMonth());
     }
 
     private boolean checkForNull(final ContributionDate contributionDate) {
-        return contributionDate.getContributionMonth() == null || contributionDate.getContributionYear() == null;
+        return contributionDate == null || contributionDate.getContributionMonth() == null || contributionDate.getContributionYear() == null;
     }
 
     public DateTime getNow() {
