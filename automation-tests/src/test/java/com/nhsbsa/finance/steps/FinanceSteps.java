@@ -37,6 +37,11 @@ public class FinanceSteps {
         schedulePaymentPage.submitWIthErrors();
     }
 
+    @Then("^schedule payment page should be displayed$")
+    public void schedule_payment_page_should_be_displayed() {
+        schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
+    }
+
     @Then("^employer account info page should be displayed$")
     public void employer_account_info_page_should_be_displayed() {
         employer_account_info_page_is_displayed();
@@ -52,8 +57,9 @@ public class FinanceSteps {
         assertThat(schedulePaymentPage.getDateOfTransferDateErrorMessage(), is(equalTo(errorMessage)));
     }
 
-    @Then("^schedule payment page should be displayed$")
-    public void schedule_payment_page_should_be_displayed() {
-        schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
+    @Then("^Error is displayed when Payment Contribution is not set")
+    public void error_is_displayed_if_payment_contribution_is_not_set() {
+        assertThat(schedulePaymentPage.getContributionPaymentErrorMessage(), is(equalTo("Contribution payment is required")));
     }
+
 }
