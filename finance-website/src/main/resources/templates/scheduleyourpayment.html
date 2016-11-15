@@ -82,9 +82,9 @@
         <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('contributionDate.contributionMonth') or #fields.hasErrors('contributionDate.contributionYear')}? validation-error">
             <div class="inline-form-groups">
                 <fieldset>
-                    <p class="validation-message" th:errors="*{contributionDate}"></p>
-                    <p class="validation-message" th:errors="*{contributionDate.contributionMonth}"></p>
-                    <p class="validation-message" th:errors="*{contributionDate.contributionYear}"></p>
+                    <p class="validation-message" id="contributionDate.error" th:errors="*{contributionDate}"></p>
+                    <p class="validation-message" id="contributionDate.month.error" th:errors="*{contributionDate.contributionMonth}"></p>
+                    <p class="validation-message" id="contributionDate.year.error" th:errors="*{contributionDate.contributionYear}"></p>
                     <legend class="form-label-bold" th:text="#{schedule.PaymentMonth}"></legend>
                     <p class="form-hint" th:text="#{schedule.PaymentMonthHint}"></p>
                     <p class="validation-message display-none" th:text="#{schedule.PaymentValidation}"></p>

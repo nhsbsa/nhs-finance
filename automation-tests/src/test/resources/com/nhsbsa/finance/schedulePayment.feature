@@ -9,7 +9,7 @@ Feature: Logging into the Finance site
 
   Scenario: Error messages are displayed if data is invalid
 
-    // Date of Transfer
+    # Date of Transfer
 
     When user clicks submit button with errors
     Then 'Date of transfer is required' error is displayed for Date of Transfer
@@ -26,12 +26,33 @@ Feature: Logging into the Finance site
     And user clicks submit button with errors
     Then 'Date of transfer cannot be greater than 31 days from today' error is displayed for Date of Transfer date value
 
-    // Payment Contribution
+    # Payment Contribution
 
     Then Error is displayed when Payment Contribution is not set
 
-    // Contribution month / year
+    # Contribution Date
 
+    Then 'Payment date must be less than 2 months in the future' error is displayed for Contribution Date
+    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date month
+    Then 'Payment year must be after 2001' error is displayed for Contribution Date year
+
+#    When user enters '0' and '2010' into Contribution Date field$
+#    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
+
+#    When user enters '99' and '2010' into Contribution Date field$
+#    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
+
+    When user enters '11' and '2000' into Contribution Date field$
+    Then 'Payment year must be after 2001' error is displayed for Contribution Date year
+
+    When user enters '11' and '2099' into Contribution Date field$
+    Then 'Payment date must be less than 2 months in the future' error is displayed for Contribution Date year
+
+    # Success
+
+    When user enters '12', '12' and '2016' into Date of Transfer field
+    And user clicks on staff
+    And user enters '11' and '2000' into Contribution Date field
 
 
     Then driver shutdown at end of test

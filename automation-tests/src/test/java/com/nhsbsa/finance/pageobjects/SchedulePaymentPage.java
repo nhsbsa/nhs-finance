@@ -27,8 +27,29 @@ public class SchedulePaymentPage extends BasePage {
     @FindBy(id = "transferDate.date.error")
     private WebElement dateOfTransferDateErrorElement;
 
+    @FindBy(id = "staff")
+    private WebElement staffElement;
+
+    @FindBy(id = "gp")
+    private WebElement gpElement;
+
     @FindBy(id = "isGp.error")
     private WebElement contributionPaymentErrorElement;
+
+    @FindBy(id = "contribution-month")
+    private WebElement contributionDateMonthElement;
+
+    @FindBy(id = "contribution-year")
+    private WebElement contributionDateYearElement;
+
+    @FindBy(id = "contributionDate.error")
+    private WebElement contributionDateObjectErrorElement;
+
+    @FindBy(id = "contributionDate.month.error")
+    private WebElement contributionDateMonthErrorElement;
+
+    @FindBy(id = "contributionDate.year.error")
+    private WebElement contributionDateYearErrorElement;
 
     @FindBy(id = "submit")
     private WebElement submitButtonElement;
@@ -36,6 +57,8 @@ public class SchedulePaymentPage extends BasePage {
     public SchedulePaymentPage(WebDriver driver) {
         super(driver, "Schedule your payment");
     }
+
+    // Date of Transfer
 
     public void enterDateOfTransferDay(final String dateOfTransferDay) {
         enterValue(dateOfTransferDayElement, dateOfTransferDay);
@@ -60,6 +83,40 @@ public class SchedulePaymentPage extends BasePage {
     public String getContributionPaymentErrorMessage() {
         return contributionPaymentErrorElement.getText();
     }
+
+    // Staff or GP
+
+    public void clickStaff() {
+        staffElement.click();
+    }
+
+    public void clickGp() {
+        gpElement.click();
+    }
+
+    // Contribution Date
+
+    public void enterContributionDateMonth(final String contributionDateMonth) {
+        enterValue(contributionDateMonthElement, contributionDateMonth);
+    }
+
+    public void enterContributionDateYear(final String contributionDateYear) {
+        enterValue(contributionDateYearElement, contributionDateYear);
+    }
+
+    public String getContributionDateObjectErrorMessage() {
+        return contributionDateObjectErrorElement.getText();
+    }
+
+    public String getContributionDateMonthErrorMessage() {
+        return contributionDateMonthErrorElement.getText();
+    }
+
+    public String getContributionDateYearErrorMessage() {
+        return contributionDateYearErrorElement.getText();
+    }
+
+    // Submit
 
     public ContributionsAndPaymentPage submit() {
         submitButtonElement.click();
