@@ -3,13 +3,15 @@ package com.nhsbsa.model;
 import com.nhsbsa.model.validaton.DateIsAfterToday;
 import com.nhsbsa.model.validaton.DateLessThan31DaysFromToday;
 import com.nhsbsa.model.validaton.FormDateNotBlank;
+import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.time.LocalDate;
 import java.io.Serializable;
+import java.time.LocalDate;
+>>>>>>> Temporary merge branch 2
 import java.util.Date;
 
 /**
@@ -19,6 +21,7 @@ import java.util.Date;
 @FormDateNotBlank
 @Builder
 @Data
+@NoArgsConstructor
 public class TransferFormDate extends FormDate implements Serializable{
 
     @Override
