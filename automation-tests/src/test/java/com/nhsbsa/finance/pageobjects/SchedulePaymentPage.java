@@ -1,9 +1,11 @@
 package com.nhsbsa.finance.pageobjects;
 
 import com.nhsbsa.BasePage;
+import com.nhsbsa.webdriver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Mark Lishman on 11/11/2016.
@@ -24,6 +26,9 @@ public class SchedulePaymentPage extends BasePage {
 
     @FindBy(id = "transferDate.date.error")
     private WebElement dateOfTransferDateErrorElement;
+
+    @FindBy(id = "submit")
+    private WebElement submitButtonElement;
 
     public SchedulePaymentPage(WebDriver driver) {
         super(driver, "Schedule your payment");
@@ -47,6 +52,15 @@ public class SchedulePaymentPage extends BasePage {
 
     public String getDateOfTransferDateErrorMessage() {
         return dateOfTransferDateErrorElement.getText();
+    }
+
+    public ContributionsAndPaymentPage submit() {
+        submitButtonElement.click();
+        return PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
+    }
+
+    public void submitWIthErrors() {
+        submitButtonElement.click();
     }
 
 
