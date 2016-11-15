@@ -27,6 +27,9 @@ public class SchedulePaymentPage extends BasePage {
     @FindBy(id = "transferDate.date.error")
     private WebElement dateOfTransferDateErrorElement;
 
+    @FindBy(id = "isGp.error")
+    private WebElement contributionPaymentErrorElement;
+
     @FindBy(id = "submit")
     private WebElement submitButtonElement;
 
@@ -52,6 +55,10 @@ public class SchedulePaymentPage extends BasePage {
 
     public String getDateOfTransferDateErrorMessage() {
         return dateOfTransferDateErrorElement.getText();
+    }
+
+    public String getContributionPaymentErrorMessage() {
+        return contributionPaymentErrorElement.getText();
     }
 
     public ContributionsAndPaymentPage submit() {
