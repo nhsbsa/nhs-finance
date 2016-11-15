@@ -35,7 +35,7 @@ public class ScheduleYourPaymentResult {
         sb.append(String.format("<p>id: %s</p>", rft.getId()));
         sb.append(String.format("<p>transfer date: %s</p>", rft.getTransferDate().getDate()));
         sb.append(String.format("<p>is gp: %s</p>", rft.getIsGp()));
-        sb.append(String.format("<p>contribution month/year: %s/%s</p>", rft.getContributionMonth(), rft.getContributionYear()));
+        sb.append(String.format("<p>contribution month/year: %s/%s</p>", rft.getContributionDate().getContributionMonth(), rft.getContributionDate().getContributionYear()));
         return sb.toString();
     }
 
