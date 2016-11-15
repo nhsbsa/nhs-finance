@@ -7,7 +7,9 @@ Feature: Logging into the Finance site
     And user enters valid email 'sam.jones@email.com' and password 'password'
     And schedule payment page should be displayed
 
-  Scenario: Message is displayed if Date of Transfer is invalid
+  Scenario: Error messages are displayed if data is invalid
+
+    // Date of Transfer
 
     When user clicks submit button with errors
     Then 'Date of transfer is required' error is displayed for Date of Transfer
@@ -24,6 +26,12 @@ Feature: Logging into the Finance site
     And user clicks submit button with errors
     Then 'Date of transfer cannot be greater than 31 days from today' error is displayed for Date of Transfer date value
 
+    // Payment Contribution
+
     Then Error is displayed when Payment Contribution is not set
+
+    // Contribution month / year
+
+
 
     Then driver shutdown at end of test
