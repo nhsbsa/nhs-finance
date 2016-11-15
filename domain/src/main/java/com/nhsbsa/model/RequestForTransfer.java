@@ -1,5 +1,6 @@
 package com.nhsbsa.model;
 
+import com.nhsbsa.model.validaton.ContributionDateValid;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,9 @@ import java.util.List;
 
 /**
  * Created by Mark Lishman on 31/10/2016.
+ * RequestForTransfer
  */
+
 @Data
 @Builder
 @Entity
@@ -33,8 +36,10 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @NotNull(message = "{isGp.notNull}")
     private Boolean isGp;
 
-    private int contributionMonth;
-    private int contributionYear;
+    @Valid
+    @Embedded
+    private ContributionDate contributionDate = ContributionDate.builder().build();
+
     private BigDecimal totalPensionablePay;
     private BigDecimal employeeContributions;
     private BigDecimal employeeAddedYears;
