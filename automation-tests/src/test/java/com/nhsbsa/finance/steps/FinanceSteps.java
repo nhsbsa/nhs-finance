@@ -32,6 +32,17 @@ public class FinanceSteps {
         schedulePaymentPage = financeLoginPage.submit();
     }
 
+    @When("^user clicks on staff$")
+    public void user_clicks_on_staff() {
+        schedulePaymentPage.clickStaff();
+    }
+
+    @When("^user enters '(.*)' and '(.*)' into Contribution Date field$")
+    public void user_enters_values_into_contribution_date_field(String month, String year) {
+        schedulePaymentPage.enterContributionDateMonth(month);
+        schedulePaymentPage = financeLoginPage.submit();
+    }
+
     @When("^user clicks submit button with errors$")
     public void user_clicks_submit_button_with_errors() {
         schedulePaymentPage.submitWIthErrors();
@@ -60,6 +71,21 @@ public class FinanceSteps {
     @Then("^Error is displayed when Payment Contribution is not set")
     public void error_is_displayed_if_payment_contribution_is_not_set() {
         assertThat(schedulePaymentPage.getContributionPaymentErrorMessage(), is(equalTo("Contribution payment is required")));
+    }
+
+    @Then("^'(.*)' error is displayed for Contribution Date$")
+    public void error_is_displayed_for_contribution_date(final String errorMessage) {
+        assertThat(schedulePaymentPage.getContributionDateObjectErrorMessage(), is(equalTo(errorMessage)));
+    }
+
+    @Then("^'(.*)' error is displayed for Contribution Date month$")
+    public void error_is_displayed_for_contribution_date_month(final String errorMessage) {
+        assertThat(schedulePaymentPage.getContributionDateMonthErrorMessage(), is(equalTo(errorMessage)));
+    }
+
+    @Then("^'(.*)' error is displayed for Contribution Date year$")
+    public void error_is_displayed_for_contribution_date_year(final String errorMessage) {
+        assertThat(schedulePaymentPage.getContributionDateYearErrorMessage(), is(equalTo(errorMessage)));
     }
 
 }
