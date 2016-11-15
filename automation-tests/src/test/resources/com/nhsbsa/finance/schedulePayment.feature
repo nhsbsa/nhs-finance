@@ -42,15 +42,15 @@ Feature: Logging into the Finance site
 #    When user enters '99' and '2010' into Contribution Date field$
 #    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
 
-    When user enters '11' and '2000' into Contribution Date field$
+    When user enters '11' and '2000' into Contribution Date field
     Then 'Payment year must be after 2001' error is displayed for Contribution Date year
 
-    When user enters '11' and '2099' into Contribution Date field$
+    When user enters '11' and '2099' into Contribution Date field
     Then 'Payment date must be less than 2 months in the future' error is displayed for Contribution Date year
 
     # Success
 
-    When user enters '12', '12' and '2016' into Date of Transfer field
+    When user enters tomorrows date into Date of Transfer field
     And user clicks on staff
     And user enters '11' and '2000' into Contribution Date field
 

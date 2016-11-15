@@ -6,6 +6,7 @@ import com.nhsbsa.webdriver.DriverManager;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
+import org.joda.time.LocalDate;
 import org.openqa.selenium.support.PageFactory;
 
 import static com.nhsbsa.finance.pageobjects.FinancePages.*;
@@ -29,6 +30,15 @@ public class FinanceSteps {
         schedulePaymentPage.enterDateOfTransferDay(day);
         schedulePaymentPage.enterDateOfTransferMonth(month);
         schedulePaymentPage.enterDateOfTransferYear(year);
+        schedulePaymentPage = financeLoginPage.submit();
+    }
+
+    @When("^user enters tomorrows date into Date of Transfer field$")
+    public void user_enters_values_into_date_of_transfer_field() {
+        LocalDate date = new org.joda.time.LocalDate();
+        schedulePaymentPage.enterDateOfTransferDay(date.getDayOfMonth());
+        schedulePaymentPage.enterDateOfTransferMonth(date.getMonthOfYear());
+        schedulePaymentPage.enterDateOfTransferYear(date.getYear());
         schedulePaymentPage = financeLoginPage.submit();
     }
 

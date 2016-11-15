@@ -64,12 +64,24 @@ public class SchedulePaymentPage extends BasePage {
         enterValue(dateOfTransferDayElement, dateOfTransferDay);
     }
 
+    public void enterDateOfTransferDay(final int dateOfTransferDay) {
+        enterDateOfTransferDay(String.valueOf(dateOfTransferDay));
+    }
+
     public void enterDateOfTransferMonth(final String dateOfTransferMonth) {
         enterValue(dateOfTransferMonthElement, dateOfTransferMonth);
     }
 
+    public void enterDateOfTransferMonth(final int dateOfTransferMonth) {
+        enterDateOfTransferMonth(String.valueOf(dateOfTransferMonth));
+    }
+
     public void enterDateOfTransferYear(final String dateOfTransferYear) {
         enterValue(dateOfTransferYearElement, dateOfTransferYear);
+    }
+
+    public void enterDateOfTransferYear(final int dateOfTransferYear) {
+        enterDateOfTransferYear(String.valueOf(dateOfTransferYear));
     }
 
     public String getDateOfTransferObjectErrorMessage() {
