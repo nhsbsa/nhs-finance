@@ -8,9 +8,10 @@ import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.nhsbsa.finance.pageobjects.FinancePages.employerAccountInfoPage;
-import static com.nhsbsa.finance.pageobjects.FinancePages.financeLoginPage;
-import static com.nhsbsa.finance.pageobjects.FinancePages.schedulePaymentPage;
+import static com.nhsbsa.finance.pageobjects.FinancePages.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by MattHood on 02/11/2016.
@@ -31,14 +32,24 @@ public class FinanceSteps {
         schedulePaymentPage = financeLoginPage.submit();
     }
 
-    @When("^user clicks submit button$")
-    public void user_clicks_submit_button() {
-//        schedulePaymentPage = schedulePaymentPage.submit();
+    @When("^user clicks submit button with errors$")
+    public void user_clicks_submit_button_with_errors() {
+        schedulePaymentPage.submitWIthErrors();
     }
 
     @Then("^employer account info page should be displayed$")
     public void employer_account_info_page_should_be_displayed() {
         employer_account_info_page_is_displayed();
+    }
+
+    @Then("^'(.*)' error is displayed for Date of Transfer$")
+    public void error_is_displayed_for_date_of_transfer(final String errorMessage) {
+        assertThat(schedulePaymentPage.getDateOfTransferObjectErrorMessage(), is(equalTo(errorMessage)));
+    }
+
+    @Then("^'(.*)' error is displayed for Date of Transfer date value$")
+    public void error_is_displayed_for_date_of_transfer_date_value(final String errorMessage) {
+        assertThat(schedulePaymentPage.getDateOfTransferDateErrorMessage(), is(equalTo(errorMessage)));
     }
 
     @Then("^schedule payment page should be displayed$")
