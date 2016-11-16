@@ -42,7 +42,6 @@ public class ScheduleYourPayment {
             return "scheduleyourpayment";
         }
         RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
-        // TODO change this when next page is available
-        return "redirect:/start";
+        return "redirect:/contributionsandpayment";
     }
 }
