@@ -42,6 +42,6 @@ public class ScheduleYourPayment {
             return "scheduleyourpayment";
         }
         RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
-        return "redirect:/scheduleyourpaymentresult/" + savedRequestForTransfer.getId();
+        return "redirect:/start";
     }
 }
