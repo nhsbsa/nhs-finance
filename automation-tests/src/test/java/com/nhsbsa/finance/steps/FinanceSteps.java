@@ -35,7 +35,7 @@ public class FinanceSteps {
 
     @When("^user enters tomorrows date into Date of Transfer field$")
     public void user_enters_values_into_date_of_transfer_field() {
-        LocalDate date = new org.joda.time.LocalDate();
+        LocalDate date = new LocalDate().plusDays(1);
         schedulePaymentPage.enterDateOfTransferDay(date.getDayOfMonth());
         schedulePaymentPage.enterDateOfTransferMonth(date.getMonthOfYear());
         schedulePaymentPage.enterDateOfTransferYear(date.getYear());
@@ -51,7 +51,6 @@ public class FinanceSteps {
     public void user_enters_values_into_contribution_date_field(String month, String year) {
         schedulePaymentPage.enterContributionDateMonth(month);
         schedulePaymentPage.enterContributionDateYear(year);
-        schedulePaymentPage = financeLoginPage.submit();
     }
 
     @When("^user clicks submit button with errors$")

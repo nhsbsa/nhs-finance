@@ -56,8 +56,7 @@ Feature: Logging into the Finance site
 
     Given user enters tomorrows date into Date of Transfer field
     And user clicks on staff
-    And user enters '11' and '2000' into Contribution Date field
-    And user clicks submit button with errors
+    And user enters '11' and '2010' into Contribution Date field
     When user clicks submit button
 
     Then driver shutdown at end of test
