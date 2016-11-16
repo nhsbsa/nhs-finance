@@ -59,6 +59,11 @@ public class FinanceSteps {
         schedulePaymentPage.submitWIthErrors();
     }
 
+    @When("^user clicks submit button$")
+    public void user_clicks_submit_button() {
+        schedulePaymentPage.submit();
+    }
+
     @Then("^schedule payment page should be displayed$")
     public void schedule_payment_page_should_be_displayed() {
         schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
