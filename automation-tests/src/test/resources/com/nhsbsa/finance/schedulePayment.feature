@@ -58,5 +58,3 @@ Feature: Logging into the Finance site
     And user clicks on staff
     And user enters '11' and '2010' into Contribution Date field
     When user clicks submit button
-
-    Then driver shutdown at end of test
