@@ -13,7 +13,7 @@
 
     <h1 class="heading-xlarge" th:text="#{contributions.TitleHeading}" style="margin-bottom: 0px;">  </h1>
 
-    <form th:action="@{/contributionsandpayment}" method="post" class="form " novalidate="novalidate">
+    <form th:action="@{/contributionsandpayment}" method="post" class="form" novalidate="novalidate">
 
     <!--<form th:action="@{/contributionsandpayment}" method="post" class="form demo-validation-input" novalidate="novalidate" th:object="${rft}">-->
 
@@ -26,348 +26,23 @@
         </div>
     <!--</div>-->
 
-<!--        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer">
             <div class="form-group">
                 <label class="form-label" for="total-pensionable-pay" th:text="#{contributions.TotalPenPay}"></label>
                 <p class="validation-message display-none">Enter a valid amount</p>
                 <div class="prefixed-input">
                     <span class="prefix-text">&pound;</span>
-                    <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
-                </div>
-            </div>
-        </div>
--->
-
-
-
-
-
-
-    </form>
-<!--
-    <div class="pagination-simple">
-        <div class="back-link">
-            <a href="security-information" class="link">
-                <span class="prefix" th:text="#{back}"></span>
-                <span class="title" th:text="#{security}"></span>
-            </a>
-        </div>
-    </div>
--->
-</div>
-
-
-
-<div th:replace="fragments/footer :: footer">...</div>
-
-</body>
-</html>
-
-
-<!--
-            <form action="summary" method="get" class="form form-to-validate" id="contributions-and-payment" novalidate="novalidate">
-
-                <div class="form-item-wrapper error-layer">
-                    <div class="form-group">
-                        <label class="form-label" for="total-pensionable-pay" th:text="#{contributions.TotalPenPay}"></label>
-                        <p class="validation-message display-none">Enter a valid amount</p>
-                        <div class="prefixed-input">
-                            <span class="prefix-text">&pound;</span>
-                            <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-item-wrapper error-layer">
-                    <fieldset>
-                        <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
-
-                        <div class="inline-form-groups">
-
-                            <div class="form-group">
-                                <label class="form-label" for="employee-contributions">Employee <br />contributions</label>
-                                <p class="validation-message display-none">Enter a valid amount</p>
-                                <div class="prefixed-input">
-                                    <span class="prefix-text">&pound;</span>
-                                    <input type="number" id="employee-contributions" name="employee-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="employee-avcs">Employee <br />added years</label>
-                                <p class="validation-message display-none">Enter a valid amount</p>
-                                <div class="prefixed-input">
-                                    <span class="prefix-text">&pound;</span>
-                                    <input type="number" id="employee-avcs" name="employee-avcs" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="employer-contributions">Employer <br />contributions</label>
-                                <p class="validation-message display-none">Enter a valid amount</p>
-                                <div class="prefixed-input">
-                                    <span class="prefix-text">&pound;</span>
-                                    <input type="number" id="employer-contributions" name="employer-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="additional-pension">Additional <br />pension</label>
-                                <p class="validation-message display-none">Enter a valid amount</p>
-                                <div class="prefixed-input">
-                                    <span class="prefix-text">&pound;</span>
-                                    <input type="number" id="additional-pension" name="additional-pension" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="errbo" title="Early Retirement Reduction Buy Out">ERRBO</label>
-                            <p class="form-hint">Early Retirement Reduction Buy Out</p>
-                            <p class="validation-message display-none">Enter a valid amount</p>
-                            <div class="prefixed-input">
-                                <span class="prefix-text">&pound;</span>
-                                <input type="number" id="errbo" name="errbo" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
-                            </div>
-                        </div>
-
-                    </fieldset>
-                </div>
-
-                <div class="inline-form-groups error-layer">
-                    <div class="form-groups validate-radio-input" data-validate-radio-input="outstanding-payments">
-                        <fieldset>
-                            <legend class="form-label-bold label-like">Are adjustments required?</legend>
-                            <p class="validation-message outstanding-payments-error-message display-none">Please pick an option to continue</p>
-                            <div class="form-group">
-                                <label class="nhsbsa-radio js-toggle" for="add-outstanding-payments" data-show="#outstanding-payments-panel">
-                                    <input type="radio" name="outstanding-payments" id="add-outstanding-payments" value="yes" />
-                                    <span class="input-text">yes</span>
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="nhsbsa-radio js-toggle" for="no-outstanding-payments" data-hide="#outstanding-payments-panel">
-                                    <input type="radio" name="outstanding-payments" id="no-outstanding-payments" value="no" />
-                                    <span class="input-text">no</span>
-                                </label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-
-                <div class="js-hidden hidden-panel panel-indent" id="outstanding-payments-panel">
-
-                    <p>If you have any adjustments to make please used the input boxes below</p>
-
-                    <div class="form-item-wrapper error-layer">
-                        <div class="inline-form-groups">
-                            <fieldset>
-                                <legend class="form-label-bold">Adjustment period</legend>
-                                <p class="form-hint">For example September 2016</p>
-                                <p class="validation-message display-none">Please fill in all fields</p>
-                                <div class="form-group">
-                                    <label class="form-label" for="contribution-month">Month</label>
-                                    <input class="form-control form-control-11-chars typeahead" id="contribution-month" type="text" maxlength="11" autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="contribution-year">Year</label>
-                                    <input class="form-control form-control-4-chars validate-secondary-text-input" id="contribution-year" type="number" min="0" autocomplete="off">
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-
-                    <div class="form-item-wrapper error-layer">
-                        <fieldset>
-                            <legend class="form-label-bold">Contribution details</legend>
-
-                            <div class="inline-form-groups">
-                                <div class="form-group">
-                                    <label class="form-label" for="employee-contributions-adjustment">Employee <br />contributions</label>
-                                    <p class="validation-message display-none">Enter a valid amount</p>
-                                    <div class="prefixed-input">
-                                        <span class="prefix-text">&pound;</span>
-                                        <input type="number" id="employee-contributions-adjustment" name="employee-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="employee-avcs-adjustment">Employee <br />added years</label>
-                                    <p class="validation-message display-none">Enter a valid amount</p>
-                                    <div class="prefixed-input">
-                                        <span class="prefix-text">&pound;</span>
-                                        <input type="number" id="employee-avcs-adjustment" name="employee-avcs-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="employer-contributions-adjustment">Employer <br />contributions</label>
-                                    <p class="validation-message display-none">Enter a valid amount</p>
-                                    <div class="prefixed-input">
-                                        <span class="prefix-text">&pound;</span>
-                                        <input type="number" id="employer-contributions-adjustment" name="employer-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="additional-pension-adjustment">Additional <br />pension</label>
-                                    <p class="validation-message display-none">Enter a valid amount</p>
-                                    <div class="prefixed-input">
-                                        <span class="prefix-text">&pound;</span>
-                                        <input type="number" id="additional-pension-adjustment" name="additional-pension-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="errbo-adjustment" title="Early Retirement Reduction Buy Out">ERRBO</label>
-                                <p class="form-hint">Early Retirement Reduction Buy Out</p>
-                                <p class="validation-message display-none">Enter a valid amount</p>
-                                <div class="prefixed-input">
-                                    <span class="prefix-text">&pound;</span>
-                                    <input type="number" id="errbo-adjustment" name="errbo-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
-                                </div>
-                            </div>
-
-                        </fieldset>
-                    </div>
-
-                </div>
-
-                <div class="form-item-wrapper error-layer">
-                    <div class="form-group">
-                        <label class="form-label-bold" for="total-amount-debited">Total amount to be debited</label>
-                        <p class="validation-message display-none">Enter a valid amount</p>
-                        <div class="prefixed-input">
-                            <span class="prefix-text">&pound;</span>
-                            <input type="number" id="total-amount-debited" name="total-amount-debited" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="form-item-wrapper">
-                    <div class="form-group">
-                        <button class="button">Next step</button>
-                    </div>
-                </div>
-
-            </form>
-
-
-        <div class="pagination-simple">
-            <div class="back-link">
-                <a href="#" class="link">
-                    <span class="prefix">Back:</span>
-                    <span class="title">Schedule your payment</span>
-                </a>
-            </div>
-        </div>
-
-
-
-
-
-</div>
-
-<div th:replace="fragments/footer :: footer">...</div>
-
-</body>
-</html>
-
--->
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-    <title> Contributions and payment </title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link href="/public/stylesheets/govuk-template.css?0.12.0" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/public/stylesheets/nhs_fonts.css" media="all" rel="stylesheet" type="text/css" />
-
-
-    <link href="/public/stylesheets/nhs_application.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/public/stylesheets/nhsbsa.css" media="screen" rel="stylesheet" type="text/css" />
-
-
-
-    <script type="text/javascript">
-        document.getElementsByTagName("HTML")[0].className = ((document.getElementsByTagName("HTML")[0].className) ? document.getElementsByTagName("HTML")[0].className + ' js-enabled' : 'js-enabled');
-    </script>
-
-</head>
-
-<body class="">
-
-<div id="skiplink-container">
-    <div><a href="#content" class="skiplink">Skip to main content</a></div>
-</div>
-
-<div id="global-header">
-    <div class="header-container">
-
-        <a href="/" class="header-logo" title="Go to the NHS.UK homepage">
-            <img src="/public/images/nhs-rev-logotype.svg" alt="">
-        </a>
-
-
-
-    </div>
-</div>
-
-
-<div class="prototype-warning">
-    <div class="prototype-warning-container">
-        <p>
-            <strong class="phase-tag alpha">ALPHA</strong>
-            <span>This is a new service we are working on.</span>
-        </p>
-    </div>
-</div>
-
-
-
-<div class="service-header">
-    <div class="service-name">
-        <p>NHS Pension Scheme Financial Information Collection</p>
-    </div>
-</div>
-
-
-
-
-
-<div id="content" role="main" class="demo-only add-log-out">
-
-    <div class="back-nav" role="navigation">
-        <a class="top-back-button back-to-previous" href="#">Back</a>
-    </div>
-
-    <h1 class="heading-xlarge">Contributions and payment</h1>
-
-    <div class="text">
-        <div class="validation-summary display-none">
-            <p>Some questions have not been answered correctly.<br />Please see the errors below</p>
-        </div>
-    </div>
-
-    <form action="summary" method="get" class="form form-to-validate" id="contributions-and-payment" novalidate="novalidate">
-
-        <div class="form-item-wrapper error-layer">
-            <div class="form-group">
-                <label class="form-label" for="total-pensionable-pay">Total pensionable pay</label>
-                <p class="validation-message display-none">Enter a valid amount</p>
-                <div class="prefixed-input">
-                    <span class="prefix-text">&pound;</span>
-                    <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
+                    <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                 </div>
             </div>
         </div>
 
+        <!-- Contributions Section -->
         <div class="form-item-wrapper error-layer">
             <fieldset>
-                <legend class="form-label-bold">Contribution details</legend>
+                <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
 
+                <!-- The four boxes across the screen in a row -->
                 <div class="inline-form-groups">
 
                     <div class="form-group">
@@ -375,7 +50,7 @@
                         <p class="validation-message display-none">Enter a valid amount</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employee-contributions" name="employee-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
+                            <input type="number" id="employee-contributions" name="employee-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -384,7 +59,7 @@
                         <p class="validation-message display-none">Enter a valid amount</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employee-avcs" name="employee-avcs" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
+                            <input type="number" id="employee-avcs" name="employee-avcs" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -393,7 +68,7 @@
                         <p class="validation-message display-none">Enter a valid amount</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employer-contributions" name="employer-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
+                            <input type="number" id="employer-contributions" name="employer-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -402,24 +77,26 @@
                         <p class="validation-message display-none">Enter a valid amount</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="additional-pension" name="additional-pension" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
+                            <input type="number" id="additional-pension" name="additional-pension" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
                 </div>
 
+                <!-- ERRBO box, under the four boxes in a row -->
                 <div class="form-group">
                     <label class="form-label" for="errbo" title="Early Retirement Reduction Buy Out">ERRBO</label>
                     <p class="form-hint">Early Retirement Reduction Buy Out</p>
                     <p class="validation-message display-none">Enter a valid amount</p>
                     <div class="prefixed-input">
                         <span class="prefix-text">&pound;</span>
-                        <input type="number" id="errbo" name="errbo" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
+                        <input type="number" id="errbo" name="errbo" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                     </div>
                 </div>
 
             </fieldset>
         </div>
 
+        <!-- Adjustments Radio Buttons -->
         <div class="inline-form-groups error-layer">
             <div class="form-groups validate-radio-input" data-validate-radio-input="outstanding-payments">
                 <fieldset>
@@ -441,6 +118,7 @@
             </div>
         </div>
 
+        <!-- Adjustment Panel, shown/hidden depending on RB selection -->
         <div class="js-hidden hidden-panel panel-indent" id="outstanding-payments-panel">
 
             <p>If you have any adjustments to make please used the input boxes below</p>
@@ -453,11 +131,11 @@
                         <p class="validation-message display-none">Please fill in all fields</p>
                         <div class="form-group">
                             <label class="form-label" for="contribution-month">Month</label>
-                            <input class="form-control form-control-11-chars typeahead" id="contribution-month" type="text" maxlength="11" autocomplete="off">
+                            <input class="form-control form-control-11-chars typeahead" id="contribution-month" type="text" maxlength="11" autocomplete="off"> </input>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="contribution-year">Year</label>
-                            <input class="form-control form-control-4-chars validate-secondary-text-input" id="contribution-year" type="number" min="0" autocomplete="off">
+                            <input class="form-control form-control-4-chars validate-secondary-text-input" id="contribution-year" type="number" min="0" autocomplete="off"> </input>
                         </div>
                     </fieldset>
                 </div>
@@ -473,7 +151,7 @@
                             <p class="validation-message display-none">Enter a valid amount</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="employee-contributions-adjustment" name="employee-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
+                                <input type="number" id="employee-contributions-adjustment" name="employee-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
                             </div>
                         </div>
                         <div class="form-group">
@@ -481,7 +159,7 @@
                             <p class="validation-message display-none">Enter a valid amount</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="employee-avcs-adjustment" name="employee-avcs-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
+                                <input type="number" id="employee-avcs-adjustment" name="employee-avcs-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
                             </div>
                         </div>
                         <div class="form-group">
@@ -489,7 +167,7 @@
                             <p class="validation-message display-none">Enter a valid amount</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="employer-contributions-adjustment" name="employer-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
+                                <input type="number" id="employer-contributions-adjustment" name="employer-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
                             </div>
                         </div>
                         <div class="form-group">
@@ -497,7 +175,7 @@
                             <p class="validation-message display-none">Enter a valid amount</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="additional-pension-adjustment" name="additional-pension-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
+                                <input type="number" id="additional-pension-adjustment" name="additional-pension-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
                             </div>
                         </div>
                     </div>
@@ -508,7 +186,7 @@
                         <p class="validation-message display-none">Enter a valid amount</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="errbo-adjustment" name="errbo-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off">
+                            <input type="number" id="errbo-adjustment" name="errbo-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -517,17 +195,17 @@
 
         </div>
 
+        <!-- Last input field, Total Amount debited -->
         <div class="form-item-wrapper error-layer">
             <div class="form-group">
                 <label class="form-label-bold" for="total-amount-debited">Total amount to be debited</label>
                 <p class="validation-message display-none">Enter a valid amount</p>
                 <div class="prefixed-input">
                     <span class="prefix-text">&pound;</span>
-                    <input type="number" id="total-amount-debited" name="total-amount-debited" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off">
+                    <input type="number" id="total-amount-debited" name="total-amount-debited" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                 </div>
             </div>
         </div>
-
 
         <div class="form-item-wrapper">
             <div class="form-group">
@@ -539,9 +217,9 @@
 
     <div class="pagination-simple">
         <div class="back-link">
-            <a href="#" class="link">
-                <span class="prefix">Back:</span>
-                <span class="title">Schedule your payment</span>
+            <a href="scheduleyourpayment" class="link">
+                <span class="prefix" th:text="#{back}"></span>
+                <span class="title" th:text="#{contributions.BacklinkToSchYourPayment}"></span>
             </a>
         </div>
     </div>
@@ -549,34 +227,7 @@
 </div>
 
 
+<div th:replace="fragments/footer :: footer">...</div>
 
-<div id="footer">
-
-    <div class="footer-wrapper">
-
-        <div class="text">
-
-            <p>
-                <small>
-                    Made in Fleetwood by NHS BSA Pensions<br />
-                    Content available under <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>, except where otherwise stated.
-                </small>
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-
-<script src="/public/javascripts/vendor/jquery-1.11.2.min.js"></script>
-<script src="/public/javascripts/vendor/cookie.js"></script>
-<script src="/public/javascripts/vendor/jquery.typeahead.js"></script>
-<script src="/public/javascripts/toggle.js"></script>
-<script src="/public/javascripts/nhsbsa.js"></script>
 </body>
 </html>
--->
