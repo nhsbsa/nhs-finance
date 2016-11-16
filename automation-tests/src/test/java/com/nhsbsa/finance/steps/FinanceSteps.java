@@ -50,6 +50,7 @@ public class FinanceSteps {
     @When("^user enters '(.*)' and '(.*)' into Contribution Date field$")
     public void user_enters_values_into_contribution_date_field(String month, String year) {
         schedulePaymentPage.enterContributionDateMonth(month);
+        schedulePaymentPage.enterContributionDateYear(year);
         schedulePaymentPage = financeLoginPage.submit();
     }
 
