@@ -48,7 +48,6 @@
 
                     <div class="form-group">
                         <label class="form-label" for="employee-contributions" th:text="#{contributions.EmployeeContsLabel}"></label>
-                        <!--<p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>-->
                         <p class="validation-message display-none">This value needs to be within 5% and 9% of the Total Pensionable Pay</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
@@ -128,7 +127,7 @@
         <!-- Adjustment Panel, shown/hidden depending on RB selection -->
         <div class="js-hidden hidden-panel panel-indent" id="outstanding-payments-panel">
 
-            <p>If you have any adjustments to make please used the input boxes below</p>
+            <p th:text="#{contributions.AdjInfoMessageLabel}"></p>
 
             <div class="form-item-wrapper error-layer">
                 <div class="inline-form-groups">
@@ -137,11 +136,13 @@
                         <p class="form-hint" th:text="#{contributions.AdjPeriodHintLabel}"></p>
                         <p class="validation-message display-none">Please fill in all fields</p>
                         <div class="form-group">
-                            <label class="form-label" for="contribution-month">Month</label>
+                            <!--<label class="form-label" for="contribution-month">Month</label>-->
+                            <label class="form-label" for="contribution-month" th:text="#{contributions.AdjPeriodMonthLabel}"></label>
                             <input class="form-control form-control-11-chars typeahead" id="contribution-month" type="text" maxlength="11" autocomplete="off"> </input>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="contribution-year">Year</label>
+                            <!--<label class="form-label" for="contribution-year">Year</label>-->
+                            <label class="form-label" for="contribution-year" th:text="#{contributions.AdjPeriodYearLabel}"></label>
                             <input class="form-control form-control-4-chars validate-secondary-text-input" id="contribution-year" type="number" min="0" autocomplete="off"> </input>
                         </div>
                     </fieldset>
