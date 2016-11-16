@@ -1,7 +1,6 @@
 package com.nhsbsa.finance.pageobjects;
 
 import com.nhsbsa.BasePage;
-import com.nhsbsa.finance.steps.FinanceSteps;
 import com.nhsbsa.webdriver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -140,10 +139,9 @@ public class SchedulePaymentPage extends BasePage {
 
     // Submit
 
-    public FinanceStartPage submit() {
+    public ContributionsAndPaymentPage submit() {
         submitButtonElement.click();
-        // TODO change this when Contributions and Payment page ready
-        return PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);
+        return PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
     }
 
     public void submitWIthErrors() {
