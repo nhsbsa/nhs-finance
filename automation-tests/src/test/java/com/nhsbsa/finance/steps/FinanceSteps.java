@@ -35,7 +35,7 @@ public class FinanceSteps {
 
     @When("^user enters tomorrows date into Date of Transfer field$")
     public void user_enters_values_into_date_of_transfer_field() {
-        LocalDate date = new org.joda.time.LocalDate();
+        LocalDate date = new LocalDate().plusDays(1);
         schedulePaymentPage.enterDateOfTransferDay(date.getDayOfMonth());
         schedulePaymentPage.enterDateOfTransferMonth(date.getMonthOfYear());
         schedulePaymentPage.enterDateOfTransferYear(date.getYear());
@@ -51,7 +51,6 @@ public class FinanceSteps {
     public void user_enters_values_into_contribution_date_field(String month, String year) {
         schedulePaymentPage.enterContributionDateMonth(month);
         schedulePaymentPage.enterContributionDateYear(year);
-        schedulePaymentPage = financeLoginPage.submit();
     }
 
     @When("^user clicks submit button with errors$")
@@ -69,6 +68,11 @@ public class FinanceSteps {
         schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
     }
 
+    @Then("^validation summary should be displayed$")
+    public void validation_summary_should_be_displayed() {
+        assertThat(schedulePaymentPage.getValidationSummary(), is(equalTo("Some questions have not been answered correctly.\nPlease see the errors below.")));
+    }
+
     @Then("^employer account info page should be displayed$")
     public void employer_account_info_page_should_be_displayed() {
         employer_account_info_page_is_displayed();
@@ -77,31 +81,37 @@ public class FinanceSteps {
     @Then("^'(.*)' error is displayed for Date of Transfer$")
     public void error_is_displayed_for_date_of_transfer(final String errorMessage) {
         assertThat(schedulePaymentPage.getDateOfTransferObjectErrorMessage(), is(equalTo(errorMessage)));
+        validation_summary_should_be_displayed();
     }
 
     @Then("^'(.*)' error is displayed for Date of Transfer date value$")
     public void error_is_displayed_for_date_of_transfer_date_value(final String errorMessage) {
         assertThat(schedulePaymentPage.getDateOfTransferDateErrorMessage(), is(equalTo(errorMessage)));
+        validation_summary_should_be_displayed();
     }
 
     @Then("^Error is displayed when Payment Contribution is not set")
     public void error_is_displayed_if_payment_contribution_is_not_set() {
         assertThat(schedulePaymentPage.getContributionPaymentErrorMessage(), is(equalTo("Contribution payment is required")));
+        validation_summary_should_be_displayed();
     }
 
     @Then("^'(.*)' error is displayed for Contribution Date$")
     public void error_is_displayed_for_contribution_date(final String errorMessage) {
         assertThat(schedulePaymentPage.getContributionDateObjectErrorMessage(), is(equalTo(errorMessage)));
+        validation_summary_should_be_displayed();
     }
 
     @Then("^'(.*)' error is displayed for Contribution Date month$")
     public void error_is_displayed_for_contribution_date_month(final String errorMessage) {
         assertThat(schedulePaymentPage.getContributionDateMonthErrorMessage(), is(equalTo(errorMessage)));
+        validation_summary_should_be_displayed();
     }
 
     @Then("^'(.*)' error is displayed for Contribution Date year$")
     public void error_is_displayed_for_contribution_date_year(final String errorMessage) {
         assertThat(schedulePaymentPage.getContributionDateYearErrorMessage(), is(equalTo(errorMessage)));
+        validation_summary_should_be_displayed();
     }
 
 }
