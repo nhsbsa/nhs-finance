@@ -47,6 +47,6 @@ public class ScheduleYourPayment {
         //return "redirect:/scheduleyourpaymentresult/" + savedRequestForTransfer.getId();
 
         // Temporary where to go so get the Contributions and Payments page to be displayed.
-        return "contributionsandpayment";
+        return "redirect:/contributionsandpayment/";
     }
 }
