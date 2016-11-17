@@ -53,26 +53,20 @@ public class RequestForTransfer extends BaseEntity<Long> {
      */
 
     @Currency
-    @NotNull(groups = ContributionsValidationGroup.class)
+//    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal totalPensionablePay;
 
     @Currency(min = "0", max = "99999")
-    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal employeeContributions;
 
-    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal employeeAddedYears;
 
-    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal additionalPension;
 
-    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal errbo;
 
-    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal employerContributions;
 
-    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal totalDebitAmount;
 
     private Date receiveDate = new Date();
