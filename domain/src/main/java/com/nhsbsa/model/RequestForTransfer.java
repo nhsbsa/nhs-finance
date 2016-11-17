@@ -43,7 +43,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     /* TODO implement Currency
 
         - Allow (optional) range to be entered.
-        - Provide default range in annotation.
+        - Provide default range in annotation.`
         - Null value is valid (use @NotNull to define optional / mandatory)
 
         See examples below
