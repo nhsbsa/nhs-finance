@@ -98,6 +98,14 @@ public class ContributionDateValidatorTest {
                         .contributionMonth(1)
                         .contributionYear(-2003)
                         .build(), false},
+                {ContributionDate.builder()
+                        .contributionMonth(null)
+                        .contributionYear(-2003)
+                        .build(), false},
+                {ContributionDate.builder()
+                        .contributionMonth(-1)
+                        .contributionYear(null)
+                        .build(), false},
 
         });
     }
