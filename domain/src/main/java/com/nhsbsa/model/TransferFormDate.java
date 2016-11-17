@@ -1,5 +1,6 @@
 package com.nhsbsa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nhsbsa.model.validaton.DateIsAfterToday;
 import com.nhsbsa.model.validaton.DateLessThan31DaysFromToday;
 import com.nhsbsa.model.validaton.FormDateNotBlank;
@@ -30,6 +31,7 @@ public class TransferFormDate extends FormDate implements Serializable{
         return super.getDate();
     }
 
+    //@JsonIgnore
     public LocalDate getLocalDate() {
         return LocalDate.now();
     }
