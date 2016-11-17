@@ -1,6 +1,8 @@
 package com.nhsbsa.model;
 
+import com.nhsbsa.model.validaton.ContributionsValidationGroup;
 import com.nhsbsa.model.validaton.Currency;
+import com.nhsbsa.model.validaton.SchedulePaymentValidationGroup;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,7 +35,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Convert(converter = TransferFormDateConverter.class)
     private TransferFormDate transferDate = new TransferFormDate();
 
-    @NotNull(message = "{isGp.notNull}")
+    @NotNull(message = "{isGp.notNull}", groups = SchedulePaymentValidationGroup.class)
     private Boolean isGp;
 
     @Valid
@@ -51,20 +53,26 @@ public class RequestForTransfer extends BaseEntity<Long> {
      */
 
     @Currency
-//    @NotNull
+    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal totalPensionablePay;
 
     @Currency(min = "0", max = "99999")
+    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal employeeContributions;
 
+    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal employeeAddedYears;
 
+    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal additionalPension;
 
+    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal errbo;
 
+    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal employerContributions;
 
+    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal totalDebitAmount;
 
     private Date receiveDate = new Date();

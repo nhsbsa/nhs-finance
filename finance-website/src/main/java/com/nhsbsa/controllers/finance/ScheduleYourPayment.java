@@ -1,6 +1,7 @@
 package com.nhsbsa.controllers.finance;
 
 import com.nhsbsa.model.RequestForTransfer;
+import com.nhsbsa.model.validaton.SchedulePaymentValidationGroup;
 import com.nhsbsa.service.RequestForTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class ScheduleYourPayment {
     }
 
     @PostMapping(value = "/scheduleyourpayment")
-    public String savePaymentSchedule(@Validated @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
+    public String savePaymentSchedule(@Validated(value = SchedulePaymentValidationGroup.class) @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "scheduleyourpayment";
