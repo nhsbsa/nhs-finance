@@ -3,7 +3,6 @@ package com.nhsbsa.controllers.finance;
 import com.nhsbsa.model.RequestForTransfer;
 import com.nhsbsa.service.RequestForTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Created by nataliehulse on 15/11/2016.
  */
-@Controller
+/*
+    TO DO
+    Remove Comments from Controller annotation
+    Change view name to new screen name
+    Change redirect on ScheduleYourPayment controller to go to new screen instead of result page
+*/
+//@Controller
 public class ContributionsAndPayments {
 
     private final RequestForTransferService requestForTransferService;
@@ -32,7 +37,7 @@ public class ContributionsAndPayments {
     }
 
     @PostMapping(value = "/contributionsandpayments")
-    public String saveContributionsAndPayments(@Validated @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
+    public String savePaymentSchedule(@Validated @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "contributionsandpayments";

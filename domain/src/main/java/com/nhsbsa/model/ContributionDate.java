@@ -1,8 +1,10 @@
 package com.nhsbsa.model;
 
 import com.nhsbsa.model.validaton.ContributionDateValid;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Embeddable;
@@ -17,6 +19,8 @@ import java.io.Serializable;
 @Embeddable
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @ContributionDateValid(message = "{contributionDate.in.range}")
 public class ContributionDate implements Serializable {
 
