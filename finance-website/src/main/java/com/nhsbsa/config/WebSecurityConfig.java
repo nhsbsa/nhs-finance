@@ -25,10 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private FinanceAuthenticationProvider memberAuthenticationProvider;
 
-    @Value("${debug.show.health}")
-    private boolean showHealth;
-
-    private static final String DEBUG_ENDPOINT = "debug";
 
     private static final List<String> NO_SECURITY_URLS = new ArrayList<>(Arrays.asList(
             "/",
@@ -63,21 +59,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private String[] getUnsecuredUrls() {
-        if (showHealth) {
-            return getEndPointsWithDebug();
-        } else {
-            return getEndPoints();
-        }
+        return getEndPoints();
     }
 
     private String[] getEndPoints() {
         return NO_SECURITY_URLS.toArray(new String[NO_SECURITY_URLS.size()]);
-    }
-
-    private String[] getEndPointsWithDebug() {
-        final List<String> endPoints = new ArrayList<>(NO_SECURITY_URLS);
-        endPoints.add(DEBUG_ENDPOINT);
-        return endPoints.toArray(new String[endPoints.size()]);
     }
 
     @Autowired
