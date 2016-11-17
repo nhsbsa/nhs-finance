@@ -20,8 +20,8 @@ import java.io.Serializable;
 @Data
 @Builder
 @ContributionDateValid(message = "{contributionDate.in.range}")
-//@NoArgsConstructor
-//@AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class ContributionDate implements Serializable {
 
     @Range(min = 1, max = 12, message = "{contributionMonth.valid}")
