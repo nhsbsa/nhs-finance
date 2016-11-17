@@ -1,4 +1,4 @@
-package com.nhsbsa.model;
+package com.nhsbsa.model.validaton;
 
 /**
  * Created by Mark Lishman on 17/11/2016.

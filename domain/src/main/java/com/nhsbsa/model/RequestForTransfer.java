@@ -1,5 +1,6 @@
 package com.nhsbsa.model;
 
+import com.nhsbsa.model.validaton.Currency;
 import lombok.*;
 
 import javax.persistence.*;
