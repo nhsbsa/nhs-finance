@@ -4,49 +4,50 @@ import com.nhsbsa.model.RequestForTransfer;
 import com.nhsbsa.service.RequestForTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
-import java.lang.invoke.MethodType;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by nataliehulse on 03/11/2016.
+ * Created by ianfulcher on 16/11/2016.
  */
 @Controller
-public class ScheduleYourPayment {
+public class ContributionsAndPayment {
 
     private final RequestForTransferService requestForTransferService;
 
     @Autowired
-    public ScheduleYourPayment(final RequestForTransferService requestForTransferService) {
+    public ContributionsAndPayment(final RequestForTransferService requestForTransferService) {
         this.requestForTransferService = requestForTransferService;
     }
 
-    @GetMapping(value = "/scheduleyourpayment")
-    public ModelAndView scheduleyourpayment() {
-        ModelAndView modelAndView = new ModelAndView("scheduleyourpayment");
+
+    // Displaying the "Contributions and Payment" page
+    @GetMapping(value = "/contributionsandpayment")
+    public ModelAndView contributionsandpayment() {
+        ModelAndView modelAndView = new ModelAndView("contributionsandpayment");
         modelAndView.addObject("rft", new RequestForTransfer());
         return modelAndView;
     }
 
-    @PostMapping(value = "/scheduleyourpayment")
+
+    @PostMapping(value = "/contributionsandpayment")
     public String savePaymentSchedule(@Validated @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "scheduleyourpayment";
+            return "contributionsandpayment";
         }
 
         // What was here before, but fails in first line....?????
         //RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
         //return "redirect:/scheduleyourpaymentresult/" + savedRequestForTransfer.getId();
 
-        // Temporary where to go so get the Contributions and Payments page to be displayed.
-        return "contributionsandpayment";
+        // Temporary where to go so testing the next page to go to, not exists currently.
+        return "notyetimplementedcontsandpay";
     }
+
+
 }
