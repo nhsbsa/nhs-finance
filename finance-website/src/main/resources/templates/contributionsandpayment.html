@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="#{contributions.TabTitle}"></title>
+    <object th:replace="fragments/global_includes :: global_includes" th:remove="tag">...</object>
+</head>
+<body class="body">
+
+<div th:replace="fragments/finance-header-logout :: header_logout">...</div>
+
+<div id="content" role="main">
+    <div th:replace="fragments/backlink_schyourpayment :: back_to_schedule_your_payment">...</div>
+
+    <h1 class="heading-xlarge" th:text="#{contributions.TitleHeading}" style="margin-bottom: 0px;">  </h1>
+
+    <form th:action="@{/contributionsandpayment}" method="post" class="form" novalidate="novalidate">
+
+    <!--<form th:action="@{/contributionsandpayment}" method="post" class="form demo-validation-input" novalidate="novalidate" th:object="${rft}">-->
+
+    <!--<div class="grid-row" th:if="${#fields.hasAnyErrors()}">-->
+        <div class="column-two-thirds">
+            <div class="validation-summary">
+                <p th:text="#{errorSummary1}"></p>
+                <p th:text="#{errorSummary2}"></p>
+            </div>
+        </div>
+    <!--</div>-->
+
+
+        <div class="form-item-wrapper error-layer">
+            <div class="form-group">
+                <label class="form-label" for="total-pensionable-pay" th:text="#{contributions.TotalPenPay}"></label>
+                <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                <div class="prefixed-input">
+                    <span class="prefix-text">&pound;</span>
+                    <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contributions Section -->
+        <div class="form-item-wrapper error-layer">
+            <fieldset>
+                <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
+
+                <!-- Two input fields on one row -->
+                <div class="inline-form-groups">
+
+                    <div class="form-group">
+                        <label class="form-label" for="employee-contributions" th:text="#{contributions.EmployeeContsLabel}"></label>
+                        <p class="validation-message display-none">This value needs to be within 5% and 9% of the Total Pensionable Pay</p>
+                        <div class="prefixed-input">
+                            <span class="prefix-text">&pound;</span>
+                            <input type="number" id="employee-contributions" name="employee-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="employer-contributions" th:text="#{contributions.EmployerContsLabel}"></label>
+                        <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                        <div class="prefixed-input">
+                            <span class="prefix-text">&pound;</span>
+                            <input type="number" id="employer-contributions" name="employer-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Three input fields on one row -->
+                <div class="inline-form-groups">
+
+                    <div class="form-group">
+                        <label class="form-label" for="employee-avcs" th:text="#{contributions.EmployeeAddedYrsLabel}"></label>
+                        <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                        <div class="prefixed-input">
+                            <span class="prefix-text">&pound;</span>
+                            <input type="number" id="employee-avcs" name="employee-avcs" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="additional-pension" th:text="#{contributions.AdditionalPensionLabel}"></label>
+                        <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                        <div class="prefixed-input">
+                            <span class="prefix-text">&pound;</span>
+                            <input type="number" id="additional-pension" name="additional-pension" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="errbo" th:text="#{contributions.ErrboLabel}"></label>
+                        <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                        <div class="prefixed-input">
+                            <span class="prefix-text">&pound;</span>
+                            <input type="number" id="errbo" name="errbo" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                        </div>
+                    </div>
+
+                </div>
+
+            </fieldset>
+        </div>
+
+        <!-- Adjustments Radio Buttons -->
+        <div class="inline-form-groups error-layer">
+            <div class="form-groups validate-radio-input" data-validate-radio-input="outstanding-payments">
+                <fieldset>
+                    <legend class="form-label-bold label-like" th:text="#{contributions.AdjRequiredHeader}"></legend>
+                    <p class="validation-message outstanding-payments-error-message display-none">Please pick an option to continue</p>
+                    <div class="form-group">
+                        <label class="nhsbsa-radio js-toggle" for="add-outstanding-payments" data-show="#outstanding-payments-panel">
+                            <input type="radio" name="outstanding-payments" id="add-outstanding-payments" value="yes" />
+                            <span class="input-text" th:text="#{contributions.AdjRBYesLabel}"></span>
+
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="nhsbsa-radio js-toggle" for="no-outstanding-payments" data-hide="#outstanding-payments-panel">
+                            <input type="radio" name="outstanding-payments" id="no-outstanding-payments" value="no" />
+                            <span class="input-text" th:text="#{contributions.AdjRBNoLabel}"></span>
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <!-- Adjustment Panel, shown/hidden depending on RB selection -->
+        <div class="js-hidden hidden-panel panel-indent" id="outstanding-payments-panel">
+
+            <p th:text="#{contributions.AdjInfoMessageLabel}"></p>
+
+            <div class="form-item-wrapper error-layer">
+                <div class="inline-form-groups">
+                    <fieldset>
+                        <legend class="form-label-bold" th:text="#{contributions.AdjPeriodHeader}"></legend>
+                        <p class="form-hint" th:text="#{contributions.AdjPeriodHintLabel}"></p>
+                        <p class="validation-message display-none">Please fill in all fields</p>
+                        <div class="form-group">
+                            <!--<label class="form-label" for="contribution-month">Month</label>-->
+                            <label class="form-label" for="contribution-month" th:text="#{contributions.AdjPeriodMonthLabel}"></label>
+                            <input class="form-control form-control-11-chars typeahead" id="contribution-month" type="text" maxlength="11" autocomplete="off"> </input>
+                        </div>
+                        <div class="form-group">
+                            <!--<label class="form-label" for="contribution-year">Year</label>-->
+                            <label class="form-label" for="contribution-year" th:text="#{contributions.AdjPeriodYearLabel}"></label>
+                            <input class="form-control form-control-4-chars validate-secondary-text-input" id="contribution-year" type="number" min="0" autocomplete="off"> </input>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="form-item-wrapper error-layer">
+                <fieldset>
+                    <!--<legend class="form-label-bold">Contribution details</legend>-->
+                    <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
+
+                    <!-- Two input fields on one row -->
+                    <div class="inline-form-groups">
+                        <div class="form-group">
+                            <label class="form-label" for="employee-contributions-adjustment" th:text="#{contributions.EmployeeContsLabel}"></label>
+                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <div class="prefixed-input">
+                                <span class="prefix-text">&pound;</span>
+                                <input type="number" id="employee-contributions-adjustment" name="employee-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="employer-contributions-adjustment" th:text="#{contributions.EmployerContsLabel}"></label>
+                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <div class="prefixed-input">
+                                <span class="prefix-text">&pound;</span>
+                                <input type="number" id="employer-contributions-adjustment" name="employer-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Three input fields on one row -->
+                    <div class="inline-form-groups">
+
+                        <div class="form-group">
+                            <label class="form-label" for="employee-avcs-adjustment" th:text="#{contributions.EmployeeAddedYrsLabel}"></label>
+                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <div class="prefixed-input">
+                                <span class="prefix-text">&pound;</span>
+                                <input type="number" id="employee-avcs-adjustment" name="employee-avcs-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="additional-pension-adjustment" th:text="#{contributions.AdditionalPensionLabel}"></label>
+                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <div class="prefixed-input">
+                                <span class="prefix-text">&pound;</span>
+                                <input type="number" id="additional-pension-adjustment" name="additional-pension-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="errbo-adjustment" th:text="#{contributions.ErrboLabel}"></label>
+                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <div class="prefixed-input">
+                                <span class="prefix-text">&pound;</span>
+                                <input type="number" id="errbo-adjustment" name="errbo-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </div>
+
+        </div>
+
+        <!-- Last input field, Total Amount debited -->
+        <div class="form-item-wrapper error-layer">
+            <div class="form-group">
+                <!--<label class="form-label-bold" for="total-amount-debited">Total amount to be debited</label>-->
+                <label class="form-label-bold" for="total-amount-debited" th:text="#{contributions.TotalAmtDebitedHeader}"></label>
+                <p class="validation-message display-none">Enter a valid amount</p>
+                <div class="prefixed-input">
+                    <span class="prefix-text">&pound;</span>
+                    <input type="number" id="total-amount-debited" name="total-amount-debited" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-item-wrapper">
+            <div class="form-group">
+                <button class="button" th:text="#{nextStep}"></button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="pagination-simple">
+        <div class="back-link">
+            <a href="scheduleyourpayment" class="link">
+                <span class="prefix" th:text="#{back}"></span>
+                <span class="title" th:text="#{contributions.BacklinkToSchYourPayment}"></span>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<div th:replace="fragments/footer :: footer">...</div>
+
+</body>
+</html>
