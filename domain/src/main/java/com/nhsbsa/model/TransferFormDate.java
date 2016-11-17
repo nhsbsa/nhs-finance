@@ -31,7 +31,7 @@ public class TransferFormDate extends FormDate implements Serializable{
         return super.getDate();
     }
 
-    //@JsonIgnore
+    @JsonIgnore
     public LocalDate getLocalDate() {
         return LocalDate.now();
     }
