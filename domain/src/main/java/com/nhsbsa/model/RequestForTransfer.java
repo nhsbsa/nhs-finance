@@ -1,6 +1,5 @@
 package com.nhsbsa.model;
 
-import com.nhsbsa.model.validaton.ContributionDateValid;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,13 +39,33 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Embedded
     private ContributionDate contributionDate = ContributionDate.builder().build();
 
+    /* TODO implement Currency
+
+        - Allow (optional) range to be entered.
+        - Provide default range in annotation.
+        - Null value is valid (use @NotNull to define optional / mandatory)
+
+        See examples below
+
+     */
+
+    @Currency
+//    @NotNull
     private BigDecimal totalPensionablePay;
+
+    @Currency(min = "0", max = "99999")
     private BigDecimal employeeContributions;
+
     private BigDecimal employeeAddedYears;
+
     private BigDecimal additionalPension;
+
     private BigDecimal errbo;
+
     private BigDecimal employerContributions;
+
     private BigDecimal totalDebitAmount;
+
     private Date receiveDate = new Date();
 
     @OneToMany()
