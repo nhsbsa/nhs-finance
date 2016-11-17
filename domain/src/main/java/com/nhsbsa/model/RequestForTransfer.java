@@ -53,4 +53,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @JoinColumn(name = "rft_id")
     private List<Adjustment> adjustmentList;
 
+
+    private String uuid;
+
 }
