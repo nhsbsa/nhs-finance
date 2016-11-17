@@ -12,6 +12,9 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class SchedulePaymentPage extends BasePage {
 
+    @FindBy(className = "validation-summary")
+    private WebElement validationSummaryElement;
+
     @FindBy(id = "dob-day")
     private WebElement dateOfTransferDayElement;
 
@@ -56,6 +59,12 @@ public class SchedulePaymentPage extends BasePage {
 
     public SchedulePaymentPage(WebDriver driver) {
         super(driver, "Schedule your payment");
+    }
+
+    // Validation Summary
+
+    public String getValidationSummary() {
+        return validationSummaryElement.getText();
     }
 
     // Date of Transfer
