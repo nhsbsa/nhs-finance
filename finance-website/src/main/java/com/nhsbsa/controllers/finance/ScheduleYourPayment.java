@@ -42,7 +42,7 @@ public class ScheduleYourPayment {
             return "scheduleyourpayment";
         }
 
-        // What was here before, but fails in first line....?????
+        // What was here before, but fails in first line, crashes....?????
         //RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
         //return "redirect:/scheduleyourpaymentresult/" + savedRequestForTransfer.getId();
 
