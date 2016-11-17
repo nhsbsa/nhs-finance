@@ -14,11 +14,15 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
 
     private int monthsInAdvanceLimit;
 
+    @Value("${contributionDate.not.blank}")
+    private String contributionDateNotBlank = "placeholder";
+
     @Value("${contributionDate.not.valid}")
     private String contributionDateNotValid = "placeholder";
 
     @Value("${contributionDate.not.in.range}")
     private String contributionDateNotInRange = "placeholder";
+
     @Override
     public void initialize(ContributionDateValid constraintAnnotation) {
         monthsInAdvanceLimit = constraintAnnotation.monthsInAdvanceLimit();
@@ -43,13 +47,29 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
     }
 
     private boolean containsInvalidData(final ContributionDate contributionDate, final ConstraintValidatorContext context) {
-        final boolean isDataInvalid = containsNullValue(contributionDate) || containsInvalidValue(contributionDate);
-        if (isDataInvalid) {
+        return handleNullValues(contributionDate, context) || handleInvalidValues(contributionDate, context);
+    }
+
+    private boolean handleInvalidValues(ContributionDate contributionDate, ConstraintValidatorContext context) {
+        final boolean containsInvalidValue = containsInvalidValue(contributionDate);
+        if (containsInvalidValue) {
             context.buildConstraintViolationWithTemplate(
                     contributionDateNotValid.replace("$", ""))
                     .addConstraintViolation();
+            return true;
         }
-        return isDataInvalid;
+        return false;
+    }
+
+    private boolean handleNullValues(ContributionDate contributionDate, ConstraintValidatorContext context) {
+        final boolean containsNullValue = containsNullValue(contributionDate);
+        if (containsNullValue) {
+            context.buildConstraintViolationWithTemplate(
+                    contributionDateNotBlank.replace("$", ""))
+                    .addConstraintViolation();
+            return true;
+        }
+        return false;
     }
 
     private boolean containsInvalidValue(final ContributionDate contributionDate) {
