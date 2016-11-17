@@ -15,11 +15,10 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
     private int monthsInAdvanceLimit;
 
     @Value("${contributionDate.not.valid}")
-    private String contributionDateNotValid;
+    private String contributionDateNotValid = "placeholder";
 
     @Value("${contributionDate.not.in.range}")
-    private String contributionDateNotInRange;
-
+    private String contributionDateNotInRange = "placeholder";
     @Override
     public void initialize(ContributionDateValid constraintAnnotation) {
         monthsInAdvanceLimit = constraintAnnotation.monthsInAdvanceLimit();
@@ -46,7 +45,8 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
     private boolean containsInvalidData(final ContributionDate contributionDate, final ConstraintValidatorContext context) {
         final boolean isDataInvalid = containsNullValue(contributionDate) || containsInvalidValue(contributionDate);
         if (isDataInvalid) {
-            context.buildConstraintViolationWithTemplate(contributionDateNotValid.replace("$", ""))
+            context.buildConstraintViolationWithTemplate(
+                    contributionDateNotValid.replace("$", ""))
                     .addConstraintViolation();
         }
         return isDataInvalid;
