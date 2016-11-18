@@ -1,8 +1,6 @@
 package com.nhsbsa.model;
 
-import com.nhsbsa.model.validaton.ContributionsValidationGroup;
-import com.nhsbsa.model.validaton.Currency;
-import com.nhsbsa.model.validaton.SchedulePaymentValidationGroup;
+import com.nhsbsa.model.validation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +22,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@EmployeeContributionThreshold(groups = ContributionsValidationGroup.class)
+@EmployerContributionThreshold(groups = ContributionsValidationGroup.class)
 public class RequestForTransfer extends BaseEntity<Long> {
 
     @Id
@@ -42,21 +42,9 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Embedded
     private ContributionDate contributionDate = ContributionDate.builder().build();
 
-    /* TODO implement Currency
-
-        - Allow (optional) range to be entered.
-        - Provide default range in annotation.`
-        - Null value is valid (use @NotNull to define optional / mandatory)
-
-        See examples below
-
-     */
-
     @Currency
-//    @NotNull(groups = ContributionsValidationGroup.class)
     private BigDecimal totalPensionablePay;
 
-    @Currency(min = "0", max = "99999")
     private BigDecimal employeeContributions;
 
     private BigDecimal employeeAddedYears;

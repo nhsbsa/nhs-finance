@@ -1,6 +1,5 @@
 package com.nhsbsa.model.validation;
 
-import com.nhsbsa.model.validaton.DateIsAfterTodayValidator;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.Matchers.*;

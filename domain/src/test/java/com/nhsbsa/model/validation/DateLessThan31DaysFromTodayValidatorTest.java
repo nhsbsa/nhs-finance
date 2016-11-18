@@ -1,12 +1,9 @@
 package com.nhsbsa.model.validation;
 
-import com.nhsbsa.model.validaton.DateIsAfterTodayValidator;
-import com.nhsbsa.model.validaton.DateLessThan31DaysFromTodayValidator;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.validation.ConstraintValidatorContext;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;

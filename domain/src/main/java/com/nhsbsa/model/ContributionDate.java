@@ -1,7 +1,7 @@
 package com.nhsbsa.model;
 
-import com.nhsbsa.model.validaton.ContributionDateValid;
-import com.nhsbsa.model.validaton.SchedulePaymentValidationGroup;
+import com.nhsbsa.model.validation.ContributionDateValid;
+import com.nhsbsa.model.validation.SchedulePaymentValidationGroup;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
