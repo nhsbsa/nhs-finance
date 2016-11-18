@@ -1,7 +1,7 @@
 package com.nhsbsa.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nhsbsa.model.validaton.ValidFormDate;
+import com.nhsbsa.model.validation.ValidFormDate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

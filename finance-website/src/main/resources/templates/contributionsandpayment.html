@@ -25,7 +25,7 @@
     <!--</div>-->
 
 
-        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('totalPensionablePay')}? validation-error">
             <div class="form-group">
                 <label class="form-label" for="total-pensionable-pay" th:text="#{contributions.TotalPenPay}"></label>
                 <p class="validation-message" th:errors="*{totalPensionablePay}">Enter a numeric value between 1 - 999,999,999.99</p>
@@ -37,9 +37,10 @@
         </div>
 
         <!-- Contributions Section -->
-        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasGlobalErrors() or #fields.hasErrors('employeeContributions') or #fields.hasErrors('employerContributions')}? validation-error">
             <fieldset>
                 <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
+                <p class="validation-message" th:errors="${rft}">This value needs to be within 5% and 14.5% of the Total Pensionable Pay</p>
 
                 <!-- Two input fields on one row -->
                 <div class="inline-form-groups">
@@ -210,7 +211,7 @@
         </div>
 
         <!-- Last input field, Total Amount debited -->
-        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('totalDebitAmount')}? validation-error">
             <div class="form-group">
                 <!--<label class="form-label-bold" for="total-amount-debited">Total amount to be debited</label>-->
                 <label class="form-label-bold" for="total-amount-debited" th:text="#{contributions.TotalAmtDebitedHeader}"></label>

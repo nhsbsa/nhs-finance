@@ -1,7 +1,7 @@
 package com.nhsbsa.controllers.finance;
 
 import com.nhsbsa.model.RequestForTransfer;
-import com.nhsbsa.model.validaton.ContributionsValidationGroup;
+import com.nhsbsa.model.validation.ContributionsValidationGroup;
 import com.nhsbsa.service.RequestForTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

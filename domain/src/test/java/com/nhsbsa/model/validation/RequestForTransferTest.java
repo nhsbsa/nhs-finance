@@ -60,7 +60,7 @@ public class RequestForTransferTest {
         transferFormDate.setYear("2016");
         requestForTransfer.setTransferDate(transferFormDate);
         requestForTransfer.setIsGp(null);
-        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, SchedulePaymentValidationGroup.class);
 
         assertThat(constraintViolations, hasSize(1));
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{isGp.notNull}"))));
