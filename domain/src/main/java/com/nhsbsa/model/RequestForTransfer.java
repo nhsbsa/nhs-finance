@@ -43,17 +43,20 @@ public class RequestForTransfer extends BaseEntity<Long> {
     private ContributionDate contributionDate = ContributionDate.builder().build();
 
     @Currency
+    @NotNull(message = "{totalPensionablePay.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal totalPensionablePay;
 
+    @NotNull(message = "{employeeContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employeeContributions;
+
+    @NotNull(message = "{employerContributions.notNull}", groups = ContributionsValidationGroup.class)
+    private BigDecimal employerContributions;
 
     private BigDecimal employeeAddedYears;
 
     private BigDecimal additionalPension;
 
     private BigDecimal errbo;
-
-    private BigDecimal employerContributions;
 
     private BigDecimal totalDebitAmount;
 
