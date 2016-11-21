@@ -24,14 +24,20 @@ public class RequestForTransferController {
         this.financeService = financeService;
     }
 
-    @GetMapping(value = "/requestfortransfer/{rftId}")
-    public ResponseEntity<RequestForTransfer> getRequestForTransfer(@PathVariable("rftId") final Long rftId) {
-        RequestForTransfer rft = financeService.getRequestForTransfer(rftId);
+    @GetMapping(value = "/requestfortransfer/{rftUuid}")
+    public ResponseEntity<RequestForTransfer> getRequestForTransferByRftUuid(@PathVariable("rftUuid") final String rftUuid) {
+        RequestForTransfer rft = financeService.getRequestForTransferByRftUuid(rftUuid);
         return ResponseEntity.ok(rft);
     }
 
     @PostMapping(value = "/requestfortransfer")
     public ResponseEntity<RequestForTransfer> saveRequestForTransfer(@RequestBody @Valid final RequestForTransfer requestForTransfer) {
+
+        // only set rftUuid if it hasnt already been set as this method is used to Create And Update
+        if (requestForTransfer.getRftUuid() == null) {
+            requestForTransfer.setRftUuid(java.util.UUID.randomUUID().toString());
+        }
+
         RequestForTransfer rft = financeService.saveRequestForTransfer(requestForTransfer);
         return ResponseEntity.ok(rft);
     }

@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class RequestForTransferServiceTest {
 
-    public static final String RFT_ID = "123";
+    public static final String RFT_UUID = "123";
     private RequestForTransferService requestForTransferService;
 
     @Mock private RestTemplate restTemplate;
@@ -44,9 +44,9 @@ public class RequestForTransferServiceTest {
     @Test
     public void getRequestForTransfer() {
         RequestForTransfer expectedRft = new RequestForTransfer();
-        given(restTemplate.getForObject("http://host:8080/finance/requestfortransfer/" + RFT_ID, RequestForTransfer.class)).willReturn(expectedRft);
+        given(restTemplate.getForObject("http://host:8080/finance/requestfortransfer/" + RFT_UUID, RequestForTransfer.class)).willReturn(expectedRft);
 
-        RequestForTransfer actualRft = requestForTransferService.getRequestForTransfer(RFT_ID);
+        RequestForTransfer actualRft = requestForTransferService.getRequestForTransferByRftUuid(RFT_UUID);
 
         assertThat(actualRft, is(sameInstance((expectedRft))));
     }

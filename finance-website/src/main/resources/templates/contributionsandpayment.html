@@ -13,7 +13,7 @@
 
     <h1 class="heading-xlarge" th:text="#{contributions.TitleHeading}" style="margin-bottom: 0px;">  </h1>
 
-    <form th:action="@{/contributionsandpayment}" method="post" class="form" novalidate="novalidate">
+    <form th:action="@{/contributionsandpayment/} + ${rft.rftUuid}" method="post" class="form" novalidate="novalidate" th:object="${rft}">
 
     <!--<form th:action="@{/contributionsandpayment}" method="post" class="form demo-validation-input" novalidate="novalidate" th:object="${rft}">-->
 
@@ -33,7 +33,7 @@
                 <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                 <div class="prefixed-input">
                     <span class="prefix-text">&pound;</span>
-                    <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                    <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" th:field="*{totalPensionablePay}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                         <p class="validation-message display-none">This value needs to be within 5% and 9% of the Total Pensionable Pay</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employee-contributions" name="employee-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="employee-contributions" name="employee-contributions" th:field="*{employeeContributions}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@
                         <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employer-contributions" name="employer-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="employer-contributions" name="employer-contributions" th:field="*{employerContributions}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@
                         <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employee-avcs" name="employee-avcs" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="employee-avcs" name="employee-avcs" th:field="*{employeeAddedYears}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@
                         <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="additional-pension" name="additional-pension" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="additional-pension" name="additional-pension" th:field="*{additionalPension}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
                         <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="errbo" name="errbo" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="errbo" name="errbo" th:field="*{errbo}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                         </div>
                     </div>
 
@@ -219,14 +219,14 @@
                 <p class="validation-message display-none">Enter a valid amount</p>
                 <div class="prefixed-input">
                     <span class="prefix-text">&pound;</span>
-                    <input type="number" id="total-amount-debited" name="total-amount-debited" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                    <input type="number" id="total-amount-debited" name="total-amount-debited" th:field="*{totalDebitAmount}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
                 </div>
             </div>
         </div>
 
         <div class="form-item-wrapper">
             <div class="form-group">
-                <button class="button" th:text="#{nextStep}"></button>
+                <button type="submit" class="button" th:text="#{nextStep}"></button>
             </div>
         </div>
 

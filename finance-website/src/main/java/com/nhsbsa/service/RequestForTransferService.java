@@ -28,8 +28,8 @@ public class RequestForTransferService {
         this.saveRequestForTransferUri = backendApiUriService.path(SAVE_REQUEST_FOR_TRANSFER_PATH);
     }
 
-    public RequestForTransfer getRequestForTransfer(final String rftId) {
-        final String uri = getRequestForTransferUri.params(rftId);
+    public RequestForTransfer getRequestForTransferByRftUuid(final String rftUuid) {
+        final String uri = getRequestForTransferUri.params(rftUuid);
         return restTemplate.getForObject(uri, RequestForTransfer.class);
     }
 
@@ -37,5 +37,22 @@ public class RequestForTransferService {
         final String uri = saveRequestForTransferUri.toUri();
         return restTemplate.postForObject(uri, requestForTransfer, RequestForTransfer.class);
     }
+
+    public RequestForTransfer saveContributionPayment( final String rftUuid,
+                                           final RequestForTransfer requestForTransfer) {
+
+        final RequestForTransfer rft = getRequestForTransferByRftUuid(rftUuid);
+        rft.setTotalPensionablePay(requestForTransfer.getTotalPensionablePay());
+        rft.setEmployeeContributions(requestForTransfer.getEmployeeContributions());
+        rft.setEmployerContributions(requestForTransfer.getEmployerContributions());
+        rft.setEmployeeAddedYears(requestForTransfer.getEmployeeAddedYears());
+        rft.setAdditionalPension(requestForTransfer.getAdditionalPension());
+        rft.setErrbo(requestForTransfer.getErrbo());
+        rft.setTotalDebitAmount(requestForTransfer.getTotalDebitAmount());
+
+        RequestForTransfer savedRequestForTransfer = saveRequestForTransfer(rft);
+        return rft;
+    }
+
 
 }
