@@ -2,6 +2,7 @@ package com.nhsbsa.model.validation;
 
 import com.nhsbsa.model.RequestForTransfer;
 import com.nhsbsa.model.TransferFormDate;
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -51,6 +52,7 @@ public class RequestForTransferTest {
                 )
                 .build();
         requestForTransfer.setIsGp(true);
+
         Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
 
         assertThat(constraintViolations, hasSize(1));
@@ -59,15 +61,25 @@ public class RequestForTransferTest {
 
     @Test
     public void isGpValidationError() throws Exception {
-        transferFormDate.setDays("11");
-        transferFormDate.setMonth("12");
-        transferFormDate.setYear("2016");
-        requestForTransfer.setTransferDate(transferFormDate);
-        requestForTransfer.setIsGp(null);
+        RequestForTransfer requestForTransfer = RequestForTransfer
+                .builder()
+                .transferDate(tomorrow())
+                .build();
+
         Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, SchedulePaymentValidationGroup.class);
 
         assertThat(constraintViolations, hasSize(1));
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{isGp.notNull}"))));
+    }
+
+    private TransferFormDate tomorrow() {
+        LocalDate tomorrowsDate = new LocalDate().plusDays(1);
+        return TransferFormDate
+                .builder()
+                .days(String.valueOf(tomorrowsDate.getDayOfMonth()))
+                .month(String.valueOf(tomorrowsDate.getMonthOfYear()))
+                .year(String.valueOf(tomorrowsDate.getYear()))
+                .build();
     }
 
 
