@@ -24,6 +24,7 @@ import static org.junit.Assert.assertThat;
 public class RequestForTransferTest {
 
     private static Validator validator;
+    private RequestForTransfer.RequestForTransferBuilder requestForTransferBuilder;
 
     @BeforeClass
     public static void setUpValidator() {
@@ -31,20 +32,43 @@ public class RequestForTransferTest {
         validator = factory.getValidator();
     }
 
-    @Test
-    public void transferDateValidationError() throws Exception {
-        RequestForTransfer requestForTransfer = RequestForTransfer
+    @Before
+    public void before() {
+        requestForTransferBuilder = RequestForTransfer
                 .builder()
-                .transferDate(
-                        TransferFormDate
-                                .builder()
-                                .days("111")
-                                .month("12")
-                                .year("2016")
-                                .build()
-                )
+                .transferDate(tomorrow())
+                .totalPensionablePay(new BigDecimal("100"))
+                .employeeContributions(new BigDecimal("10"))
+                .employerContributions(new BigDecimal("20"))
+                .isGp(true);
+
+    }
+
+    @Test
+    public void allDataIsValid() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
                 .build();
-        requestForTransfer.setIsGp(true);
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
+
+        assertThat(constraintViolations, hasSize(0));
+    }
+
+    @Test
+    public void invalidTransferDateValidationError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .transferDate(
+                    TransferFormDate
+                            .builder()
+                            .days("111")
+                            .month("12")
+                            .year("2016")
+                            .build()
+                    )
+                .totalPensionablePay(new BigDecimal("100"))
+                .employeeContributions(new BigDecimal("10"))
+                .employerContributions(new BigDecimal("20"))
+                .build();
 
         Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
 
@@ -53,10 +77,9 @@ public class RequestForTransferTest {
     }
 
     @Test
-    public void isGpValidationError() throws Exception {
-        RequestForTransfer requestForTransfer = RequestForTransfer
-                .builder()
-                .transferDate(tomorrow())
+    public void gpOrStaffNotSetValidationError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .isGp(null)
                 .build();
 
         Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, SchedulePaymentValidationGroup.class);
@@ -66,11 +89,44 @@ public class RequestForTransferTest {
     }
 
     @Test
-    public void employeeContributionBelowThreshold() throws Exception {
-        RequestForTransfer requestForTransfer = RequestForTransfer
-                .builder()
-                .transferDate(tomorrow())
-                .isGp(true)
+    public void totalPensionablePayNotEnteredValidationError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .totalPensionablePay(null)
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, ContributionsValidationGroup.class);
+
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{totalPensionablePay.notNull}"))));
+    }
+
+    @Test
+    public void employeeContributionsNotEnteredValidationError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .employeeContributions(null)
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, ContributionsValidationGroup.class);
+
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{employeeContributions.notNull}"))));
+    }
+
+    @Test
+    public void employerContributionsNotEnteredValidationError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .employerContributions(null)
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, ContributionsValidationGroup.class);
+
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{employerContributions.notNull}"))));
+    }
+
+    @Test
+    public void employeeContributionBelowThresholdValidationError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
                 .totalPensionablePay(new BigDecimal("100"))
                 .employeeContributions(new BigDecimal("4.99"))
                 .build();
@@ -82,11 +138,8 @@ public class RequestForTransferTest {
     }
 
     @Test
-    public void employeeContributionAboveThreshold() throws Exception {
-        RequestForTransfer requestForTransfer = RequestForTransfer
-                .builder()
-                .transferDate(tomorrow())
-                .isGp(true)
+    public void employeeContributionAboveThresholdValidationError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
                 .totalPensionablePay(new BigDecimal("100"))
                 .employeeContributions(new BigDecimal("14.51"))
                 .build();
@@ -98,11 +151,8 @@ public class RequestForTransferTest {
     }
 
     @Test
-    public void employerContributionBelowThreshold() throws Exception {
-        RequestForTransfer requestForTransfer = RequestForTransfer
-                .builder()
-                .transferDate(tomorrow())
-                .isGp(true)
+    public void employerContributionBelowThresholdValidationError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
                 .totalPensionablePay(new BigDecimal("100"))
                 .employerContributions(new BigDecimal("13.99"))
                 .build();
