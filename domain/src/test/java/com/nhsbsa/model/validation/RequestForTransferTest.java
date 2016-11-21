@@ -1,6 +1,5 @@
 package com.nhsbsa.model.validation;
 
-import com.nhsbsa.model.FormDate;
 import com.nhsbsa.model.RequestForTransfer;
 import com.nhsbsa.model.TransferFormDate;
 import org.junit.Before;
@@ -24,7 +23,6 @@ public class RequestForTransferTest {
 
     private RequestForTransfer requestForTransfer;
     private TransferFormDate transferFormDate;
-    private FormDate formDate;
     private static Validator validator;
 
     @BeforeClass
@@ -36,16 +34,22 @@ public class RequestForTransferTest {
     @Before
     public void setUp() {
         requestForTransfer = RequestForTransfer.builder().build();
-        formDate = new FormDate();
         transferFormDate = new TransferFormDate();
     }
 
     @Test
     public void transferDateValidationError() throws Exception {
-        transferFormDate.setDays("111");
-        transferFormDate.setMonth("12");
-        transferFormDate.setYear("2016");
-        requestForTransfer.setTransferDate(transferFormDate);
+        RequestForTransfer requestForTransfer = RequestForTransfer
+                .builder()
+                .transferDate(
+                        TransferFormDate
+                                .builder()
+                                .days("111")
+                                .month("12")
+                                .year("2016")
+                                .build()
+                )
+                .build();
         requestForTransfer.setIsGp(true);
         Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
 

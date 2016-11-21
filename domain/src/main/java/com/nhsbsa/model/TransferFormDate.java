@@ -5,9 +5,9 @@ import com.nhsbsa.model.validation.DateIsAfterToday;
 import com.nhsbsa.model.validation.DateLessThan31DaysFromToday;
 import com.nhsbsa.model.validation.FormDateNotBlank;
 import com.nhsbsa.model.validation.SchedulePaymentValidationGroup;
-import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,10 +18,14 @@ import java.util.Date;
  */
 
 @FormDateNotBlank(groups = SchedulePaymentValidationGroup.class)
-@Builder
 @Data
 @NoArgsConstructor
 public class TransferFormDate extends FormDate implements Serializable{
+
+    @Builder
+    private TransferFormDate(final String days, final String month, final String year) {
+        super(days, month, year);
+    }
 
     @Override
     @DateIsAfterToday(groups = SchedulePaymentValidationGroup.class)
