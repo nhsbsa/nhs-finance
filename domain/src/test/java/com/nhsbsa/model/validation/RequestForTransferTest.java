@@ -11,6 +11,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.math.BigDecimal;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
@@ -22,20 +23,12 @@ import static org.junit.Assert.assertThat;
  */
 public class RequestForTransferTest {
 
-    private RequestForTransfer requestForTransfer;
-    private TransferFormDate transferFormDate;
     private static Validator validator;
 
     @BeforeClass
     public static void setUpValidator() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
-    }
-
-    @Before
-    public void setUp() {
-        requestForTransfer = RequestForTransfer.builder().build();
-        transferFormDate = new TransferFormDate();
     }
 
     @Test
@@ -70,6 +63,54 @@ public class RequestForTransferTest {
 
         assertThat(constraintViolations, hasSize(1));
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{isGp.notNull}"))));
+    }
+
+    @Test
+    public void employeeContributionBelowThreshold() throws Exception {
+        RequestForTransfer requestForTransfer = RequestForTransfer
+                .builder()
+                .transferDate(tomorrow())
+                .isGp(true)
+                .totalPensionablePay(new BigDecimal("100"))
+                .employeeContributions(new BigDecimal("4.99"))
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, ContributionsValidationGroup.class);
+
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{employee.contribution.threshold}"))));
+    }
+
+    @Test
+    public void employeeContributionAboveThreshold() throws Exception {
+        RequestForTransfer requestForTransfer = RequestForTransfer
+                .builder()
+                .transferDate(tomorrow())
+                .isGp(true)
+                .totalPensionablePay(new BigDecimal("100"))
+                .employeeContributions(new BigDecimal("14.51"))
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, ContributionsValidationGroup.class);
+
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{employee.contribution.threshold}"))));
+    }
+
+    @Test
+    public void employerContributionBelowThreshold() throws Exception {
+        RequestForTransfer requestForTransfer = RequestForTransfer
+                .builder()
+                .transferDate(tomorrow())
+                .isGp(true)
+                .totalPensionablePay(new BigDecimal("100"))
+                .employerContributions(new BigDecimal("13.99"))
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer, ContributionsValidationGroup.class);
+
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{employer.contribution.threshold}"))));
     }
 
     private TransferFormDate tomorrow() {
