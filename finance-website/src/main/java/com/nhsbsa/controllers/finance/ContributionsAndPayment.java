@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -25,21 +22,24 @@ public class ContributionsAndPayment {
         this.requestForTransferService = requestForTransferService;
     }
 
-    @GetMapping(value = "/contributionsandpayment")
-    public ModelAndView contributionsandpayment() {
+    @GetMapping(value = "/contributionsandpayment/{rftUuid}")
+    public ModelAndView contributionsandpayment(@PathVariable("rftUuid") final String rftUuid) {
+        final RequestForTransfer rft = requestForTransferService.getRequestForTransferByRftUuid(rftUuid);
+
         ModelAndView modelAndView = new ModelAndView("contributionsandpayment");
-        modelAndView.addObject("rft", new RequestForTransfer());
+        modelAndView.addObject("rft", rft);
         return modelAndView;
     }
 
-    @PostMapping(value = "/contributionsandpayment")
-    public String savePaymentSchedule(@Validated @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
+    @PostMapping(value = "/contributionsandpayment/{rftUuid}")
+    public String saveContributionPayment( @Validated @PathVariable("rftUuid") final String rftUuid,
+                                           @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "contributionsandpayment";
+            return "contributionsandpayment/"+ rftUuid;
         }
-        RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
-        return "redirect:/notyetimplementedcontsandpay/" + savedRequestForTransfer.getId();
+        RequestForTransfer savedRequestForTransfer = requestForTransferService.saveContributionPayment(rftUuid,requestForTransfer);
+        return "redirect:/notyetimplementedcontsandpay/";
     }
 
 
