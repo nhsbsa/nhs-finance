@@ -4,7 +4,6 @@ import com.nhsbsa.login.exceptions.UserNotFoundAuthenticationException;
 import com.nhsbsa.model.FinanceUser;
 import com.nhsbsa.security.AuthenticationResponse;
 import com.nhsbsa.security.LoginRequest;
-import com.sun.tools.internal.ws.wsdl.document.jaxws.Exception;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
