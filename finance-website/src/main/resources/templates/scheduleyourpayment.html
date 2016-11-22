@@ -32,8 +32,8 @@
                 <fieldset>
                     <legend class="form-label-bold" th:text="#{schedule.DateOfTransfer}"></legend>
                     <p class="form-hint" th:text="#{schedule.DateHint}"></p>
-                    <p class="validation-message" th:errors="*{transferDate}"></p>
-                    <p class="validation-message" th:errors="*{transferDate.date}"></p>
+                    <p class="validation-message" id="transferDate.error" th:errors="*{transferDate}"></p>
+                    <p class="validation-message" id="transferDate.date.error" th:errors="*{transferDate.date}"></p>
                     <div class="form-group">
                         <label class="form-label" for="dob-day" th:text="#{schedule.DateLabel1}"></label>
                         <input class="form-control form-control-2-chars" id="dob-day" type="number" min="0" max="31" th:field="*{transferDate.days}" th:errorclass="error"> </input>
@@ -55,7 +55,7 @@
             <div class="form-groups">
                 <fieldset>
                     <legend class="form-label-bold label-like" th:text="#{schedule.Contribution}"></legend>
-                    <p class="validation-message" th:errors="*{isGp}"></p>
+                    <p class="validation-message" id="isGp.error" th:errors="*{isGp}"></p>
                     <div class="inline-form-groups">
                         <div class="form-group">
                             <label class="nhsbsa-radio" for="staff">
@@ -82,9 +82,9 @@
         <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('contributionDate.contributionMonth') or #fields.hasErrors('contributionDate.contributionYear')}? validation-error">
             <div class="inline-form-groups">
                 <fieldset>
-                    <p class="validation-message" th:errors="*{contributionDate}"></p>
-                    <p class="validation-message" th:errors="*{contributionDate.contributionMonth}"></p>
-                    <p class="validation-message" th:errors="*{contributionDate.contributionYear}"></p>
+                    <p class="validation-message" id="contributionDate.error" th:errors="*{contributionDate}"></p>
+                    <p class="validation-message" id="contributionDate.month.error" th:errors="*{contributionDate.contributionMonth}"></p>
+                    <p class="validation-message" id="contributionDate.year.error" th:errors="*{contributionDate.contributionYear}"></p>
                     <legend class="form-label-bold" th:text="#{schedule.PaymentMonth}"></legend>
                     <p class="form-hint" th:text="#{schedule.PaymentMonthHint}"></p>
                     <p class="validation-message display-none" th:text="#{schedule.PaymentValidation}"></p>
@@ -103,7 +103,7 @@
 
         <div class="form-item-wrapper">
             <div class="form-group">
-                <button type="submit" class="button" th:text="#{nextStep}"></button>
+                <button type="submit" id="submit" class="button" th:text="#{nextStep}"></button>
             </div>
         </div>
 

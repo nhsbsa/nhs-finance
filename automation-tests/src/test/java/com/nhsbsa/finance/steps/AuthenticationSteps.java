@@ -42,6 +42,12 @@ public class AuthenticationSteps {
         financeStartPage = PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);
     }
 
+    @Given("^user navigates to login page$")
+    public void user_navigates_to_login_page() {
+        NavigationManager.navigateToLoginPage(NavigationManager.FINANCE_WEBSITE);
+        financeLoginPage = PageFactory.initElements(DriverManager.getDriver(), FinanceLoginPage.class);
+    }
+
     // Then
 
     @Then("^driver shutdown at end of test$")
