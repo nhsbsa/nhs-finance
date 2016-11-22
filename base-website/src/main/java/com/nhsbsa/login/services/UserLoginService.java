@@ -3,6 +3,7 @@ package com.nhsbsa.login.services;
 import com.nhsbsa.login.exceptions.LoginAuthenticationException;
 import com.nhsbsa.model.FinanceUser;
 import com.nhsbsa.security.LoginRequest;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
  *
  */
 
+@Log4j
 @Service
 public class UserLoginService {
 
