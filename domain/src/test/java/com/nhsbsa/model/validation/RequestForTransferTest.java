@@ -163,6 +163,51 @@ public class RequestForTransferTest {
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{employer.contribution.threshold}"))));
     }
 
+    // Total pensionable pay/Employee contributions/Employer contributions/Employee added years/Additional pension/ERRBO are the same style
+    // as use the @Currency annotation validator, so just used one for this testing, a few examples below.
+    @Test
+    public void totalPensionablePayBelowMinimumValueError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .totalPensionablePay(new BigDecimal("0.99"))
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{contsAndPayments.currencyRange}"))));
+    }
+
+    @Test
+    public void totalPensionablePayAboveMaximumValueError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .totalPensionablePay(new BigDecimal("99999999.991"))
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{contsAndPayments.currencyRange}"))));
+    }
+
+    @Test
+    public void totalPensionablePayNegativeValueError() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .totalPensionablePay(new BigDecimal("-3.99"))
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
+        assertThat(constraintViolations, hasSize(1));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{contsAndPayments.currencyRange}"))));
+    }
+
+    @Test
+    public void totalPensionablePayValidAmountValue() {
+        RequestForTransfer requestForTransfer = requestForTransferBuilder
+                .totalPensionablePay(new BigDecimal("12.99"))
+                .build();
+
+        Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
+        assertThat(constraintViolations, hasSize(0));
+    }
+
     private TransferFormDate tomorrow() {
         LocalDate tomorrowsDate = new LocalDate().plusDays(1);
         return TransferFormDate

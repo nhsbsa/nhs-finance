@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
  * Uses @Currency annotation and does the basic validations for currency inputs, validation of
  * input characters (and before/after decimal point limitations) and maximum/minimum amount.
  * NOTE: No checking for null/blank as done elsewhere so if found valid for now.
+ * NOTE: The HTML is currently a "number" but needs to change to "text" so changes required to cater for this.
  *
  * ConstraintValidator<@AnnotationNameUsing, ['Type' as defined in class for the member]>
  */

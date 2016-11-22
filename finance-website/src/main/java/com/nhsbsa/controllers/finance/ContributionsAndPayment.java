@@ -44,7 +44,6 @@ public class ContributionsAndPayment {
 
         // Temporary where to go so testing the next page to go to, not exists currently.
         return "redirect:/notyetimplementedcontsandpay";
-        //return "notyetimplementedcontsandpay";
     }
 
 
