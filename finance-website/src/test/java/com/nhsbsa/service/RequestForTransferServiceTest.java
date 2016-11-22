@@ -29,8 +29,6 @@ public class RequestForTransferServiceTest {
     @Mock private RestTemplate restTemplate;
     BackendApiUriService backendApiUriService;
 
-    @Mock private RequestForTransfer requestForTransfer;
-
     @Before
     public void before() {
 
@@ -69,31 +67,32 @@ public class RequestForTransferServiceTest {
 
     @Test
     public void saveContributionPayment() {
-        RequestForTransfer newRft = new RequestForTransfer();
+        RequestForTransfer emptyRft = new RequestForTransfer();
         RequestForTransfer savedRft = new RequestForTransfer();
+
         given(requestForTransferService.getRequestForTransferByRftUuid(RFT_UUID)).willReturn(savedRft);
 
-        newRft.setTotalPensionablePay(BigDecimal.valueOf(5000));
-        newRft.setEmployeeContributions(BigDecimal.valueOf(50));
-        newRft.setEmployerContributions(BigDecimal.valueOf(20));
-        newRft.setEmployeeAddedYears(BigDecimal.valueOf(30));
-        newRft.setAdditionalPension(BigDecimal.valueOf(25));
-        newRft.setErrbo(BigDecimal.valueOf(15));
-        newRft.setTotalDebitAmount(BigDecimal.valueOf(5050));
+        emptyRft.setTotalPensionablePay(BigDecimal.valueOf(5000));
+        emptyRft.setEmployeeContributions(BigDecimal.valueOf(50));
+        emptyRft.setEmployerContributions(BigDecimal.valueOf(20));
+        emptyRft.setEmployeeAddedYears(BigDecimal.valueOf(30));
+        emptyRft.setAdditionalPension(BigDecimal.valueOf(25));
+        emptyRft.setErrbo(BigDecimal.valueOf(15));
+        emptyRft.setTotalDebitAmount(BigDecimal.valueOf(5050));
 
-        RequestForTransfer actualRft = requestForTransferService.saveContributionPayment(RFT_UUID, newRft);
+        RequestForTransfer actualRft = requestForTransferService.saveContributionPayment(RFT_UUID, emptyRft);
 
-        assertThat(actualRft.getTotalPensionablePay(),is(equalTo(newRft.getTotalPensionablePay())));
-        assertThat(actualRft.getEmployeeContributions(),is(equalTo(newRft.getEmployeeContributions())));
-        assertThat(actualRft.getEmployerContributions(),is(equalTo(newRft.getEmployerContributions())));
-        assertThat(actualRft.getEmployeeAddedYears(),is(equalTo(newRft.getEmployeeAddedYears())));
-        assertThat(actualRft.getAdditionalPension(),is(equalTo(newRft.getAdditionalPension())));
-        assertThat(actualRft.getErrbo(),is(equalTo(newRft.getErrbo())));
-        assertThat(actualRft.getTotalDebitAmount(),is(equalTo(newRft.getTotalDebitAmount())));
+        assertThat(actualRft.getTotalPensionablePay(),is(equalTo(emptyRft.getTotalPensionablePay())));
+        assertThat(actualRft.getEmployeeContributions(),is(equalTo(emptyRft.getEmployeeContributions())));
+        assertThat(actualRft.getEmployerContributions(),is(equalTo(emptyRft.getEmployerContributions())));
+        assertThat(actualRft.getEmployeeAddedYears(),is(equalTo(emptyRft.getEmployeeAddedYears())));
+        assertThat(actualRft.getAdditionalPension(),is(equalTo(emptyRft.getAdditionalPension())));
+        assertThat(actualRft.getErrbo(),is(equalTo(emptyRft.getErrbo())));
+        assertThat(actualRft.getTotalDebitAmount(),is(equalTo(emptyRft.getTotalDebitAmount())));
 
         assertThat(actualRft, is(sameInstance((savedRft))));
 
-       verify(restTemplate).postForObject("http://host:8080/finance/requestfortransfer", savedRft, RequestForTransfer.class);
+        verify(restTemplate).postForObject("http://host:8080/finance/requestfortransfer", savedRft, RequestForTransfer.class);
     }
 
 }
