@@ -19,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface ContributionDateValid {
 
-    String message() default "{formDate.notBlank}";
+    String message() default "";
 
     int monthsInAdvanceLimit() default 2;
 

@@ -36,8 +36,7 @@ public class ScheduleYourPayment {
         if (bindingResult.hasErrors()) {
             return "scheduleyourpayment";
         }
-
         RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
-        return "redirect:/contributionsandpayment";
+        return "redirect:/contributionsandpayment/" + savedRequestForTransfer.getRftUuid();
     }
 }

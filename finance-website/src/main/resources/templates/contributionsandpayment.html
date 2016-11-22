@@ -13,16 +13,14 @@
 
     <h1 class="heading-xlarge" th:text="#{contributions.TitleHeading}" style="margin-bottom: 0px;">  </h1>
 
-    <form th:action="@{/contributionsandpayment}" method="post" class="form" novalidate="novalidate" th:object="${rft}">
+    <form th:action="@{/contributionsandpayment/} + ${rft.rftUuid}" method="post" class="form" novalidate="novalidate" th:object="${rft}">
 
-    <!--<div class="grid-row" th:if="${#fields.hasAnyErrors()}">-->
         <div class="column-two-thirds" th:if="${#fields.hasAnyErrors()}">
             <div class="validation-summary">
                 <p th:text="#{errorSummary1}"></p>
                 <p th:text="#{errorSummary2}"></p>
             </div>
         </div>
-    <!--</div>-->
 
 
         <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('totalPensionablePay')}? validation-error">
@@ -135,12 +133,10 @@
                         <p class="form-hint" th:text="#{contributions.AdjPeriodHintLabel}"></p>
                         <p class="validation-message display-none">Please fill in all fields</p>
                         <div class="form-group">
-                            <!--<label class="form-label" for="contribution-month">Month</label>-->
                             <label class="form-label" for="contribution-month" th:text="#{contributions.AdjPeriodMonthLabel}"></label>
                             <input class="form-control form-control-11-chars typeahead" id="contribution-month" type="text" maxlength="11" autocomplete="off"> </input>
                         </div>
                         <div class="form-group">
-                            <!--<label class="form-label" for="contribution-year">Year</label>-->
                             <label class="form-label" for="contribution-year" th:text="#{contributions.AdjPeriodYearLabel}"></label>
                             <input class="form-control form-control-4-chars validate-secondary-text-input" id="contribution-year" type="number" min="0" autocomplete="off"> </input>
                         </div>
@@ -150,13 +146,13 @@
 
             <div class="form-item-wrapper error-layer">
                 <fieldset>
-                    <!--<legend class="form-label-bold">Contribution details</legend>-->
                     <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
 
                     <!-- Two input fields on one row -->
                     <div class="inline-form-groups">
                         <div class="form-group">
                             <label class="form-label" for="employee-contributions-adjustment" th:text="#{contributions.EmployeeContsLabel}"></label>
+                            <!-- Should this also be within 5% and 9% of the TPP like above and not what is in the prototype? -->
                             <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
@@ -213,7 +209,6 @@
         <!-- Last input field, Total Amount debited -->
         <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('totalDebitAmount')}? validation-error">
             <div class="form-group">
-                <!--<label class="form-label-bold" for="total-amount-debited">Total amount to be debited</label>-->
                 <label class="form-label-bold" for="total-amount-debited" th:text="#{contributions.TotalAmtDebitedHeader}"></label>
                 <p class="validation-message" th:errors="*{totalDebitAmount}">Enter a valid amount</p>
                 <div class="prefixed-input">
@@ -225,7 +220,7 @@
 
         <div class="form-item-wrapper">
             <div class="form-group">
-                <button class="button" th:text="#{nextStep}"></button>
+                <button type="submit" class="button" th:text="#{nextStep}"></button>
             </div>
         </div>
 

@@ -10,5 +10,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 
 public interface RequestForTransferRepository extends PagingAndSortingRepository<RequestForTransfer, Long> {
+    public RequestForTransfer findByRftUuid (String rftUuid);
 
 }
