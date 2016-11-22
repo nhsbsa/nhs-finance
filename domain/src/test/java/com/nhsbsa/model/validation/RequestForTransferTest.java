@@ -1,5 +1,6 @@
 package com.nhsbsa.model.validation;
 
+import com.nhsbsa.model.FormDate;
 import com.nhsbsa.model.RequestForTransfer;
 import com.nhsbsa.model.TransferFormDate;
 import org.joda.time.LocalDate;
@@ -23,6 +24,9 @@ import static org.junit.Assert.assertThat;
  */
 public class RequestForTransferTest {
 
+    private RequestForTransfer requestForTransfer;
+    private TransferFormDate transferFormDate;
+    private FormDate formDate;
     private static Validator validator;
     private RequestForTransfer.RequestForTransferBuilder requestForTransferBuilder;
 
