@@ -42,12 +42,9 @@ public class ContributionsAndPayment {
             return "contributionsandpayment";
         }
 
-        // What was here before, but fails in first line....?????
-        //RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
-        //return "redirect:/scheduleyourpaymentresult/" + savedRequestForTransfer.getId();
-
         // Temporary where to go so testing the next page to go to, not exists currently.
-        return "notyetimplementedcontsandpay";
+        return "redirect:/notyetimplementedcontsandpay";
+        //return "notyetimplementedcontsandpay";
     }
 
 

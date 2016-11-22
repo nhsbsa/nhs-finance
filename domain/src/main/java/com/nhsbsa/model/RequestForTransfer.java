@@ -46,18 +46,25 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @NotNull(message = "{totalPensionablePay.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal totalPensionablePay;
 
+    @Currency
     @NotNull(message = "{employeeContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employeeContributions;
 
+    @Currency
     @NotNull(message = "{employerContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employerContributions;
 
+    @Currency
     private BigDecimal employeeAddedYears;
 
+    @Currency
     private BigDecimal additionalPension;
 
+    @Currency
     private BigDecimal errbo;
 
+    // Nothing in story about validating the Total Amount To Be Debited so commented out for now.
+    // @Currency
     private BigDecimal totalDebitAmount;
 
     private Date receiveDate = new Date();
