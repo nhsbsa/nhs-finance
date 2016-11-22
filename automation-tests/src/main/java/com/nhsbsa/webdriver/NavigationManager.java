@@ -1,6 +1,9 @@
 package com.nhsbsa.webdriver;
 
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +16,7 @@ import java.util.Properties;
 /**
  * Created by jeffreya on 23/08/2016.
  */
+@Slf4j
 public class NavigationManager {
 
     private static final URL applicationProperties = DriverManager.class.getClassLoader().getResource("application.properties");
@@ -39,6 +43,10 @@ public class NavigationManager {
             // name   A word consisting only of alphanumeric characters and underscores, and beginning with an
             // alphabetic character or an underscore. Also referred to as an identifier.
             FINANCE_WEBSITE = System.getenv("finance_frontend_url");
+            if (StringUtils.isBlank(FINANCE_WEBSITE)) {
+                FINANCE_WEBSITE = "localhost:8080";
+                log.warn("NO URL PROVIDED, DEFAULTING TO LOCALHOST:8080");
+            }
 
             // application.properties under the src/test/resources/
             ACHECKER_WEBSITE = properties.getProperty("achecker.webservice.url");
