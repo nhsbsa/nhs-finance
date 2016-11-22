@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Page not found</title>
+    <title th:text="#{financePageNotFoundTabTitle}"></title>
     <object th:replace="fragments/global_includes :: global_includes" th:remove="tag">...</object>
 
 </head>
@@ -13,7 +13,7 @@
 
 <div id="content" role="main">
 
-    <h1 class="heading-xlarge">Page not found</h1>
+    <h1 class="heading-xlarge" th:text="#{financePageNotFoundHeading}"></h1>
 
 </div>
 
