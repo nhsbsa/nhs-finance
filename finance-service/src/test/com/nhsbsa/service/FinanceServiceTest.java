@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.given;
 @RunWith(MockitoJUnitRunner.class)
 public class FinanceServiceTest {
 
-    public static final long RFT_ID = 123L;
+    public static final String RFT_UUID = 123L;
     @Mock private RequestForTransferRepository requestForTransferRepository;
 
     private FinanceService financeService;
@@ -33,9 +33,9 @@ public class FinanceServiceTest {
     @Test
     public void getRequestForTransfer() {
         RequestForTransfer expectedRft = new RequestForTransfer();
-        given(requestForTransferRepository.findOne(RFT_ID)).willReturn(expectedRft);
+        given(requestForTransferRepository.findByRftUuid(RFT_UUID)).willReturn(expectedRft);
 
-        RequestForTransfer actualRft = financeService.getRequestForTransfer(RFT_ID);
+        RequestForTransfer actualRft = financeService.getRequestForTransferByRftUuid(RFT_UUID);
 
         assertThat(actualRft, is(sameInstance(expectedRft)));
     }

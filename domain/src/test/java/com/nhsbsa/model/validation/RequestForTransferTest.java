@@ -37,7 +37,8 @@ public class RequestForTransferTest {
     public void setUp() {
         requestForTransfer = RequestForTransfer.builder().build();
         formDate = new FormDate();
-        transferFormDate = new TransferFormDate();
+        transferFormDate =  TransferFormDate.builder().build();
+
     }
 
     @Test

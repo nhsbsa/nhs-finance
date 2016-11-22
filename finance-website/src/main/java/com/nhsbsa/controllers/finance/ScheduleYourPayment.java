@@ -4,11 +4,16 @@ import com.nhsbsa.model.RequestForTransfer;
 import com.nhsbsa.service.RequestForTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+import java.lang.invoke.MethodType;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by nataliehulse on 03/11/2016.
@@ -36,8 +41,7 @@ public class ScheduleYourPayment {
         if (bindingResult.hasErrors()) {
             return "scheduleyourpayment";
         }
-
         RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
-        return "redirect:/contributionsandpayment";
+        return "redirect:/contributionsandpayment/" + savedRequestForTransfer.getRftUuid();
     }
 }
