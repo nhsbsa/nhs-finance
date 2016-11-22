@@ -34,19 +34,14 @@ Feature: Logging into the Finance site
     # Contribution Date
 
     When user clicks submit button with errors
-    Then 'Payment date must be less than 2 months in the future' error is displayed for Contribution Date
-    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date month
-    Then 'Payment year must be after 2001' error is displayed for Contribution Date year
+    Then 'What month is this payment for? is required' error is displayed for Contribution Date
 
-#    When user enters '0' and '2010' into Contribution Date field$
-#    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
+    When user enters '0' and '2010' into Contribution Date field$
+    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
 
-#    When user enters '99' and '2010' into Contribution Date field$
-#    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
+    When user enters '99' and '2010' into Contribution Date field$
+    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
 
-    Given user enters '11' and '2000' into Contribution Date field
-    When user clicks submit button with errors
-    Then 'Payment year must be after 2001' error is displayed for Contribution Date year
 
     Given user enters '11' and '2099' into Contribution Date field
     When user clicks submit button with errors
