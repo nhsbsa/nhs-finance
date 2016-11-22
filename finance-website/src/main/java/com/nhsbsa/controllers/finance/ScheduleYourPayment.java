@@ -12,9 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by nataliehulse on 03/11/2016.
- * ScheduleYourPayment
  */
-
 @Controller
 public class ScheduleYourPayment {
 
@@ -38,7 +36,8 @@ public class ScheduleYourPayment {
         if (bindingResult.hasErrors()) {
             return "scheduleyourpayment";
         }
-        final RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
+
+        RequestForTransfer savedRequestForTransfer = requestForTransferService.saveRequestForTransfer(requestForTransfer);
         return "redirect:/contributionsandpayment";
     }
 }
