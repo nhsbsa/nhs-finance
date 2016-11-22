@@ -31,7 +31,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
 
     @Valid
     @Convert(converter = TransferFormDateConverter.class)
-    private TransferFormDate transferDate = new TransferFormDate();
+    private TransferFormDate transferDate = TransferFormDate.builder().build();
 
     @NotNull(message = "{isGp.notNull}")
     private Boolean isGp;
@@ -49,8 +49,11 @@ public class RequestForTransfer extends BaseEntity<Long> {
     private BigDecimal totalDebitAmount;
     private Date receiveDate = new Date();
 
-    @OneToMany()
+    @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "rft_id")
     private List<Adjustment> adjustmentList;
+
+    private String rftUuid;
+
 
 }
