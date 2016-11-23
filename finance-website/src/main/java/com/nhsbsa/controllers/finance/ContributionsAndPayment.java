@@ -38,10 +38,13 @@ public class ContributionsAndPayment {
                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "contributionsandpayment/"+ rftUuid;
+            //return "contributionsandpayment/"+ rftUuid; // Fails and crashes
+            return "/contributionsandpayment/"+ rftUuid; // Fails and crashes
+
+            //return "redirect:/contributionsandpayment/" + rftUuid;  // Works...... but no error messages and blanks screen!
         }
         RequestForTransfer savedRequestForTransfer = requestForTransferService.saveContributionPayment(rftUuid,requestForTransfer);
-        return "redirect:/notyetimplementedcontsandpay/";
+        return "redirect:/notyetimplementedcontsandpay";
     }
 
 
