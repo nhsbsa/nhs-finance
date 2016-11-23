@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ContributionsAndPayment {
 
     private final RequestForTransferService requestForTransferService;
+    private static final String CONTRIBUTIONS_AND_PAYMENT_VIEW = "contributionsandpayment";
 
     @Autowired
     public ContributionsAndPayment(final RequestForTransferService requestForTransferService) {
@@ -37,15 +38,12 @@ public class ContributionsAndPayment {
                                            @Validated(value = ContributionsValidationGroup.class)
                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            //return "contributionsandpayment/"+ rftUuid; // Fails and crashes
-            return "/contributionsandpayment/"+ rftUuid; // Fails and crashes
 
-            //return "redirect:/contributionsandpayment/" + rftUuid;  // Works...... but no error messages and blanks screen!
+        if (bindingResult.hasErrors()) {
+            return CONTRIBUTIONS_AND_PAYMENT_VIEW;
         }
+
         RequestForTransfer savedRequestForTransfer = requestForTransferService.saveContributionPayment(rftUuid,requestForTransfer);
         return "redirect:/notyetimplementedcontsandpay";
     }
-
-
 }
