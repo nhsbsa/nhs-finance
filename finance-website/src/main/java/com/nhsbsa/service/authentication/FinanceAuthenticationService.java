@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 
 /**
  * Created by jeffreya on 19/08/2016.
- *
+ * FinanceAuthenticationService
  */
+
 @Log4j
 @Service
 public class FinanceAuthenticationService {
@@ -20,13 +21,14 @@ public class FinanceAuthenticationService {
     private final UserLoginService userLoginService;
 
     @Autowired
-    public FinanceAuthenticationService(final UserLoginService userLoginService ){
-       this.userLoginService = userLoginService;
+    public FinanceAuthenticationService(final UserLoginService userLoginService) {
+        this.userLoginService = userLoginService;
     }
 
     public Authentication getUser(final String name, final String password) {
+        log.debug("Login request started for user: " + name);
         try {
-            final FinanceUser financeUser = userLoginService.financeLogin(name,password);
+            final FinanceUser financeUser = userLoginService.financeLogin(name, password);
             if (financeUser != null) {
                 final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(name, password, financeUser.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(financeUser);
@@ -34,10 +36,11 @@ public class FinanceAuthenticationService {
             } else {
                 throw new LoginAuthenticationException();
             }
-        } catch (Exception e) {
-            log.error("Failed to log in", e);
+        } catch (LoginAuthenticationException e) {
+            log.error(e);
+            throw new LoginAuthenticationException();
+        } finally {
+            log.debug("Login request ended for user: " + name);
         }
-
-        throw new LoginAuthenticationException();
     }
 }

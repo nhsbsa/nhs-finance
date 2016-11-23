@@ -15,4 +15,84 @@
         </createTable>
     </changeSet>
 
+    <changeSet author="nataliehulse (generated)" id="1479814073486-1">
+        <createTable tableName="account">
+            <column autoIncrement="true" name="acc_id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="account_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="number" type="VARCHAR(255)"/>
+            <column name="emp_auth_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nataliehulse (generated)" id="1479814073486-2">
+        <createTable tableName="adjustment">
+            <column autoIncrement="true" name="adj_id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="adjustment_pkey"/>
+            </column>
+            <column name="additional_pension" type="numeric(19, 2)"/>
+            <column name="contribution_month" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contribution_year" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_added_years" type="numeric(19, 2)"/>
+            <column name="employee_contributions" type="numeric(19, 2)"/>
+            <column name="employer_contributions" type="numeric(19, 2)"/>
+            <column name="errbo" type="numeric(19, 2)"/>
+            <column name="rft_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nataliehulse (generated)" id="1479814073486-3">
+        <createTable tableName="employing_authority">
+            <column autoIncrement="true" name="emp_auth_id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="employing_authority_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="reference" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="nataliehulse (generated)" id="1479814073486-5">
+        <createTable tableName="request_for_transfer">
+            <column autoIncrement="true" name="rft_id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="request_for_transfer_pkey"/>
+            </column>
+            <column name="additional_pension" type="numeric(19, 2)"/>
+            <column name="contribution_month" type="INT"/>
+            <column name="contribution_year" type="INT"/>
+            <column name="employee_added_years" type="numeric(19, 2)"/>
+            <column name="employee_contributions" type="numeric(19, 2)"/>
+            <column name="employer_contributions" type="numeric(19, 2)"/>
+            <column name="errbo" type="numeric(19, 2)"/>
+            <column name="is_gp" type="BOOL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="receive_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="total_debit_amount" type="numeric(19, 2)"/>
+            <column name="total_pensionable_pay" type="numeric(19, 2)"/>
+            <column name="transfer_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="emp_auth_id" type="BIGINT"/>
+            <column name="rft_uuid" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nataliehulse (generated)" id="1479814073486-6">
+        <addForeignKeyConstraint baseColumnNames="emp_auth_id" baseTableName="request_for_transfer"
+                                 constraintName="fk1ojar6pylorioppdnpkgpttlf" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="emp_auth_id" referencedTableName="employing_authority"/>
+    </changeSet>
+    <changeSet author="nataliehulse (generated)" id="1479814073486-7">
+        <addForeignKeyConstraint baseColumnNames="emp_auth_id" baseTableName="account"
+                                 constraintName="fk9u58k21w4j8la3xel0nfoq444" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="emp_auth_id" referencedTableName="employing_authority"/>
+    </changeSet>
+    <changeSet author="nataliehulse (generated)" id="1479814073486-8">
+        <addForeignKeyConstraint baseColumnNames="rft_id" baseTableName="adjustment"
+                                 constraintName="fktdxjx1crsf657x5udlmbn9p95" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="rft_id" referencedTableName="request_for_transfer"/>
+    </changeSet>
 </databaseChangeLog>

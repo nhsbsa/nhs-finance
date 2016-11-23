@@ -1,16 +1,20 @@
 package com.nhsbsa.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.nhsbsa.model.validaton.ContributionDateValid;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Mark Lishman on 31/10/2016.
+ * RequestForTransfer
  */
+
 @Data
 @Builder
 @Entity
@@ -25,11 +29,17 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Column(name = "rft_id", insertable = false, updatable = false)
     private Long id;
 
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private Date transferDate;
-    private boolean isGp;
-    private int contributionMonth;
-    private int contributionYear;
+    @Valid
+    @Convert(converter = TransferFormDateConverter.class)
+    private TransferFormDate transferDate = TransferFormDate.builder().build();
+
+    @NotNull(message = "{isGp.notNull}")
+    private Boolean isGp;
+
+    @Valid
+    @Embedded
+    private ContributionDate contributionDate = ContributionDate.builder().build();
+
     private BigDecimal totalPensionablePay;
     private BigDecimal employeeContributions;
     private BigDecimal employeeAddedYears;
@@ -37,11 +47,13 @@ public class RequestForTransfer extends BaseEntity<Long> {
     private BigDecimal errbo;
     private BigDecimal employerContributions;
     private BigDecimal totalDebitAmount;
-    @JsonFormat(pattern="dd/MM/yyyy")
-    private Date receivedDate;
+    private Date receiveDate = new Date();
 
-    @OneToMany()
+    @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "rft_id")
     private List<Adjustment> adjustmentList;
+
+    private String rftUuid;
+
 
 }

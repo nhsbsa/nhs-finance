@@ -20,6 +20,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <docker.image.prefix>nhs-bsa</docker.image.prefix>
         <docker.url>src/main/docker</docker.url>
+        <lombok.maven.version>1.16.10.0</lombok.maven.version>
+        <lombok.version>1.16.10</lombok.version>
+        <joda.time.version>2.9.5</joda.time.version>
     </properties>
 
     <dependencies>
@@ -78,6 +81,26 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-maven</artifactId>
+            <version>${lombok.maven.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time.version}</version>
+        </dependency>
+
 
     </dependencies>
 
