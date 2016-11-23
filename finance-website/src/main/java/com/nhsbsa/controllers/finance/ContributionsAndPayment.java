@@ -1,6 +1,7 @@
 package com.nhsbsa.controllers.finance;
 
 import com.nhsbsa.model.RequestForTransfer;
+import com.nhsbsa.model.validation.ContributionsValidationGroup;
 import com.nhsbsa.service.RequestForTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ContributionsAndPayment {
 
     private final RequestForTransferService requestForTransferService;
+    private static final String CONTRIBUTIONS_AND_PAYMENT_VIEW = "contributionsandpayment";
 
     @Autowired
     public ContributionsAndPayment(final RequestForTransferService requestForTransferService) {
@@ -32,15 +34,16 @@ public class ContributionsAndPayment {
     }
 
     @PostMapping(value = "/contributionsandpayment/{rftUuid}")
-    public String saveContributionPayment( @Validated @PathVariable("rftUuid") final String rftUuid,
+    public String saveContributionPayment( @PathVariable("rftUuid") final String rftUuid,
+                                           @Validated(value = ContributionsValidationGroup.class)
                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
-            return "contributionsandpayment/"+ rftUuid;
+            return CONTRIBUTIONS_AND_PAYMENT_VIEW;
         }
+
         RequestForTransfer savedRequestForTransfer = requestForTransferService.saveContributionPayment(rftUuid,requestForTransfer);
-        return "redirect:/notyetimplementedcontsandpay/";
+        return "redirect:/notyetimplementedcontsandpay";
     }
-
-
 }
