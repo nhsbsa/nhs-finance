@@ -3,7 +3,6 @@ package com.nhsbsa.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by Mark Lishman on 31/10/2016.
