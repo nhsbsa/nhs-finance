@@ -1,7 +1,13 @@
 package com.nhsbsa.finance.pageobjects;
 
 import com.nhsbsa.BasePage;
+import com.nhsbsa.webdriver.DriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.math.BigDecimal;
 
 /**
  * Created by Mark Lishman on 14/11/2016.
@@ -54,6 +60,16 @@ public class ContributionsAndPaymentPage extends BasePage {
         super(driver, "Contributions and payment");
     }
 
+/*
+    - @FindBy (id, CSS or xpath)
+    - enter text
+    - get text
+    - get error message
+    - click button, radio field etc
+    - submit form
+    - submit form with errors
+*/
+
     // Validation Summary
 
     public String getValidationSummary() {
@@ -63,23 +79,16 @@ public class ContributionsAndPaymentPage extends BasePage {
     // Total Pensionable Pay
 
     public void enterTotalPensionablePay(final BigDecimal totalPensionablePay) {
-        enterValue(totalPensionablePayElement, totalPensionablePay);
+        enterValue(totalPensionablePayElement, totalPensionablePay.toString());
     }
 
-    public String getTotalPensionablePayObjectErrorMessage() {
+    public String getTotalPensionablePayValue() {
+        return totalAmountDebitedElement.getAttribute("value");
+    }
+
+    public String getTotalPensionablePayErrorMessage() {
         return totalPensionablePayErrorElement.getText();
     }
-
-    // Employee Contributions
-
-    public void enterEmployeeContributions(final BigDecimal totalPensionablePay) {
-        enterValue(employeeContributionsElement, totalPensionablePay);
-    }
-
-    public String getTotalPensionablePayObjectErrorMessage() {
-        return totalPensionablePayErrorElement.getText();
-    }
-    
 
     // Submit
 

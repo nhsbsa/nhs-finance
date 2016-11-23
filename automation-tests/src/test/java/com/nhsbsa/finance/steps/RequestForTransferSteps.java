@@ -1,5 +1,6 @@
 package com.nhsbsa.finance.steps;
 
+import com.nhsbsa.finance.pageobjects.FinancePages;
 import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
 import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentPage;
 import com.nhsbsa.webdriver.DriverManager;
@@ -14,15 +15,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Includes the steps for pages that reference the RequestForTransfer Domain object
- * I.e. Schedule Your Payment / Contributions and payment
- */
 public class RequestForTransferSteps {
-
-    /**
-     * Schedule Your Payment Tests
-     */
 
     @Given("^schedule your payment page is displayed$")
     public void schedule_your_payment_page_is_displayed() {
@@ -119,7 +112,7 @@ public class RequestForTransferSteps {
 
     @Given("^contributions and payment page is displayed$")
     public void contributions_and_payment_is_displayed() {
-        contributionsPayment = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
+        FinancePages.contributionsAndPaymentPage = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
     }
 
 }
