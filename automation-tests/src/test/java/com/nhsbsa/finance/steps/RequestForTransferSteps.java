@@ -1,7 +1,7 @@
 package com.nhsbsa.finance.steps;
 
-import com.nhsbsa.finance.pageobjects.EmployerAccountInfoPage;
 import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
+import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentPage;
 import com.nhsbsa.webdriver.DriverManager;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
@@ -15,14 +15,18 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Created by MattHood on 02/11/2016.
- * This is the page after the Finance Login, title "Security" and has the A/C Name/Number and EA Reference
+ * Includes the steps for pages that reference the RequestForTransfer Domain object
+ * I.e. Schedule Your Payment / Contributions and payment
  */
-public class FinanceSteps {
+public class RequestForTransferSteps {
 
-    @Given("^employer account info page is displayed$")
-    public void employer_account_info_page_is_displayed() {
-        employerAccountInfoPage = PageFactory.initElements(DriverManager.getDriver(), EmployerAccountInfoPage.class);
+    /**
+     * Schedule Your Payment Tests
+     */
+
+    @Given("^schedule your payment page is displayed$")
+    public void schedule_your_payment_page_is_displayed() {
+        schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
     }
 
     @When("^user enters '(.*)', '(.*)' and '(.*)' into Date of Transfer field$")
@@ -53,12 +57,12 @@ public class FinanceSteps {
         schedulePaymentPage.enterContributionDateYear(year);
     }
 
-    @When("^user clicks submit button with errors$")
+    @When("^user clicks schedule submit button with errors$")
     public void user_clicks_submit_button_with_errors() {
         schedulePaymentPage.submitWIthErrors();
     }
 
-    @When("^user clicks submit button$")
+    @When("^user clicks schedule submit button$")
     public void user_clicks_submit_button() {
         schedulePaymentPage.submit();
     }
@@ -71,11 +75,6 @@ public class FinanceSteps {
     @Then("^validation summary should be displayed$")
     public void validation_summary_should_be_displayed() {
         assertThat(schedulePaymentPage.getValidationSummary(), is(equalTo("Some questions have not been answered correctly.\nPlease see the errors below.")));
-    }
-
-    @Then("^employer account info page should be displayed$")
-    public void employer_account_info_page_should_be_displayed() {
-        employer_account_info_page_is_displayed();
     }
 
     @Then("^'(.*)' error is displayed for Date of Transfer$")
@@ -112,6 +111,15 @@ public class FinanceSteps {
     public void error_is_displayed_for_contribution_date_year(final String errorMessage) {
         assertThat(schedulePaymentPage.getContributionDateYearErrorMessage(), is(equalTo(errorMessage)));
         validation_summary_should_be_displayed();
+    }
+
+    /**
+     * Contributions and Payment Tests
+     */
+
+    @Given("^contributions and payment page is displayed$")
+    public void contributions_and_payment_is_displayed() {
+        contributionsPayment = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
     }
 
 }
