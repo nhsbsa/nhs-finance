@@ -1,4 +1,4 @@
-package com.nhsbsa.model.validaton;
+package com.nhsbsa.model.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

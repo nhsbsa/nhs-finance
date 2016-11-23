@@ -1,5 +1,6 @@
 package com.nhsbsa.model;
 
+import com.nhsbsa.model.validation.SchedulePaymentValidationGroup;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
 import org.joda.time.LocalDateTime;
@@ -46,7 +47,7 @@ public class TransferFormDateTest {
         transferFormDate.setMonth("");
         transferFormDate.setYear("");
 
-        Set<ConstraintViolation<TransferFormDate>> constraintViolations = validator.validate(transferFormDate);
+        Set<ConstraintViolation<TransferFormDate>> constraintViolations = validator.validate(transferFormDate, SchedulePaymentValidationGroup.class);
 
         assertThat(constraintViolations, hasSize(1));
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{formDate.notBlank}"))));
@@ -61,7 +62,7 @@ public class TransferFormDateTest {
         transferFormDate.setMonth(Integer.toString(localDateTime.getMonthOfYear()));
         transferFormDate.setYear(Integer.toString(localDateTime.getYear()));
 
-        final Set<ConstraintViolation<TransferFormDate>> constraintViolations = validator.validate(transferFormDate);
+        final Set<ConstraintViolation<TransferFormDate>> constraintViolations = validator.validate(transferFormDate, SchedulePaymentValidationGroup.class);
 
         assertThat(constraintViolations, hasSize(1));
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{transferDate.notAfterToday}"))));
@@ -74,7 +75,7 @@ public class TransferFormDateTest {
        transferFormDate.setMonth(Integer.toString(threeMonthsTime.getMonthOfYear()));
        transferFormDate.setYear(Integer.toString(threeMonthsTime.getYear()));
 
-        Set<ConstraintViolation<TransferFormDate>> constraintViolations = validator.validate(transferFormDate);
+        Set<ConstraintViolation<TransferFormDate>> constraintViolations = validator.validate(transferFormDate, SchedulePaymentValidationGroup.class);
 
         assertThat(constraintViolations, hasSize(1));
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{transferDate.greaterThan31Days}"))));

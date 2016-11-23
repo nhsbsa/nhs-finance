@@ -15,52 +15,49 @@
 
     <form th:action="@{/contributionsandpayment/} + ${rft.rftUuid}" method="post" class="form" novalidate="novalidate" th:object="${rft}">
 
-    <!--<form th:action="@{/contributionsandpayment}" method="post" class="form demo-validation-input" novalidate="novalidate" th:object="${rft}">-->
-
-    <!--<div class="grid-row" th:if="${#fields.hasAnyErrors()}">-->
-        <div class="column-two-thirds">
+        <div class="column-two-thirds" th:if="${#fields.hasAnyErrors()}">
             <div class="validation-summary">
                 <p th:text="#{errorSummary1}"></p>
                 <p th:text="#{errorSummary2}"></p>
             </div>
         </div>
-    <!--</div>-->
 
 
-        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('totalPensionablePay')}? validation-error">
             <div class="form-group">
                 <label class="form-label" for="total-pensionable-pay" th:text="#{contributions.TotalPenPay}"></label>
-                <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                <p class="validation-message" th:errors="*{totalPensionablePay}">Enter a numeric value between 1 - 999,999,999.99</p>
                 <div class="prefixed-input">
                     <span class="prefix-text">&pound;</span>
-                    <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" th:field="*{totalPensionablePay}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                    <input type="number" id="total-pensionable-pay" name="total-pensionable-pay" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off" th:field="*{totalPensionablePay}"> </input>
                 </div>
             </div>
         </div>
 
         <!-- Contributions Section -->
-        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasGlobalErrors() or #fields.hasErrors('employeeContributions') or #fields.hasErrors('employerContributions')}? validation-error">
             <fieldset>
                 <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
+                <p class="validation-message" th:errors="${rft}">This value needs to be within 5% and 14.5% of the Total Pensionable Pay</p>
 
                 <!-- Two input fields on one row -->
                 <div class="inline-form-groups">
 
                     <div class="form-group">
                         <label class="form-label" for="employee-contributions" th:text="#{contributions.EmployeeContsLabel}"></label>
-                        <p class="validation-message display-none">This value needs to be within 5% and 9% of the Total Pensionable Pay</p>
+                        <p class="validation-message" th:errors="*{employeeContributions}">This value needs to be within 5% and 9% of the Total Pensionable Pay</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employee-contributions" name="employee-contributions" th:field="*{employeeContributions}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="employee-contributions" name="employee-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off" th:field="*{employeeContributions}"> </input>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="employer-contributions" th:text="#{contributions.EmployerContsLabel}"></label>
-                        <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                        <p class="validation-message" th:errors="*{employerContributions}">Enter a numeric value between 1 - 999,999,999.99</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employer-contributions" name="employer-contributions" th:field="*{employerContributions}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="employer-contributions" name="employer-contributions" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off" th:field="*{employerContributions}"> </input>
                         </div>
                     </div>
 
@@ -71,28 +68,28 @@
 
                     <div class="form-group">
                         <label class="form-label" for="employee-avcs" th:text="#{contributions.EmployeeAddedYrsLabel}"></label>
-                        <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                        <p class="validation-message" th:errors="*{employeeAddedYears}">Enter a numeric value between 1 - 999,999,999.99</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="employee-avcs" name="employee-avcs" th:field="*{employeeAddedYears}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="employee-avcs" name="employee-avcs" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off" th:field="*{employeeAddedYears}"> </input>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="additional-pension" th:text="#{contributions.AdditionalPensionLabel}"></label>
-                        <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                        <p class="validation-message" th:errors="*{additionalPension}">Enter a numeric value between 1 - 999,999,999.99</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="additional-pension" name="additional-pension" th:field="*{additionalPension}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="additional-pension" name="additional-pension" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off" th:field="*{additionalPension}"> </input>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="errbo" th:text="#{contributions.ErrboLabel}"></label>
-                        <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                        <p class="validation-message" th:errors="*{errbo}">Enter a numeric value between 1 - 999,999,999.99</p>
                         <div class="prefixed-input">
                             <span class="prefix-text">&pound;</span>
-                            <input type="number" id="errbo" name="errbo" th:field="*{errbo}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                            <input type="number" id="errbo" name="errbo" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off" th:field="*{errbo}"> </input>
                         </div>
                     </div>
 
@@ -210,13 +207,13 @@
         </div>
 
         <!-- Last input field, Total Amount debited -->
-        <div class="form-item-wrapper error-layer">
+        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('totalDebitAmount')}? validation-error">
             <div class="form-group">
                 <label class="form-label-bold" for="total-amount-debited" th:text="#{contributions.TotalAmtDebitedHeader}"></label>
-                <p class="validation-message display-none">Enter a valid amount</p>
+                <p class="validation-message" th:errors="*{totalDebitAmount}">Enter a valid amount</p>
                 <div class="prefixed-input">
                     <span class="prefix-text">&pound;</span>
-                    <input type="number" id="total-amount-debited" name="total-amount-debited" th:field="*{totalDebitAmount}" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off"> </input>
+                    <input type="number" id="total-amount-debited" name="total-amount-debited" value="" class="form-control form-control-11-chars validate-text-input" autocomplete="off" th:field="*{totalDebitAmount}"> </input>
                 </div>
             </div>
         </div>
