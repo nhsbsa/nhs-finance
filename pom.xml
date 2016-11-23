@@ -41,6 +41,7 @@
         <commons.lang.version>3.4</commons.lang.version>
         <docker.maven.plugin.version>0.4.13</docker.maven.plugin.version>
         <thymeleaf.conditionalcomments.version>2.1.2.RELEASE</thymeleaf.conditionalcomments.version>
+        <joda.time.version>2.9.5</joda.time.version>
     </properties>
 
     <dependencyManagement>
@@ -133,6 +134,12 @@
         </dependency>
 
         <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <version>${spring.security.test.version}</version>
@@ -160,6 +167,12 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-conditionalcomments</artifactId>
             <version>${thymeleaf.conditionalcomments.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.6</version>
         </dependency>
 
 
