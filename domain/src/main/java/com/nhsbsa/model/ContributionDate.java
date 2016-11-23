@@ -25,11 +25,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ContributionDate implements Serializable {
 
-    @Range(min = 1, max = 12, message = "{contributionMonth.valid}", groups = SchedulePaymentValidationGroup.class)
-    @NotNull(message = "{contributionMonth.notBlank}", groups = SchedulePaymentValidationGroup.class)
     private Integer contributionMonth;
 
-    @Range(min = 2001, max = 999999, message = "{contributionYear.valid}", groups = SchedulePaymentValidationGroup.class)
-    @NotNull(message = "{contributionYear.notBlank}", groups = SchedulePaymentValidationGroup.class)
     private Integer contributionYear;
 }
