@@ -1,6 +1,6 @@
 package com.nhsbsa.model;
 
-import com.nhsbsa.model.validaton.ContributionDateValid;
+import com.nhsbsa.model.validation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +22,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@EmployeeContributionThreshold(groups = ContributionsValidationGroup.class)
+@EmployerContributionThreshold(groups = ContributionsValidationGroup.class)
 public class RequestForTransfer extends BaseEntity<Long> {
 
     @Id
@@ -33,20 +35,38 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Convert(converter = TransferFormDateConverter.class)
     private TransferFormDate transferDate = TransferFormDate.builder().build();
 
-    @NotNull(message = "{isGp.notNull}")
+    @NotNull(message = "{isGp.notNull}", groups = SchedulePaymentValidationGroup.class)
     private Boolean isGp;
 
     @Valid
     @Embedded
     private ContributionDate contributionDate = ContributionDate.builder().build();
 
+    @Currency
+    @NotNull(message = "{totalPensionablePay.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal totalPensionablePay;
+
+    @Currency
+    @NotNull(message = "{employeeContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employeeContributions;
-    private BigDecimal employeeAddedYears;
-    private BigDecimal additionalPension;
-    private BigDecimal errbo;
+
+    @Currency
+    @NotNull(message = "{employerContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employerContributions;
+
+    @Currency
+    private BigDecimal employeeAddedYears;
+
+    @Currency
+    private BigDecimal additionalPension;
+
+    @Currency
+    private BigDecimal errbo;
+
+    // Nothing in story about validating the Total Amount To Be Debited so commented out for now.
+    // @Currency
     private BigDecimal totalDebitAmount;
+
     private Date receiveDate = new Date();
 
     @OneToMany(cascade = {CascadeType.ALL})
