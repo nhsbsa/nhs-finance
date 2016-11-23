@@ -14,26 +14,38 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "total-pensionable-pay")
     private WebElement totalPensionablePayElement;
 
-    // Add tpp Error Element here once validations have been merged in
+    @FindBy(id = "totalPensionablePay.error")
+    private WebElement totalPensionablePayErrorElement;
 
     @FindBy(id = "employee-contributions")
     private WebElement employeeContributionsElement;
 
-    // Add employee conts Error Element here once validations have been merged in
+    @FindBy(id = "employeeContributions.error")
+    private WebElement employeeContributionsErrorElement;
 
-    @FindBy(id = "employer-contributions")
-    private WebElement employerContributionsElement;
+    @FindBy(id = "employee-avcs")
+    private WebElement employeeAvcsElement;
 
-    // Add employer conts Error Element here once validations have been merged in
+    @FindBy(id = "employeeAvcs.error")
+    private WebElement employeeAvcsErrorElement;
 
     @FindBy(id = "additional-pension")
     private WebElement additionalPensionElement;
 
+    @FindBy(id = "additionalPension.error")
+    private WebElement additionalPensionErrorElement;
+
     @FindBy(id = "errbo")
     private WebElement errboElement;
 
+    @FindBy(id = "errbo.error")
+    private WebElement errboErrorElement;
+
     @FindBy(id = "total-amount-debited")
     private WebElement totalAmountDebitedElement;
+
+    @FindBy(id = "totalDebitAmount.error")
+    private WebElement totalAmountDebitedErrorElement;
 
     @FindBy(className = "button")
     private WebElement submitButtonElement;
@@ -48,75 +60,26 @@ public class ContributionsAndPaymentPage extends BasePage {
         return validationSummaryElement.getText();
     }
 
-    // Date of Transfer
+    // Total Pensionable Pay
 
-    public void enterDateOfTransferDay(final String dateOfTransferDay) {
-        enterValue(dateOfTransferDayElement, dateOfTransferDay);
+    public void enterTotalPensionablePay(final BigDecimal totalPensionablePay) {
+        enterValue(totalPensionablePayElement, totalPensionablePay);
     }
 
-    public void enterDateOfTransferDay(final int dateOfTransferDay) {
-        enterDateOfTransferDay(String.valueOf(dateOfTransferDay));
+    public String getTotalPensionablePayObjectErrorMessage() {
+        return totalPensionablePayErrorElement.getText();
     }
 
-    public void enterDateOfTransferMonth(final String dateOfTransferMonth) {
-        enterValue(dateOfTransferMonthElement, dateOfTransferMonth);
+    // Employee Contributions
+
+    public void enterEmployeeContributions(final BigDecimal totalPensionablePay) {
+        enterValue(employeeContributionsElement, totalPensionablePay);
     }
 
-    public void enterDateOfTransferMonth(final int dateOfTransferMonth) {
-        enterDateOfTransferMonth(String.valueOf(dateOfTransferMonth));
+    public String getTotalPensionablePayObjectErrorMessage() {
+        return totalPensionablePayErrorElement.getText();
     }
-
-    public void enterDateOfTransferYear(final String dateOfTransferYear) {
-        enterValue(dateOfTransferYearElement, dateOfTransferYear);
-    }
-
-    public void enterDateOfTransferYear(final int dateOfTransferYear) {
-        enterDateOfTransferYear(String.valueOf(dateOfTransferYear));
-    }
-
-    public String getDateOfTransferObjectErrorMessage() {
-        return dateOfTransferObjectErrorElement.getText();
-    }
-
-    public String getDateOfTransferDateErrorMessage() {
-        return dateOfTransferDateErrorElement.getText();
-    }
-
-    public String getContributionPaymentErrorMessage() {
-        return contributionPaymentErrorElement.getText();
-    }
-
-    // Staff or GP
-
-    public void clickStaff() {
-        staffElement.click();
-    }
-
-    public void clickGp() {
-        gpElement.click();
-    }
-
-    // Contribution Date
-
-    public void enterContributionDateMonth(final String contributionDateMonth) {
-        enterValue(contributionDateMonthElement, contributionDateMonth);
-    }
-
-    public void enterContributionDateYear(final String contributionDateYear) {
-        enterValue(contributionDateYearElement, contributionDateYear);
-    }
-
-    public String getContributionDateObjectErrorMessage() {
-        return contributionDateObjectErrorElement.getText();
-    }
-
-    public String getContributionDateMonthErrorMessage() {
-        return contributionDateMonthErrorElement.getText();
-    }
-
-    public String getContributionDateYearErrorMessage() {
-        return contributionDateYearErrorElement.getText();
-    }
+    
 
     // Submit
 
