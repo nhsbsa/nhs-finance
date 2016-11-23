@@ -36,12 +36,11 @@ Feature: Logging into the Finance site
     When user clicks schedule submit button with errors
     Then 'What month is this payment for? is required' error is displayed for Contribution Date
 
-    When user enters '0' and '2010' into Contribution Date field$
+    When user enters '0' and '2010' into Contribution Date field
     Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
 
-    When user enters '99' and '2010' into Contribution Date field$
+    When user enters '99' and '2010' into Contribution Date field
     Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
-
 
     Given user enters '11' and '2099' into Contribution Date field
     When user clicks schedule submit button with errors
