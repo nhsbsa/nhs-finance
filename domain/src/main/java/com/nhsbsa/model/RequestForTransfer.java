@@ -63,6 +63,11 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Currency
     private BigDecimal errbo;
 
+    @Transient
+    @NotNull(message = "{adjustmentsRequired.notNull}", groups = ContributionsValidationGroup.class)
+    private Boolean adjustmentsRequired;
+
+
     // Nothing in story about validating the Total Amount To Be Debited so commented out for now.
     // @Currency
     private BigDecimal totalDebitAmount;

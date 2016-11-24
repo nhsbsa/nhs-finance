@@ -3,6 +3,7 @@ package com.nhsbsa.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.math.BigDecimal;
 
 /**
@@ -22,8 +23,9 @@ public class Adjustment extends BaseEntity<Long> {
     @Column(name = "adj_id", insertable = false, updatable = false)
     private Long id;
 
-    private int contributionMonth;
-    private int contributionYear;
+    @Valid
+    @Embedded
+    private AdjustmentContributionDate adjustmentContributionDate = AdjustmentContributionDate.builder().build();
     private BigDecimal employeeContributions;
     private BigDecimal employeeAddedYears;
     private BigDecimal additionalPension;
