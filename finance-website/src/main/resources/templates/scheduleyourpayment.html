@@ -13,21 +13,23 @@
     <div th:replace="fragments/back-link :: back">...</div> -->
 
 
-    <h1 class="heading-xlarge" th:text="#{schedule.Heading}" style="margin-bottom: 0px;">  </h1>
-    <h2 class="heading-large" th:text="#{schedule.Heading1}"> </h2>
+    <h1 class="heading-xlarge" th:text="#{schedule.Heading}" style="margin-bottom: 0px;"></h1>
+    <h2 class="heading-large" th:text="#{schedule.Heading1}"></h2>
 
-    <form th:action="@{/scheduleyourpayment}" method="post" class="form demo-validation-input" novalidate="novalidate" th:object="${rft}">
+    <form th:action="@{/scheduleyourpayment}" method="post" class="form demo-validation-input" novalidate="novalidate"
+          th:object="${rft}">
 
-    <div class="grid-row" th:if="${#fields.hasAnyErrors()}">
-        <div class="column-two-thirds">
-             <div class="validation-summary">
-                <p th:text="#{errorSummary1}"></p>
-                <p th:text="#{errorSummary2}"></p>
+        <div class="grid-row" th:if="${#fields.hasAnyErrors()}">
+            <div class="column-two-thirds">
+                <div class="validation-summary">
+                    <p th:text="#{errorSummary1}"></p>
+                    <p th:text="#{errorSummary2}"></p>
+                </div>
             </div>
         </div>
-    </div>
 
-        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('transferDate') or #fields.hasErrors('transferDate.date')}? validation-error">
+        <div class="form-item-wrapper error-layer"
+             th:classappend="${#fields.hasErrors('transferDate') or #fields.hasErrors('transferDate.date')}? validation-error">
 
             <div class="inline-form-groups">
                 <fieldset>
@@ -37,15 +39,18 @@
                     <p class="validation-message" id="transferDate.date.error" th:errors="*{transferDate.date}"></p>
                     <div class="form-group">
                         <label class="form-label" for="dob-day" th:text="#{schedule.DateLabel1}"></label>
-                        <input class="form-control form-control-2-chars" id="dob-day" type="number" min="0" max="31" th:field="*{transferDate.days}" th:errorclass="error"> </input>
+                        <input class="form-control form-control-2-chars" id="dob-day" type="number" min="0" max="31"
+                               th:field="*{transferDate.days}" th:errorclass="error"> </input>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="dob-month" th:text="#{schedule.DateLabel2}"></label>
-                        <input class="form-control form-control-2-chars" id="dob-month" type="number" min="0" max="12" th:field="*{transferDate.month}" th:errorclass="error"> </input>
+                        <input class="form-control form-control-2-chars" id="dob-month" type="number" min="0" max="12"
+                               th:field="*{transferDate.month}" th:errorclass="error"> </input>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="dob-year" th:text="#{schedule.DateLabel3}"></label>
-                        <input class="form-control form-control-4-chars" id="dob-year" type="number" min="0" th:field="*{transferDate.year}" th:errorclass="error"> </input>
+                        <input class="form-control form-control-4-chars" id="dob-year" type="number" min="0"
+                               th:field="*{transferDate.year}" th:errorclass="error"> </input>
                     </div>
                 </fieldset>
             </div>
@@ -80,23 +85,24 @@
 
         </div>
 
-        <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('contributionDate.contributionMonth') or #fields.hasErrors('contributionDate.contributionYear')}? validation-error">
+        <div class="form-item-wrapper error-layer"
+             th:classappend="${#fields.hasErrors('contributionDate')} ? validation-error">
             <div class="inline-form-groups">
                 <fieldset>
                     <p class="validation-message" id="contributionDate.error" th:errors="*{contributionDate}"></p>
-                    <p class="validation-message" id="contributionDate.month.error" th:errors="*{contributionDate.contributionMonth}"></p>
-                    <p class="validation-message" id="contributionDate.year.error" th:errors="*{contributionDate.contributionYear}"></p>
                     <legend class="form-label-bold" th:text="#{schedule.PaymentMonth}"></legend>
                     <p class="form-hint" th:text="#{schedule.PaymentMonthHint}"></p>
                     <p class="validation-message display-none" th:text="#{schedule.PaymentValidation}"></p>
 
                     <div class="form-group">
                         <label class="form-label" for="contribution-month" th:text="#{schedule.PaymentLabel1}"></label>
-                        <input class="form-control form-control-2-chars" id="contribution-month" type="number" min="0" max="12" th:field="*{contributionDate.contributionMonth}" th:errorclass="error"> </input>
+                        <input class="form-control form-control-2-chars" id="contribution-month" type="number" min="0"
+                               max="12" th:field="*{contributionDate.contributionMonth}" th:errorclass="error"> </input>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contribution-year" th:text="#{schedule.PaymentLabel2}"></label>
-                        <input class="form-control form-control-4-chars" id="contribution-year" type="number" min="0" th:field="*{contributionDate.contributionYear}" th:errorclass="error"> </input>
+                        <input class="form-control form-control-4-chars" id="contribution-year" type="number" min="0"
+                               th:field="*{contributionDate.contributionYear}" th:errorclass="error"> </input>
                     </div>
                 </fieldset>
             </div>
@@ -121,7 +127,6 @@
     </div>
     -->
 </div>
-
 
 
 <div th:replace="fragments/footer :: footer">...</div>
