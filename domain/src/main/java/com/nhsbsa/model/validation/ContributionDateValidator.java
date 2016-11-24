@@ -30,7 +30,14 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
 
     @Override
     public boolean isValid(ContributionDate contributionDate, ConstraintValidatorContext context) {
-        return !(containsInvalidData(contributionDate, context) || containsInvalidDate(contributionDate, context));
+        if (containsInvalidData(contributionDate, context)) {
+            return false;
+        }
+
+        if (containsInvalidDate(contributionDate, context)) {
+            return false;
+        }
+        return true;
     }
 
     private boolean containsInvalidDate(final ContributionDate contributionDate, final ConstraintValidatorContext context) {
