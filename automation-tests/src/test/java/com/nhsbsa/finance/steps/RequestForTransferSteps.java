@@ -27,7 +27,7 @@ public class RequestForTransferSteps {
         schedulePaymentPage.enterDateOfTransferDay(day);
         schedulePaymentPage.enterDateOfTransferMonth(month);
         schedulePaymentPage.enterDateOfTransferYear(year);
-        schedulePaymentPage = financeLoginPage.submit();
+//        schedulePaymentPage = financeLoginPage.submit();
     }
 
     @When("^user enters tomorrows date into Date of Transfer field$")
@@ -36,7 +36,7 @@ public class RequestForTransferSteps {
         schedulePaymentPage.enterDateOfTransferDay(date.getDayOfMonth());
         schedulePaymentPage.enterDateOfTransferMonth(date.getMonthOfYear());
         schedulePaymentPage.enterDateOfTransferYear(date.getYear());
-        schedulePaymentPage = financeLoginPage.submit();
+//        schedulePaymentPage = financeLoginPage.submit();
     }
 
     @When("^user clicks on staff$")
@@ -59,6 +59,22 @@ public class RequestForTransferSteps {
     public void user_clicks_submit_button() {
         schedulePaymentPage.submit();
     }
+
+    // ------------------------------------------------------------------------------
+
+    // Total Pensionable Pay
+
+    @When("^'(.*)' is entered into into Total Pensionable Pay$")
+    public void value_is_entered_into_total_pensionable_pay(String totalPensionablePay) {
+        contributionsAndPaymentPage.enterTotalPensionablePayValue(totalPensionablePay);
+    }
+
+    @When("^Total Pensionable Pay shows '(.*)' validation error$")
+    public void total_pensionable_pay_shows_validation_error(String totalPensionablePay) {
+        contributionsAndPaymentPage.enterTotalPensionablePayValue(totalPensionablePay);
+    }
+
+    // ------------------------------------------------------------------------------
 
     @Then("^schedule payment page should be displayed$")
     public void schedule_payment_page_should_be_displayed() {

@@ -78,8 +78,8 @@ public class ContributionsAndPaymentPage extends BasePage {
 
     // Total Pensionable Pay
 
-    public void enterTotalPensionablePay(final BigDecimal totalPensionablePay) {
-        enterValue(totalPensionablePayElement, totalPensionablePay.toString());
+    public void enterTotalPensionablePayValue(final String totalPensionablePay) {
+        enterValue(totalPensionablePayElement, totalPensionablePay);
     }
 
     public String getTotalPensionablePayValue() {
