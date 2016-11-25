@@ -69,11 +69,14 @@ public class RequestForTransfer extends BaseEntity<Long> {
 
     private Date receiveDate = new Date();
 
+    //todo Make adjustment 1-2-1
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "rft_id")
     private List<Adjustment> adjustmentList;
 
     private String rftUuid;
 
+    @Transient
+    private Boolean isAdjustment;
 
 }

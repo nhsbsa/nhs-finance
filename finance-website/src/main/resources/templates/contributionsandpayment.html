@@ -106,14 +106,16 @@
                     <p class="validation-message outstanding-payments-error-message display-none">Please pick an option to continue</p>
                     <div class="form-group">
                         <label class="nhsbsa-radio js-toggle" for="add-outstanding-payments" data-show="#outstanding-payments-panel">
-                            <input type="radio" name="outstanding-payments" id="add-outstanding-payments" value="yes" />
+                            <input type="radio" name="outstanding-payments" id="add-outstanding-payments"
+                                   th:field="*{isAdjustment}" value="yes"/>
                             <span class="input-text" th:text="#{contributions.AdjRBYesLabel}"></span>
-
                         </label>
                     </div>
+
                     <div class="form-group">
                         <label class="nhsbsa-radio js-toggle" for="no-outstanding-payments" data-hide="#outstanding-payments-panel">
-                            <input type="radio" name="outstanding-payments" id="no-outstanding-payments" value="no" />
+                            <input type="radio" name="outstanding-payments" id="no-outstanding-payments"
+                                   th:field="*{isAdjustment}" value="no"/>
                             <span class="input-text" th:text="#{contributions.AdjRBNoLabel}"></span>
                         </label>
                     </div>
