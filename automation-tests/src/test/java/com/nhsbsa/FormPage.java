@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
  */
 public class FormPage extends BasePage {
 
+    @FindBy(className = "validation-summary")
+    private WebElement validationSummaryElement;
+
     // TODO login does not have type 'submit'
 //    @FindBy(css = "input[type=submit]")
     @FindBy(className = "button")
@@ -21,6 +24,10 @@ public class FormPage extends BasePage {
     protected void enterValue(WebElement element, String value) {
         element.clear();
         element.sendKeys(value);
+    }
+
+    public String getValidationSummary() {
+        return validationSummaryElement.getText();
     }
 
     public void submit() {

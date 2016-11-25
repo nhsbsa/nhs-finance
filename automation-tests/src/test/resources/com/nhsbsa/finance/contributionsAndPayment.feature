@@ -36,6 +36,23 @@ Feature: Logging into the Finance site
     And submit button is clicked
     Then Total Pensionable Pay shows 'Total Pensionable Pay is required' validation error
 
+    # Employee Contributions
+
+    When '-1' is entered into into Employee Contributions
+    And submit button is clicked
+    Then Employee Contributions shows 'Enter a numeric value between 1 - 99,999,999.99' validation error
+
+    # Employer Contributions
+
+    When '-1' is entered into into Employer Contributions
+    And submit button is clicked
+    Then Employer Contributions shows 'Enter a numeric value between 1 - 99,999,999.99' validation error
+
+    # Employee Added Years
+
+    When '-1' is entered into into Employee Added Years
+    And submit button is clicked
+    Then Employee Added Years shows 'Enter a numeric value between 1 - 99,999,999.99' validation error
 
 
 
