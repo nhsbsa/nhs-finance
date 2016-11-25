@@ -10,9 +10,7 @@ import cucumber.annotation.en.When;
 import org.joda.time.LocalDate;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.nhsbsa.finance.pageobjects.FinancePages.currentFormPage;
-import static com.nhsbsa.finance.pageobjects.FinancePages.getContributionsAndPaymentPage;
-import static com.nhsbsa.finance.pageobjects.FinancePages.schedulePaymentPage;
+import static com.nhsbsa.finance.pageobjects.FinancePages.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -103,9 +101,14 @@ public class RequestForTransferSteps {
 
     // General
 
+    @When("^submit button is clicked$")
+    public void submit_button_is_clicked() {
+        currentFormPage().submit();
+    }
+
     @Then("^validation summary should be displayed$")
     public void validation_summary_should_be_displayed() {
-        assertThat(schedulePaymentPage.getValidationSummary(), is(equalTo("Some questions have not been answered correctly.\nPlease see the errors below.")));
+        assertThat(currentFormPage().getValidationSummary(), is(equalTo("Some questions have not been answered correctly.\nPlease see the errors below.")));
     }
 
     // ------------------------------------------------------------------------------
@@ -116,20 +119,53 @@ public class RequestForTransferSteps {
 
     @When("^'(.*)' is entered into into Total Pensionable Pay$")
     public void value_is_entered_into_total_pensionable_pay(final String totalPensionablePay) {
-        getContributionsAndPaymentPage().enterTotalPensionablePayValue(totalPensionablePay);
+        contributionsAndPaymentPage().enterTotalPensionablePayValue(totalPensionablePay);
     }
 
     @Then("^Total Pensionable Pay shows '(.*)' validation error$")
     public void total_pensionable_pay_has_validation_error(final String expectedErrorMessage) {
-        assertThat(getContributionsAndPaymentPage().getTotalPensionablePayErrorMessage(), is(equalTo(expectedErrorMessage)));
+        assertThat(contributionsAndPaymentPage().getTotalPensionablePayErrorMessage(), is(equalTo(expectedErrorMessage)));
         validation_summary_should_be_displayed();
     }
 
-    // Submit
+    // Employee Contributions
 
-    @When("^submit button is clicked$")
-    public void submit_button_is_clicked() {
-        currentFormPage().submit();
+    @When("^'(.*)' is entered into into Employee Contributions$")
+    public void value_is_entered_into_employee_contributions(final String employeeContributions) {
+        contributionsAndPaymentPage().enterEmployeeContributionsValue(employeeContributions);
     }
+
+    @Then("^Employee Contributions shows '(.*)' validation error$")
+    public void employee_contributions_pay_has_validation_error(final String expectedErrorMessage) {
+        assertThat(contributionsAndPaymentPage().getEmployeeContributionsErrorMessage(), is(equalTo(expectedErrorMessage)));
+        validation_summary_should_be_displayed();
+    }
+
+    // Employer Contributions
+
+    @When("^'(.*)' is entered into into Employer Contributions$")
+    public void value_is_entered_into_employer_contributions(final String employerContributions) {
+        contributionsAndPaymentPage().enterEmployerContributionsValue(employerContributions);
+    }
+
+    @Then("^Employer Contributions shows '(.*)' validation error$")
+    public void employer_contributions_pay_has_validation_error(final String expectedErrorMessage) {
+        assertThat(contributionsAndPaymentPage().getEmployerContributionsErrorMessage(), is(equalTo(expectedErrorMessage)));
+        validation_summary_should_be_displayed();
+    }
+
+    // Employee Added Years
+
+    @When("^'(.*)' is entered into into Employee Added Years$")
+    public void value_is_entered_into_employee_added_years(final String employeeAddedYears) {
+        contributionsAndPaymentPage().enterEmployeeAddedYearsValue(employeeAddedYears);
+    }
+
+    @Then("^Employee Added Years shows '(.*)' validation error$")
+    public void employee_added_years_has_validation_error(final String expectedErrorMessage) {
+        assertThat(contributionsAndPaymentPage().getEmployeeAddedYearsErrorMessage(), is(equalTo(expectedErrorMessage)));
+        validation_summary_should_be_displayed();
+    }
+
 
 }

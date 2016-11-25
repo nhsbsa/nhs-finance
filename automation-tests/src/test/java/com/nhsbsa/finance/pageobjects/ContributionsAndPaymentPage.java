@@ -10,9 +10,6 @@ import org.openqa.selenium.support.FindBy;
  */
 public class ContributionsAndPaymentPage extends FormPage {
 
-    @FindBy(className = "validation-summary")
-    private WebElement validationSummaryElement;
-
     @FindBy(id = "total-pensionable-pay")
     private WebElement totalPensionablePayElement;
 
@@ -25,11 +22,17 @@ public class ContributionsAndPaymentPage extends FormPage {
     @FindBy(id = "employeeContributions.error")
     private WebElement employeeContributionsErrorElement;
 
+    @FindBy(id = "employer-contributions")
+    private WebElement employerContributionsElement;
+
+    @FindBy(id = "employerContributions.error")
+    private WebElement employerContributionsErrorElement;
+
     @FindBy(id = "employee-avcs")
-    private WebElement employeeAvcsElement;
+    private WebElement employeeAddedYearsElement;
 
     @FindBy(id = "employeeAvcs.error")
-    private WebElement employeeAvcsErrorElement;
+    private WebElement employeeAddedYearsErrorElement;
 
     @FindBy(id = "additional-pension")
     private WebElement additionalPensionElement;
@@ -53,12 +56,6 @@ public class ContributionsAndPaymentPage extends FormPage {
         super(driver, "Contributions and payment");
     }
 
-    // Validation Summary
-
-    public String getValidationSummary() {
-        return validationSummaryElement.getText();
-    }
-
     // Total Pensionable Pay
 
     public void enterTotalPensionablePayValue(final String totalPensionablePay) {
@@ -67,5 +64,35 @@ public class ContributionsAndPaymentPage extends FormPage {
 
     public String getTotalPensionablePayErrorMessage() {
         return totalPensionablePayErrorElement.getText();
+    }
+
+    // Employee Contributions
+
+    public void enterEmployeeContributionsValue(final String employeeContributions) {
+        enterValue(employeeContributionsElement, employeeContributions);
+    }
+
+    public String getEmployeeContributionsErrorMessage() {
+        return employeeContributionsErrorElement.getText();
+    }
+
+    // Employer Contributions
+
+    public void enterEmployerContributionsValue(final String employerContributions) {
+        enterValue(employerContributionsElement, employerContributions);
+    }
+
+    public String getEmployerContributionsErrorMessage() {
+        return employerContributionsErrorElement.getText();
+    }
+
+    // Employee Added Years
+
+    public void enterEmployeeAddedYearsValue(final String employeeAddedYears) {
+        enterValue(employeeAddedYearsElement, employeeAddedYears);
+    }
+
+    public String getEmployeeAddedYearsErrorMessage() {
+        return employeeAddedYearsErrorElement.getText();
     }
 }

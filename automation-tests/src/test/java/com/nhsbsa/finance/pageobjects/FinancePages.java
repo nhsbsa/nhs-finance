@@ -8,6 +8,8 @@ import com.nhsbsa.FormPage;
  */
 public class FinancePages {
 
+    // TODO Use generics
+
     private static BasePage currentPage;
 
     public static FinanceStartPage financeStartPage;
@@ -30,7 +32,7 @@ public class FinancePages {
         currentPage = contributionsAndPaymentPage;
     }
 
-    public static ContributionsAndPaymentPage getContributionsAndPaymentPage() {
+    public static ContributionsAndPaymentPage contributionsAndPaymentPage() {
         if (currentPage instanceof ContributionsAndPaymentPage) {
             return (ContributionsAndPaymentPage) currentPage;
         }
