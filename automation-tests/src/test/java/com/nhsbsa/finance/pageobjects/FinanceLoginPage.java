@@ -1,6 +1,7 @@
 package com.nhsbsa.finance.pageobjects;
 
 import com.nhsbsa.BasePage;
+import com.nhsbsa.FormPage;
 import com.nhsbsa.webdriver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by ianfulcher on 01/11/2016.
  */
-public class FinanceLoginPage extends BasePage {
+public class FinanceLoginPage extends FormPage {
 
     public FinanceLoginPage(WebDriver driver) {
         super(driver, "Finance login");
@@ -41,10 +42,10 @@ public class FinanceLoginPage extends BasePage {
         enterValue(passwordElement, value);
     }
 
-    public SchedulePaymentPage submit() {
-        loginElement.click();
-        return PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
-    }
+//    public SchedulePaymentPage submit() {
+//        loginElement.click();
+//        return PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
+//    }
 
     public void submitWithErrors() {
         loginElement.click();

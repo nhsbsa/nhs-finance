@@ -1,18 +1,14 @@
 package com.nhsbsa.finance.pageobjects;
 
-import com.nhsbsa.BasePage;
-import com.nhsbsa.webdriver.DriverManager;
+import com.nhsbsa.FormPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import java.math.BigDecimal;
 
 /**
  * Created by Mark Lishman on 14/11/2016.
  */
-public class ContributionsAndPaymentPage extends BasePage {
+public class ContributionsAndPaymentPage extends FormPage {
 
     @FindBy(className = "validation-summary")
     private WebElement validationSummaryElement;
@@ -53,22 +49,9 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "totalDebitAmount.error")
     private WebElement totalAmountDebitedErrorElement;
 
-    @FindBy(className = "button")
-    private WebElement submitButtonElement;
-
     public ContributionsAndPaymentPage(WebDriver driver) {
         super(driver, "Contributions and payment");
     }
-
-/*
-    - @FindBy (id, CSS or xpath)
-    - enter text
-    - get text
-    - get error message
-    - click button, radio field etc
-    - submit form
-    - submit form with errors
-*/
 
     // Validation Summary
 
@@ -82,23 +65,7 @@ public class ContributionsAndPaymentPage extends BasePage {
         enterValue(totalPensionablePayElement, totalPensionablePay);
     }
 
-    public String getTotalPensionablePayValue() {
-        return totalAmountDebitedElement.getAttribute("value");
-    }
-
     public String getTotalPensionablePayErrorMessage() {
         return totalPensionablePayErrorElement.getText();
     }
-
-    // Submit
-
-    public ContributionsAndPaymentPage submit() {
-        submitButtonElement.click();
-        return PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
-    }
-
-    public void submitWIthErrors() {
-        submitButtonElement.click();
-    }
-
 }

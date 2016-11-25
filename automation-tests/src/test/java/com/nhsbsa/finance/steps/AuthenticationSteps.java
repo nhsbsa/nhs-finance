@@ -22,18 +22,12 @@ import com.nhsbsa.webdriver.accessibility.AccessibilityChecker;
  */
 public class AuthenticationSteps {
 
-
     // Given
 
     @Given("^user navigates to finance start page$")
     public void user_navigates_to_finance_start_page() {
         NavigationManager.navigateToStartPage(NavigationManager.FINANCE_WEBSITE);
         financeStartPage = PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);
-
-        // Let the user actually see something! Comment out when not required. Value is in milliseconds.
-        //try {
-        //    Thread.sleep(5000);
-        //} catch (InterruptedException ex) { }
     }
 
     @Given("^user navigates to finance start page slash$")
@@ -102,7 +96,7 @@ public class AuthenticationSteps {
     public void user_enters_valid_email_and_password(String email, String password) {
         financeLoginPage.enterUserName(email);
         financeLoginPage.enterPassword(password);
-        schedulePaymentPage = financeLoginPage.submit();
+        financeLoginPage.submit();
     }
 
     @When("^user enters invalid email '(.*)' and password '(.*)'$")
@@ -111,6 +105,4 @@ public class AuthenticationSteps {
         financeLoginPage.enterPassword(password);
         financeLoginPage.submitWithErrors();
     }
-
-
 }

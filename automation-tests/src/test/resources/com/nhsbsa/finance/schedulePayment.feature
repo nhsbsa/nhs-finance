@@ -37,16 +37,19 @@ Feature: Logging into the Finance site
     Then 'What month is this payment for? is required' error is displayed for Contribution Date
 
     When user enters '0' and '2010' into Contribution Date field
-    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
+    Then 'What month is this payment for? is required' error is displayed for Contribution Date
 
     When user enters '99' and '2010' into Contribution Date field
-    Then 'Payment month must be between 1 and 12' error is displayed for Contribution Date year
+    Then 'What month is this payment for? is required' error is displayed for Contribution Date
 
+    # TODO this is time based - it will eventually fail
     Given user enters '11' and '2099' into Contribution Date field
     When user clicks schedule submit button with errors
-    Then 'Payment date must be less than 2 months in the future' error is displayed for Contribution Date
+    Then 'What month is this payment for? date must be less than 2 months in the future' error is displayed for Contribution Date
 
     # Success
+
+  Scenario: No error messages are displayed if data is valid
 
     Given user enters tomorrows date into Date of Transfer field
     And user clicks on staff
