@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Embeddable
 @Data
 @Builder
-@ContributionDateValid(message = "", groups = SchedulePaymentValidationGroup.class)
+@ContributionDateValid(message = "default message", groups = SchedulePaymentValidationGroup.class)
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContributionDate implements Serializable {

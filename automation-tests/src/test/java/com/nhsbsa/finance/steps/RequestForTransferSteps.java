@@ -1,8 +1,7 @@
 package com.nhsbsa.finance.steps;
 
-import com.nhsbsa.finance.pageobjects.FinancePages;
-import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
 import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentPage;
+import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
 import com.nhsbsa.webdriver.DriverManager;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
@@ -10,7 +9,8 @@ import cucumber.annotation.en.When;
 import org.joda.time.LocalDate;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.nhsbsa.finance.pageobjects.FinancePages.*;
+import static com.nhsbsa.finance.pageobjects.FinancePages.contributionsAndPaymentPage;
+import static com.nhsbsa.finance.pageobjects.FinancePages.schedulePaymentPage;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -27,7 +27,6 @@ public class RequestForTransferSteps {
         schedulePaymentPage.enterDateOfTransferDay(day);
         schedulePaymentPage.enterDateOfTransferMonth(month);
         schedulePaymentPage.enterDateOfTransferYear(year);
-//        schedulePaymentPage = financeLoginPage.submit();
     }
 
     @When("^user enters tomorrows date into Date of Transfer field$")
@@ -36,7 +35,6 @@ public class RequestForTransferSteps {
         schedulePaymentPage.enterDateOfTransferDay(date.getDayOfMonth());
         schedulePaymentPage.enterDateOfTransferMonth(date.getMonthOfYear());
         schedulePaymentPage.enterDateOfTransferYear(date.getYear());
-//        schedulePaymentPage = financeLoginPage.submit();
     }
 
     @When("^user clicks on staff$")
@@ -57,24 +55,8 @@ public class RequestForTransferSteps {
 
     @When("^user clicks schedule submit button$")
     public void user_clicks_submit_button() {
-        schedulePaymentPage.submit();
+        schedulePaymentPage.submitWIthErrors();
     }
-
-    // ------------------------------------------------------------------------------
-
-    // Total Pensionable Pay
-
-    @When("^'(.*)' is entered into into Total Pensionable Pay$")
-    public void value_is_entered_into_total_pensionable_pay(String totalPensionablePay) {
-        contributionsAndPaymentPage.enterTotalPensionablePayValue(totalPensionablePay);
-    }
-
-    @When("^Total Pensionable Pay shows '(.*)' validation error$")
-    public void total_pensionable_pay_shows_validation_error(String totalPensionablePay) {
-        contributionsAndPaymentPage.enterTotalPensionablePayValue(totalPensionablePay);
-    }
-
-    // ------------------------------------------------------------------------------
 
     @Then("^schedule payment page should be displayed$")
     public void schedule_payment_page_should_be_displayed() {
@@ -110,25 +92,33 @@ public class RequestForTransferSteps {
         validation_summary_should_be_displayed();
     }
 
-    @Then("^'(.*)' error is displayed for Contribution Date month$")
-    public void error_is_displayed_for_contribution_date_month(final String errorMessage) {
-        assertThat(schedulePaymentPage.getContributionDateMonthErrorMessage(), is(equalTo(errorMessage)));
+    // ------------------------------------------------------------------------------
+
+    // Total Pensionable Pay
+
+    @When("^'(.*)' is entered into into Total Pensionable Pay$")
+    public void value_is_entered_into_total_pensionable_pay(final String totalPensionablePay) {
+        contributionsAndPaymentPage.enterTotalPensionablePayValue(totalPensionablePay);
+    }
+
+    @Then("^Total Pensionable Pay shows '(.*)' validation error$")
+    public void total_pensionable_pay_has_validation_error(final String expectedErrorMessage) {
+        assertThat(contributionsAndPaymentPage.getTotalPensionablePayErrorMessage(), is(equalTo(expectedErrorMessage)));
         validation_summary_should_be_displayed();
     }
 
-    @Then("^'(.*)' error is displayed for Contribution Date year$")
-    public void error_is_displayed_for_contribution_date_year(final String errorMessage) {
-        assertThat(schedulePaymentPage.getContributionDateYearErrorMessage(), is(equalTo(errorMessage)));
-        validation_summary_should_be_displayed();
+    // ------------------------------------------------------------------------------
+
+    // Submit
+
+    @When("^contribution submit button is clicked$")
+    public void contribution_submit_button_is_clicked() {
+        contributionsAndPaymentPage.submit();
     }
 
-    /**
-     * Contributions and Payment Tests
-     */
-
-    @Given("^contributions and payment page is displayed$")
-    public void contributions_and_payment_is_displayed() {
-        FinancePages.contributionsAndPaymentPage = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
+    @Then("^contributions and payment page is displayed$")
+    public void contributions_and_payment_page_is_displayed() {
+        contributionsAndPaymentPage = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
     }
 
 }
