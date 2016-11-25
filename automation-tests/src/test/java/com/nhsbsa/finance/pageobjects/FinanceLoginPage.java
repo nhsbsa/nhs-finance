@@ -42,11 +42,6 @@ public class FinanceLoginPage extends FormPage {
         enterValue(passwordElement, value);
     }
 
-//    public SchedulePaymentPage submit() {
-//        loginElement.click();
-//        return PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
-//    }
-
     public void submitWithErrors() {
         loginElement.click();
     }
