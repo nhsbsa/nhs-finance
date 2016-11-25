@@ -124,13 +124,6 @@ public class SchedulePaymentPage extends FormPage {
         return contributionDateObjectErrorElement.getText();
     }
 
-    // Submit
-
-//    public ContributionsAndPaymentPage submit() {
-//        submitButtonElement.click();
-//        return PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
-//    }
-
     public void submitWIthErrors() {
         submitButtonElement.click();
     }

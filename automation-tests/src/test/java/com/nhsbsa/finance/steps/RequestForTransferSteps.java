@@ -1,6 +1,7 @@
 package com.nhsbsa.finance.steps;
 
 import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentPage;
+import com.nhsbsa.finance.pageobjects.FinancePages;
 import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
 import com.nhsbsa.webdriver.DriverManager;
 import cucumber.annotation.en.Given;
@@ -9,7 +10,8 @@ import cucumber.annotation.en.When;
 import org.joda.time.LocalDate;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.nhsbsa.finance.pageobjects.FinancePages.contributionsAndPaymentPage;
+import static com.nhsbsa.finance.pageobjects.FinancePages.currentFormPage;
+import static com.nhsbsa.finance.pageobjects.FinancePages.getContributionsAndPaymentPage;
 import static com.nhsbsa.finance.pageobjects.FinancePages.schedulePaymentPage;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -63,11 +65,6 @@ public class RequestForTransferSteps {
         schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
     }
 
-    @Then("^validation summary should be displayed$")
-    public void validation_summary_should_be_displayed() {
-        assertThat(schedulePaymentPage.getValidationSummary(), is(equalTo("Some questions have not been answered correctly.\nPlease see the errors below.")));
-    }
-
     @Then("^'(.*)' error is displayed for Date of Transfer$")
     public void error_is_displayed_for_date_of_transfer(final String errorMessage) {
         assertThat(schedulePaymentPage.getDateOfTransferObjectErrorMessage(), is(equalTo(errorMessage)));
@@ -94,31 +91,45 @@ public class RequestForTransferSteps {
 
     // ------------------------------------------------------------------------------
 
-    // Total Pensionable Pay
+    // Pages
 
-    @When("^'(.*)' is entered into into Total Pensionable Pay$")
-    public void value_is_entered_into_total_pensionable_pay(final String totalPensionablePay) {
-        contributionsAndPaymentPage.enterTotalPensionablePayValue(totalPensionablePay);
-    }
-
-    @Then("^Total Pensionable Pay shows '(.*)' validation error$")
-    public void total_pensionable_pay_has_validation_error(final String expectedErrorMessage) {
-        assertThat(contributionsAndPaymentPage.getTotalPensionablePayErrorMessage(), is(equalTo(expectedErrorMessage)));
-        validation_summary_should_be_displayed();
+    @Then("^contributions and payment page is displayed$")
+    public void contributions_and_payment_page_is_displayed() {
+        ContributionsAndPaymentPage contributionsAndPaymentPage = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
+        FinancePages.setContributionsAndPaymentPage(contributionsAndPaymentPage);
     }
 
     // ------------------------------------------------------------------------------
 
-    // Submit
+    // General
 
-    @When("^contribution submit button is clicked$")
-    public void contribution_submit_button_is_clicked() {
-        contributionsAndPaymentPage.submit();
+    @Then("^validation summary should be displayed$")
+    public void validation_summary_should_be_displayed() {
+        assertThat(schedulePaymentPage.getValidationSummary(), is(equalTo("Some questions have not been answered correctly.\nPlease see the errors below.")));
     }
 
-    @Then("^contributions and payment page is displayed$")
-    public void contributions_and_payment_page_is_displayed() {
-        contributionsAndPaymentPage = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
+    // ------------------------------------------------------------------------------
+
+    // Contributions and payment page
+
+    // Total Pensionable Pay
+
+    @When("^'(.*)' is entered into into Total Pensionable Pay$")
+    public void value_is_entered_into_total_pensionable_pay(final String totalPensionablePay) {
+        getContributionsAndPaymentPage().enterTotalPensionablePayValue(totalPensionablePay);
+    }
+
+    @Then("^Total Pensionable Pay shows '(.*)' validation error$")
+    public void total_pensionable_pay_has_validation_error(final String expectedErrorMessage) {
+        assertThat(getContributionsAndPaymentPage().getTotalPensionablePayErrorMessage(), is(equalTo(expectedErrorMessage)));
+        validation_summary_should_be_displayed();
+    }
+
+    // Submit
+
+    @When("^submit button is clicked$")
+    public void submit_button_is_clicked() {
+        currentFormPage().submit();
     }
 
 }
