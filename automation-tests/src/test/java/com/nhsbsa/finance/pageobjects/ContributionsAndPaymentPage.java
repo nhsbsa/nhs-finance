@@ -95,4 +95,25 @@ public class ContributionsAndPaymentPage extends FormPage {
     public String getEmployeeAddedYearsErrorMessage() {
         return employeeAddedYearsErrorElement.getText();
     }
+
+    // Additional Pension
+
+    public void enterAdditionalPensionValue(final String additionalPension) {
+        enterValue(additionalPensionElement, additionalPension);
+    }
+
+    public String getAdditionalPensionErrorMessage() {
+        return additionalPensionErrorElement.getText();
+    }
+
+    // ERRBO
+
+    public void enterErrboValue(final String errbo) {
+        enterValue(errboElement, errbo);
+    }
+
+    public String getErrboErrorMessage() {
+        return errboErrorElement.getText();
+    }
+
 }
