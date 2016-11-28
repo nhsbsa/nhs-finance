@@ -6,7 +6,7 @@ Feature: Contributions and payment
     Given user navigates to login page
     And user enters valid email 'sam.jones@email.com' and password 'password'
     And schedule payment page is displayed
-    And user enters tomorrows date into Date of Transfer field
+    And tomorrows date is entered into Date of Transfer field
     And user clicks on staff
     And user enters '11' and '2010' into Contribution Date field
     And submit button is clicked

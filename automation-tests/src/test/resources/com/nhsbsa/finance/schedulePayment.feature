@@ -14,15 +14,15 @@ Feature: Schedule a payment
     When submit button is clicked
     Then 'Date of transfer is required' error is displayed for Date of Transfer
 
-    Given user enters '99', '99' and '2016' into Date of Transfer field
+    Given '99', '99' and '2016' is entered into Date of Transfer field
     When submit button is clicked
     Then 'Date of transfer needs to be in a valid format dd/mm/yyyy' error is displayed for Date of Transfer
 
-    Given user enters '1', '1' and '2016' into Date of Transfer field
+    Given '1', '1' and '2016' is entered into Date of Transfer field
     When submit button is clicked
     Then 'Date of transfer needs to be greater than todays date' error is displayed for Date of Transfer date value
 
-    Given user enters '1', '1' and '2099' into Date of Transfer field
+    Given '1', '1' and '2099' is entered into Date of Transfer field
     When submit button is clicked
     Then 'Date of transfer cannot be greater than 31 days from today' error is displayed for Date of Transfer date value
 
@@ -51,7 +51,7 @@ Feature: Schedule a payment
 
   Scenario: No error messages are displayed if data is valid
 
-    Given user enters tomorrows date into Date of Transfer field
+    Given tomorrows date is entered into Date of Transfer field
     And user clicks on staff
     And user enters '11' and '2010' into Contribution Date field
     When submit button is clicked
