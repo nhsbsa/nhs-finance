@@ -155,4 +155,12 @@ public class FinanceSteps {
     public void user_clicks_next_button() {
         contributionsAndPaymentPage.submit();
     }
+
+    @Then("^user clicks next button with errors")
+    public void user_clicks_next_button_with_errors() { contributionsAndPaymentPage.submitWIthErrors(); }
+
+    @Then("^'(.*)' error is displayed for employer contribution adjustment$")
+    public void error_is_displayed_for_employer_contribution_adjustment(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage.getEmployerContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
+    }
 }
