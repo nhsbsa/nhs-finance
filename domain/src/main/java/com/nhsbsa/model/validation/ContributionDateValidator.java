@@ -2,16 +2,20 @@ package com.nhsbsa.model.validation;
 
 
 import com.nhsbsa.model.ContributionDate;
+import com.nhsbsa.model.MonthNum;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContributionDateValidator implements ConstraintValidator<ContributionDateValid, ContributionDate> {
 
 
+    private MonthNum monthNum;
     private int monthsInAdvanceLimit;
 
     @Value("${contributionDate.not.blank}")
@@ -26,6 +30,7 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
     @Override
     public void initialize(ContributionDateValid constraintAnnotation) {
         monthsInAdvanceLimit = constraintAnnotation.monthsInAdvanceLimit();
+        monthNum = new MonthNum();
     }
 
     @Override
@@ -73,8 +78,10 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
     }
 
     private boolean containsInvalidValue(final ContributionDate contributionDate) {
-        final boolean validMonth = isValidMonth(contributionDate.getContributionMonth());
-        final boolean validYear = isValidYear(contributionDate.getContributionYear());
+
+        final int monthNo = monthNum.getMonthNumFromName(contributionDate.getContributionMonth());
+        final boolean validMonth = isValidMonth(monthNo);
+        final boolean validYear = isValidYear(Integer.valueOf(contributionDate.getContributionYear()));
         return !(validMonth && validYear);
     }
 
@@ -88,8 +95,8 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
 
     private DateTime contributionDateToDateTime(final ContributionDate contributionDate, final DateTime now) {
         return getNow()
-                .withYear(contributionDate.getContributionYear())
-                .withMonthOfYear(contributionDate.getContributionMonth())
+                .withYear(Integer.valueOf(contributionDate.getContributionYear()))
+                .withMonthOfYear(monthNum.getMonthNumFromName(contributionDate.getContributionMonth()))
                 .withDayOfMonth(now.getDayOfMonth());
     }
 

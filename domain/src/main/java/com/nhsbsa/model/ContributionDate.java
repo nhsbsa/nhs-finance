@@ -25,7 +25,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ContributionDate implements Serializable {
 
-    private Integer contributionMonth;
+    private String contributionMonth;
 
-    private Integer contributionYear;
+    private String contributionYear;
 }

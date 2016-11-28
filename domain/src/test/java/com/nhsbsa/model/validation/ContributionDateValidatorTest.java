@@ -58,52 +58,53 @@ public class ContributionDateValidatorTest {
                 {null, false},
                 {ContributionDate.builder()
                         .contributionMonth(null)
-                        .contributionYear(2000)
+                        .contributionYear("2000")
                         .build(), false},
 
                 {ContributionDate.builder()
-                        .contributionMonth(1)
+                        .contributionMonth("January")
                         .contributionYear(null)
                         .build(), false},
 
                 {ContributionDate.builder()
-                        .contributionMonth(5)
-                        .contributionYear(2000)
+                        .contributionMonth("May")
+                        .contributionYear("2000")
                         .build(), false},
 
                 {ContributionDate.builder()
-                        .contributionMonth(1)
-                        .contributionYear(2000)
+                        .contributionMonth("January")
+                        .contributionYear("2000")
                         .build(), false},
 
                 {ContributionDate.builder()
-                        .contributionMonth(2)
-                        .contributionYear(2003)
+                        .contributionMonth("February")
+                        .contributionYear("2003")
                         .build(), true},
 
                 {ContributionDate.builder()
-                        .contributionMonth(3)
-                        .contributionYear(2000)
+                        .contributionMonth("March")
+                        .contributionYear("2000")
                         .build(), false},
 
                 {ContributionDate.builder()
-                        .contributionMonth(1)
-                        .contributionYear(2003)
+                        .contributionMonth("January")
+                        .contributionYear("2003")
                         .build(), true},
+
                 {ContributionDate.builder()
-                        .contributionMonth(-1)
-                        .contributionYear(2003)
+                        .contributionMonth("-1")
+                        .contributionYear("2003")
                         .build(), false},
                 {ContributionDate.builder()
-                        .contributionMonth(1)
-                        .contributionYear(-2003)
+                        .contributionMonth("1")
+                        .contributionYear("-2003")
                         .build(), false},
                 {ContributionDate.builder()
                         .contributionMonth(null)
-                        .contributionYear(-2003)
+                        .contributionYear("-2003")
                         .build(), false},
                 {ContributionDate.builder()
-                        .contributionMonth(-1)
+                        .contributionMonth("-1")
                         .contributionYear(null)
                         .build(), false},
 

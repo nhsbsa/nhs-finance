@@ -1,5 +1,6 @@
 package com.nhsbsa.model;
 
+import com.nhsbsa.model.validation.Currency;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Adjustment extends BaseEntity<Long> {
     @Valid
     @Embedded
     private AdjustmentContributionDate adjustmentContributionDate = AdjustmentContributionDate.builder().build();
+    @Currency
     private BigDecimal employeeContributions;
     private BigDecimal employeeAddedYears;
     private BigDecimal additionalPension;
