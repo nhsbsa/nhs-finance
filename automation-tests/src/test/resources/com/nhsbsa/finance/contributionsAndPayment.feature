@@ -1,15 +1,15 @@
 @smokeTest @finance @contributionPayment
-Feature: Logging into the Finance site
+Feature: Contributions and paymane
 
   Background:
 
     Given user navigates to login page
     And user enters valid email 'sam.jones@email.com' and password 'password'
-    And schedule payment page should be displayed
+    And schedule payment page is displayed
     And user enters tomorrows date into Date of Transfer field
     And user clicks on staff
     And user enters '11' and '2010' into Contribution Date field
-    And user clicks schedule submit button
+    And submit button is clicked
     And contributions and payment page is displayed
 
   Scenario: Error messages are displayed if data is invalid

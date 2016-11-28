@@ -21,13 +21,13 @@ Feature: Logging into the Finance site
   Scenario: User successfully logs in
 
     When user enters valid email 'sam.jones@email.com' and password 'password'
-    Then schedule payment page should be displayed
+    Then schedule payment page is displayed
     Then driver shutdown at end of test
 
   Scenario: Entering Delete from table SQL Injection into the email field will fail
 `
     When user enters invalid email 'DELETE FROM FINANCE_USER WHERE USERNAME = sam.jones@email.com;' and password 'password'
-    Then error text should be displayed on finance login page`
+    Then error text should be displayed on finance login page
 
   Scenario: Entering Select * from table SQL Injection into the email field will fail
 

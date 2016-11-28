@@ -17,73 +17,63 @@ import static org.junit.Assert.assertThat;
 
 public class RequestForTransferSteps {
 
-    @Given("^schedule your payment page is displayed$")
-    public void schedule_your_payment_page_is_displayed() {
-        schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
-    }
-
     @When("^user enters '(.*)', '(.*)' and '(.*)' into Date of Transfer field$")
     public void user_enters_values_into_date_of_transfer_field(String day, String month, String year) {
-        schedulePaymentPage.enterDateOfTransferDay(day);
-        schedulePaymentPage.enterDateOfTransferMonth(month);
-        schedulePaymentPage.enterDateOfTransferYear(year);
+        schedulePaymentPage().enterDateOfTransferDay(day);
+        schedulePaymentPage().enterDateOfTransferMonth(month);
+        schedulePaymentPage().enterDateOfTransferYear(year);
     }
 
     @When("^user enters tomorrows date into Date of Transfer field$")
     public void user_enters_values_into_date_of_transfer_field() {
         LocalDate date = new LocalDate().plusDays(1);
-        schedulePaymentPage.enterDateOfTransferDay(date.getDayOfMonth());
-        schedulePaymentPage.enterDateOfTransferMonth(date.getMonthOfYear());
-        schedulePaymentPage.enterDateOfTransferYear(date.getYear());
+        schedulePaymentPage().enterDateOfTransferDay(date.getDayOfMonth());
+        schedulePaymentPage().enterDateOfTransferMonth(date.getMonthOfYear());
+        schedulePaymentPage().enterDateOfTransferYear(date.getYear());
     }
 
     @When("^user clicks on staff$")
     public void user_clicks_on_staff() {
-        schedulePaymentPage.clickStaff();
+        schedulePaymentPage().clickStaff();
     }
 
     @When("^user enters '(.*)' and '(.*)' into Contribution Date field$")
     public void user_enters_values_into_contribution_date_field(String month, String year) {
-        schedulePaymentPage.enterContributionDateMonth(month);
-        schedulePaymentPage.enterContributionDateYear(year);
+        schedulePaymentPage().enterContributionDateMonth(month);
+        schedulePaymentPage().enterContributionDateYear(year);
     }
 
-    @When("^user clicks schedule submit button with errors$")
-    public void user_clicks_submit_button_with_errors() {
-        schedulePaymentPage.submitWIthErrors();
-    }
+//    @When("^user clicks schedule submit button with errors$")
+//    public void user_clicks_submit_button_with_errors() {
+//        schedulePaymentPage().submitWIthErrors();
+//    }
+//
+//    @When("^user clicks schedule submit button$")
+//    public void user_clicks_submit_button() {
+//        schedulePaymentPage().submitWIthErrors();
+//    }
 
-    @When("^user clicks schedule submit button$")
-    public void user_clicks_submit_button() {
-        schedulePaymentPage.submitWIthErrors();
-    }
-
-    @Then("^schedule payment page should be displayed$")
-    public void schedule_payment_page_should_be_displayed() {
-        schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
+    @Then("^'(.*)' error is displayed for Contribution Payment$")
+    public void error_is_displayed_for_contribution_payment(final String errorMessage) {
+        assertThat(schedulePaymentPage().getContributionPaymentErrorMessage(), is(equalTo(errorMessage)));
+        validation_summary_should_be_displayed();
     }
 
     @Then("^'(.*)' error is displayed for Date of Transfer$")
     public void error_is_displayed_for_date_of_transfer(final String errorMessage) {
-        assertThat(schedulePaymentPage.getDateOfTransferObjectErrorMessage(), is(equalTo(errorMessage)));
+        assertThat(schedulePaymentPage().getDateOfTransferObjectErrorMessage(), is(equalTo(errorMessage)));
         validation_summary_should_be_displayed();
     }
 
     @Then("^'(.*)' error is displayed for Date of Transfer date value$")
     public void error_is_displayed_for_date_of_transfer_date_value(final String errorMessage) {
-        assertThat(schedulePaymentPage.getDateOfTransferDateErrorMessage(), is(equalTo(errorMessage)));
-        validation_summary_should_be_displayed();
-    }
-
-    @Then("^Error is displayed when Payment Contribution is not set")
-    public void error_is_displayed_if_payment_contribution_is_not_set() {
-        assertThat(schedulePaymentPage.getContributionPaymentErrorMessage(), is(equalTo("Contribution payment is required")));
+        assertThat(schedulePaymentPage().getDateOfTransferDateErrorMessage(), is(equalTo(errorMessage)));
         validation_summary_should_be_displayed();
     }
 
     @Then("^'(.*)' error is displayed for Contribution Date$")
     public void error_is_displayed_for_contribution_date(final String errorMessage) {
-        assertThat(schedulePaymentPage.getContributionDateObjectErrorMessage(), is(equalTo(errorMessage)));
+        assertThat(schedulePaymentPage().getContributionDateObjectErrorMessage(), is(equalTo(errorMessage)));
         validation_summary_should_be_displayed();
     }
 
@@ -94,7 +84,13 @@ public class RequestForTransferSteps {
     @Then("^contributions and payment page is displayed$")
     public void contributions_and_payment_page_is_displayed() {
         ContributionsAndPaymentPage contributionsAndPaymentPage = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
-        FinancePages.setContributionsAndPaymentPage(contributionsAndPaymentPage);
+        FinancePages.setCurentPage(contributionsAndPaymentPage);
+    }
+
+    @Then("^schedule payment page is displayed$")
+    public void schedule_payment_page_is_displayed() {
+        SchedulePaymentPage schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
+        FinancePages.setCurentPage(schedulePaymentPage);
     }
 
     // ------------------------------------------------------------------------------
@@ -192,6 +188,4 @@ public class RequestForTransferSteps {
         assertThat(contributionsAndPaymentPage().getErrboErrorMessage(), is(equalTo(expectedErrorMessage)));
         validation_summary_should_be_displayed();
     }
-
-
 }

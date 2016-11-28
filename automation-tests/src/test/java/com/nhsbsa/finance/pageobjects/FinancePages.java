@@ -15,10 +15,13 @@ public class FinancePages {
     public static FinanceStartPage financeStartPage;
     public static FinanceLoginPage financeLoginPage;
     public static EmployerAccountInfoPage employerAccountInfoPage;
-    public static SchedulePaymentPage schedulePaymentPage;
 
     public static BasePage currentPage() {
         return currentPage;
+    }
+
+    public static void setCurentPage(BasePage basePage) {
+        currentPage = basePage;
     }
 
     public static FormPage currentFormPage() {
@@ -28,14 +31,18 @@ public class FinancePages {
         throw new RuntimeException("Not a FormPage");
     }
 
-    public static void setContributionsAndPaymentPage(ContributionsAndPaymentPage contributionsAndPaymentPage) {
-        currentPage = contributionsAndPaymentPage;
-    }
-
     public static ContributionsAndPaymentPage contributionsAndPaymentPage() {
         if (currentPage instanceof ContributionsAndPaymentPage) {
             return (ContributionsAndPaymentPage) currentPage;
         }
         throw new RuntimeException("Not a ContributionsAndPaymentPage");
     }
+
+    public static SchedulePaymentPage schedulePaymentPage() {
+        if (currentPage instanceof SchedulePaymentPage) {
+            return (SchedulePaymentPage) currentPage;
+        }
+        throw new RuntimeException("Not a SchedulePaymentPage");
+    }
+
 }
