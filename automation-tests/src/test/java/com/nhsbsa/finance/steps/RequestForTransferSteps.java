@@ -167,5 +167,31 @@ public class RequestForTransferSteps {
         validation_summary_should_be_displayed();
     }
 
+    // Additional Pension
+
+    @When("^'(.*)' is entered into into Additional Pension$")
+    public void value_is_entered_into_additional_pension(final String additionalPension) {
+        contributionsAndPaymentPage().enterAdditionalPensionValue(additionalPension);
+    }
+
+    @Then("^Additional Pension shows '(.*)' validation error$")
+    public void additional_pension_has_validation_error(final String expectedErrorMessage) {
+        assertThat(contributionsAndPaymentPage().getAdditionalPensionErrorMessage(), is(equalTo(expectedErrorMessage)));
+        validation_summary_should_be_displayed();
+    }
+
+    // ERRBO
+
+    @When("^'(.*)' is entered into into ERRBO$")
+    public void value_is_entered_into_errbo(final String errbo) {
+        contributionsAndPaymentPage().enterErrboValue(errbo);
+    }
+
+    @Then("^ERRBO shows '(.*)' validation error$")
+    public void errbo_has_validation_error(final String expectedErrorMessage) {
+        assertThat(contributionsAndPaymentPage().getErrboErrorMessage(), is(equalTo(expectedErrorMessage)));
+        validation_summary_should_be_displayed();
+    }
+
 
 }
