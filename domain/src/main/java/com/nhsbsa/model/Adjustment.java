@@ -1,10 +1,10 @@
 package com.nhsbsa.model;
 
 import com.nhsbsa.model.validation.ContributionsValidationGroup;
+import com.nhsbsa.model.validation.Currency;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
@@ -31,7 +31,7 @@ public class Adjustment extends BaseEntity<Long> {
     private BigDecimal additionalPension;
     private BigDecimal errbo;
 
-    @NotNull(message = "{adjustment.employerContributions.notNull}", groups = ContributionsValidationGroup.class)
+    @Currency(message = "{adjustment.employerContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employerContributions;
 
 }
