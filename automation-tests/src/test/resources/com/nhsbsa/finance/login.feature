@@ -1,4 +1,4 @@
-@smokeTest  @finance @login
+@smokeTest @finance @login
 Feature: Logging into the Finance site
 
   Background:
