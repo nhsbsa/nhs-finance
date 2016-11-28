@@ -121,8 +121,6 @@ public class RequestForTransferSteps {
         validation_summary_should_be_displayed();
     }
 
-    // Employer Contributions
-
     @When("^'(.*)' is entered into into Employer Contributions$")
     public void value_is_entered_into_employer_contributions(final String employerContributions) {
         contributionsAndPaymentPage().enterEmployerContributionsValue(employerContributions);
@@ -155,8 +153,6 @@ public class RequestForTransferSteps {
         assertThat(contributionsAndPaymentPage().getAdditionalPensionErrorMessage(), is(equalTo(expectedErrorMessage)));
         validation_summary_should_be_displayed();
     }
-
-    // ERRBO
 
     @When("^'(.*)' is entered into into ERRBO$")
     public void value_is_entered_into_errbo(final String errbo) {
