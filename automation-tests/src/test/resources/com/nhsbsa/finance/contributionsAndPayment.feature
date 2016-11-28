@@ -1,5 +1,5 @@
 @smokeTest @finance @contributionPayment
-Feature: Contributions and paymane
+Feature: Contributions and payment
 
   Background:
 

@@ -8,19 +8,9 @@ import com.nhsbsa.FormPage;
  */
 public class FinancePages {
 
-    // TODO Use generics
-
     private static BasePage currentPage;
 
-    public static FinanceStartPage financeStartPage;
-    public static FinanceLoginPage financeLoginPage;
-    public static EmployerAccountInfoPage employerAccountInfoPage;
-
-    public static BasePage currentPage() {
-        return currentPage;
-    }
-
-    public static void setCurentPage(BasePage basePage) {
+    public static void setCurrentPage(BasePage basePage) {
         currentPage = basePage;
     }
 
@@ -43,6 +33,20 @@ public class FinancePages {
             return (SchedulePaymentPage) currentPage;
         }
         throw new RuntimeException("Not a SchedulePaymentPage");
+    }
+
+    public static FinanceStartPage financeStartPage() {
+        if (currentPage instanceof FinanceStartPage) {
+            return (FinanceStartPage) currentPage;
+        }
+        throw new RuntimeException("Not a FinanceStartPage");
+    }
+
+    public static FinanceLoginPage financeLoginPage() {
+        if (currentPage instanceof FinanceLoginPage) {
+            return (FinanceLoginPage) currentPage;
+        }
+        throw new RuntimeException("Not a FinanceLoginPage");
     }
 
 }

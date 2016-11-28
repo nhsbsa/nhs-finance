@@ -4,7 +4,6 @@ import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentPage;
 import com.nhsbsa.finance.pageobjects.FinancePages;
 import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
 import com.nhsbsa.webdriver.DriverManager;
-import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import org.joda.time.LocalDate;
@@ -43,16 +42,6 @@ public class RequestForTransferSteps {
         schedulePaymentPage().enterContributionDateYear(year);
     }
 
-//    @When("^user clicks schedule submit button with errors$")
-//    public void user_clicks_submit_button_with_errors() {
-//        schedulePaymentPage().submitWIthErrors();
-//    }
-//
-//    @When("^user clicks schedule submit button$")
-//    public void user_clicks_submit_button() {
-//        schedulePaymentPage().submitWIthErrors();
-//    }
-
     @Then("^'(.*)' error is displayed for Contribution Payment$")
     public void error_is_displayed_for_contribution_payment(final String errorMessage) {
         assertThat(schedulePaymentPage().getContributionPaymentErrorMessage(), is(equalTo(errorMessage)));
@@ -84,13 +73,13 @@ public class RequestForTransferSteps {
     @Then("^contributions and payment page is displayed$")
     public void contributions_and_payment_page_is_displayed() {
         ContributionsAndPaymentPage contributionsAndPaymentPage = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
-        FinancePages.setCurentPage(contributionsAndPaymentPage);
+        FinancePages.setCurrentPage(contributionsAndPaymentPage);
     }
 
     @Then("^schedule payment page is displayed$")
     public void schedule_payment_page_is_displayed() {
         SchedulePaymentPage schedulePaymentPage = PageFactory.initElements(DriverManager.getDriver(), SchedulePaymentPage.class);
-        FinancePages.setCurentPage(schedulePaymentPage);
+        FinancePages.setCurrentPage(schedulePaymentPage);
     }
 
     // ------------------------------------------------------------------------------
