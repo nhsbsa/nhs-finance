@@ -4,6 +4,7 @@ import com.nhsbsa.model.Adjustment;
 import com.nhsbsa.model.RequestForTransfer;
 import com.nhsbsa.model.validation.ContributionsValidationGroup;
 import com.nhsbsa.service.RequestForTransferService;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import java.util.List;
 /**
  * Created by ianfulcher on 16/11/2016.
  */
+@Log4j
 @Controller
 public class ContributionsAndPayment {
 
@@ -51,7 +53,9 @@ public class ContributionsAndPayment {
         }
 
         // All data ok, save what is in "requestForTransfer" into rft and then store in DB
+        log.debug("About to save data from Finance 'Contributions and payment' page in the Database");
         RequestForTransfer savedRequestForTransfer = requestForTransferService.saveContributionPayment(rftUuid,requestForTransfer);
+        log.debug("Data from Finance 'Contributions and payment' page saved ok in the Database");
         return "redirect:/notyetimplementedcontsandpay";
     }
 }
