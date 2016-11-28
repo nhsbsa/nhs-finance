@@ -16,14 +16,14 @@ import static org.junit.Assert.assertThat;
 
 public class RequestForTransferSteps {
 
-    @When("^user enters '(.*)', '(.*)' and '(.*)' into Date of Transfer field$")
+    @When("^'(.*)', '(.*)' and '(.*)' is entered into Date of Transfer field$")
     public void user_enters_values_into_date_of_transfer_field(String day, String month, String year) {
         schedulePaymentPage().enterDateOfTransferDay(day);
         schedulePaymentPage().enterDateOfTransferMonth(month);
         schedulePaymentPage().enterDateOfTransferYear(year);
     }
 
-    @When("^user enters tomorrows date into Date of Transfer field$")
+    @When("^tomorrows date is entered into Date of Transfer field$")
     public void user_enters_values_into_date_of_transfer_field() {
         LocalDate date = new LocalDate().plusDays(1);
         schedulePaymentPage().enterDateOfTransferDay(date.getDayOfMonth());
