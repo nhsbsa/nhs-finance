@@ -48,11 +48,10 @@ Feature: Schedule a payment
     When submit button is clicked
     Then Error message 'What month is this payment for? date must be less than 2 months in the future' is displayed for Contribution Date
 
-    # Success
-
   Scenario: No error messages are displayed if data is valid
 
     Given tomorrows date is entered into Date of Transfer
     And staff radio button is clicked
     And '11' and '2010' is entered into Contribution Date
     When submit button is clicked
+    Then contributions and payment page is displayed
