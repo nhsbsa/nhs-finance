@@ -2,15 +2,16 @@ package com.nhsbsa.model.validation;
 
 
 import com.nhsbsa.model.AdjustmentContributionDate;
+import com.nhsbsa.model.MonthNum;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.springframework.beans.factory.annotation.Value;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class AdjustmentContributionDateValidator implements ConstraintValidator<AdjustmentContributionDateValid, AdjustmentContributionDate> {
 
+    private MonthNum monthNum;
 
     @Value("${adjustmentContributionDate.not.blank}")
     private String adjustmentContributionDateNotBlank = "placeholder";
@@ -23,6 +24,7 @@ public class AdjustmentContributionDateValidator implements ConstraintValidator<
 
     @Override
     public void initialize(AdjustmentContributionDateValid constraintAnnotation) {
+        monthNum = new MonthNum();
     }
 
     @Override
@@ -69,7 +71,7 @@ public class AdjustmentContributionDateValidator implements ConstraintValidator<
     }
 
     private boolean containsInvalidValue(final AdjustmentContributionDate adjustmentContributionDate) {
-        final boolean validMonth = isValidMonth(adjustmentContributionDate.getContributionMonth());
+        final boolean validMonth = isValidMonth(monthNum.getMonthNumFromName(adjustmentContributionDate.getContributionMonth()));
         final boolean validYear = isValidYear(adjustmentContributionDate.getContributionYear());
         return !(validMonth && validYear);
     }
@@ -85,7 +87,7 @@ public class AdjustmentContributionDateValidator implements ConstraintValidator<
     private DateTime contributionDateToDateTime(final AdjustmentContributionDate adjustmentContributionDate, final DateTime now) {
         return getNow()
                 .withYear(adjustmentContributionDate.getContributionYear())
-                .withMonthOfYear(adjustmentContributionDate.getContributionMonth())
+                .withMonthOfYear(monthNum.getMonthNumFromName(adjustmentContributionDate.getContributionMonth()))
                 .withDayOfMonth(now.getDayOfMonth());
     }
 

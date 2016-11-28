@@ -23,7 +23,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class AdjustmentContributionDate implements Serializable {
 
-    private Integer contributionMonth;
+    private String contributionMonth;
 
     private Integer contributionYear;
 }

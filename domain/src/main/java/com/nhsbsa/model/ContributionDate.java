@@ -27,5 +27,5 @@ public class ContributionDate implements Serializable {
 
     private String contributionMonth;
 
-    private String contributionYear;
+    private Integer contributionYear;
 }

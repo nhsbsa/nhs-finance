@@ -81,7 +81,7 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
 
         final int monthNo = monthNum.getMonthNumFromName(contributionDate.getContributionMonth());
         final boolean validMonth = isValidMonth(monthNo);
-        final boolean validYear = isValidYear(Integer.valueOf(contributionDate.getContributionYear()));
+        final boolean validYear = isValidYear(contributionDate.getContributionYear());
         return !(validMonth && validYear);
     }
 
@@ -95,7 +95,7 @@ public class ContributionDateValidator implements ConstraintValidator<Contributi
 
     private DateTime contributionDateToDateTime(final ContributionDate contributionDate, final DateTime now) {
         return getNow()
-                .withYear(Integer.valueOf(contributionDate.getContributionYear()))
+                .withYear(contributionDate.getContributionYear())
                 .withMonthOfYear(monthNum.getMonthNumFromName(contributionDate.getContributionMonth()))
                 .withDayOfMonth(now.getDayOfMonth());
     }
