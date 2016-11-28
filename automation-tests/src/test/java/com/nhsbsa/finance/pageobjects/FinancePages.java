@@ -9,5 +9,6 @@ public class FinancePages {
     public static EmployerAccountInfoPage employerAccountInfoPage;
     public static SchedulePaymentPage schedulePaymentPage;
     public static ContributionsAndPaymentPage contributionsAndPaymentPage;
+    public static FeatureIsNotYetAvailablePage featureIsNotYetAvailablePage;
 
 }

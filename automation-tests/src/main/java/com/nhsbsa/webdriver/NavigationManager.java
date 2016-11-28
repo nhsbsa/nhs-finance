@@ -35,13 +35,6 @@ public class NavigationManager {
             input = new FileInputStream(applicationProperties.getFile());
             properties.load(input);
 
-            // Get all the environment variables (for testing only to see what is defined)
-            //Map<String, String> env = System.getenv();
-
-            // Set the environment variable required. Noted that cannot use a . due to (see below):-
-            // export [-fn] [name[=word]] ...
-            // name   A word consisting only of alphanumeric characters and underscores, and beginning with an
-            // alphabetic character or an underscore. Also referred to as an identifier.
             FINANCE_WEBSITE = System.getenv("finance_frontend_url");
             if (StringUtils.isBlank(FINANCE_WEBSITE)) {
                 FINANCE_WEBSITE = "localhost:8080";

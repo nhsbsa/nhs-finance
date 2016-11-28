@@ -1,5 +1,7 @@
 package com.nhsbsa.finance.steps;
 
+import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentPage;
+import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentsPage;
 import com.nhsbsa.finance.pageobjects.EmployerAccountInfoPage;
 import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
 import com.nhsbsa.webdriver.DriverManager;
@@ -23,6 +25,11 @@ public class FinanceSteps {
     @Given("^employer account info page is displayed$")
     public void employer_account_info_page_is_displayed() {
         employerAccountInfoPage = PageFactory.initElements(DriverManager.getDriver(), EmployerAccountInfoPage.class);
+    }
+
+    @Given("^contributions and payment page is displayed$")
+    public void contributions_and_payment_page_is_displayed() {
+        contributionsAndPaymentPage = PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
     }
 
     @When("^user enters '(.*)', '(.*)' and '(.*)' into Date of Transfer field$")
@@ -114,4 +121,38 @@ public class FinanceSteps {
         validation_summary_should_be_displayed();
     }
 
+    @When("^'(.*)' employer's contributions are entered and valid$")
+    public void employers_contributions_are_entered_and_valid() {
+
+    }
+
+    @When("^user enters '(.*)' into total pensionable pay field$")
+    public void user_enters_values_into_total_pensionable_pay_field(String totalPensionablePay) {
+        contributionsAndPaymentPage.enterTotalPensionablePay(totalPensionablePay);
+    }
+
+    @When("^user enters '(.*)' into employee contributions field$")
+    public void user_enters_values_into_employee_contributions_field(String employeeContributions) {
+        contributionsAndPaymentPage.enterEmployeeContributions(employeeContributions);
+    }
+
+    @When("^user enters '(.*)' into employer contributions field$")
+    public void user_enters_values_into_employer_contributions_field(String employersContributions) {
+        contributionsAndPaymentPage.enterEmployerContributions(employersContributions);
+    }
+
+    @When("^yes is selected on adjustments required")
+    public void yes_is_selected_on_adjustments_required() {
+        contributionsAndPaymentPage.clickAdjustmentsRequired();
+    }
+
+    @When("^user enters '(.*)' into employer contributions adjustment field$")
+    public void user_enters_values_into_employer_contributions_adjustment_field(String employersContributionsAdjustment) {
+        contributionsAndPaymentPage.enterEmployerContributionsAdjustment(employersContributionsAdjustment);
+    }
+
+    @Then("^user clicks next button$")
+    public void user_clicks_next_button() {
+        contributionsAndPaymentPage.submit();
+    }
 }
