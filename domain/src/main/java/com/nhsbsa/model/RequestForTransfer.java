@@ -69,6 +69,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
 
     private Date receiveDate = new Date();
 
+    // Where any adjustments are stored, table (see class definition) is "adjustment" and linked on rft_id
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "rft_id")
     private List<Adjustment> adjustmentList;

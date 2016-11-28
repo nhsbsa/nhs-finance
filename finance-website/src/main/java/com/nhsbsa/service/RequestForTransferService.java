@@ -50,6 +50,9 @@ public class RequestForTransferService {
         rft.setErrbo(requestForTransfer.getErrbo());
         rft.setTotalDebitAmount(requestForTransfer.getTotalDebitAmount());
 
+        // Adjustments section, stored in a list (in case many in the future)
+        rft.setAdjustmentList(requestForTransfer.getAdjustmentList());
+
         RequestForTransfer savedRequestForTransfer = saveRequestForTransfer(rft);
         return rft;
     }
