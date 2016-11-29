@@ -49,6 +49,9 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "employee-added-years-adjustment")
     private WebElement employeeAddedYearsAdjustmentElement;
 
+    @FindBy(id = "employee-contributions-adjustment")
+    private WebElement employeeContributionsAdjustmentElement;
+
     @FindBy(className = "button")
     private WebElement nextButtonElement;
 
@@ -107,6 +110,10 @@ public class ContributionsAndPaymentPage extends BasePage {
 
     public void enterEmployeeAddedYearsAdjustment(final String employeeAddedYearsAdjustment) {
         enterValue(employeeAddedYearsAdjustmentElement, employeeAddedYearsAdjustment);
+    }
+
+    public void enterEmployeeContributionsAdjustment(final String employeeContributionsAdjustment) {
+        enterValue(employeeContributionsAdjustmentElement, employeeContributionsAdjustment);
     }
 
     public String getEmployerContributionsAdjustmentErrorMessage() {
