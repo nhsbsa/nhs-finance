@@ -19,9 +19,16 @@ Feature: Adding adjustments
     When yes is selected on adjustments required
     And user enters '1.00' into employer contributions adjustment field
     Then user clicks next button
+    And feature is not yet available page should be displayed
 
   Scenario: Employers contribution - invalid
     When yes is selected on adjustments required
     And user enters '0.50' into employer contributions adjustment field
     And user clicks next button with errors
     And 'Employers contribution - amount you have entered is incorrect' error is displayed for employer contribution adjustment
+
+  Scenario: ERRBO - valid
+    When yes is selected on adjustments required
+    And user enters '1.00' into errbo adjustment field
+    Then user clicks next button with errors
+    And feature is not yet available page should be displayed

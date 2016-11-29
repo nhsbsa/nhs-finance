@@ -75,16 +75,24 @@ public class ContributionsAndPaymentPage extends BasePage {
         enterEmployerContributions(String.valueOf(employerContributions));
     }
 
-    public void clickAdjustmentsRequired() {
-        adjustmentsRequiredElement.click();
-    }
-
     public void enterEmployerContributionsAdjustment(final String employerContributionsAdjustment) {
         enterValue(employerContributionsAdjustmentElement, employerContributionsAdjustment);
     }
 
     public void enterEmployerContributionsAdjustment(final double employerContributionsAdjustment) {
         enterEmployerContributionsAdjustment(String.valueOf(employerContributionsAdjustment));
+    }
+
+    public void enterErrboAdjustment(final String errboAdjustment) {
+        enterValue(errboElement, errboAdjustment);
+    }
+
+    public void enterErrboAdjustment(final double errboAdjustment) {
+        enterErrboAdjustment(String.valueOf(errboAdjustment));
+    }
+
+    public void clickAdjustmentsRequired() {
+        adjustmentsRequiredElement.click();
     }
 
     public String getEmployerContributionsAdjustmentErrorMessage() {

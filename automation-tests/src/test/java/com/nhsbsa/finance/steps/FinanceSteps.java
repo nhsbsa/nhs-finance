@@ -1,9 +1,6 @@
 package com.nhsbsa.finance.steps;
 
-import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentPage;
-import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentsPage;
-import com.nhsbsa.finance.pageobjects.EmployerAccountInfoPage;
-import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
+import com.nhsbsa.finance.pageobjects.*;
 import com.nhsbsa.webdriver.DriverManager;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
@@ -151,6 +148,11 @@ public class FinanceSteps {
         contributionsAndPaymentPage.enterEmployerContributionsAdjustment(employersContributionsAdjustment);
     }
 
+    @When("^user enters '(.*)' into errbo adjustment field$")
+    public void user_enters_values_into_errbo_adjustment_field(String errboAdjustment) {
+        contributionsAndPaymentPage.enterErrboAdjustment(errboAdjustment);
+    }
+
     @Then("^user clicks next button$")
     public void user_clicks_next_button() {
         contributionsAndPaymentPage.submit();
@@ -163,4 +165,10 @@ public class FinanceSteps {
     public void error_is_displayed_for_employer_contribution_adjustment(final String errorMessage) {
         assertThat(contributionsAndPaymentPage.getEmployerContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
+
+    @Then("^feature is not yet available page should be displayed$")
+    public void feature_is_not_yet_available_page_should_be_displayed() {
+        featureIsNotYetAvailablePage = PageFactory.initElements(DriverManager.getDriver(), FeatureIsNotYetAvailablePage.class);
+    }
+
 }
