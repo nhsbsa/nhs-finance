@@ -27,6 +27,8 @@ public class Adjustment extends BaseEntity<Long> {
     private int contributionMonth;
     private int contributionYear;
     private BigDecimal employeeContributions;
+
+    @Currency(message = "{adjustment.employeeAddedYears.invalid}", groups = ContributionsValidationGroup.class)
     private BigDecimal employeeAddedYears;
 
     @Currency(message = "{adjustment.additionalPension.invalid}", groups = ContributionsValidationGroup.class)

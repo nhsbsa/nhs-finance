@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('adjustment.employerContributions') or #fields.hasErrors('adjustment.errbo') or #fields.hasErrors('adjustment.additionalPension')}? validation-error">
+            <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('adjustment.employerContributions') or #fields.hasErrors('adjustment.errbo') or #fields.hasErrors('adjustment.additionalPension') or #fields.hasErrors('adjustment.employeeAddedYears')}? validation-error">
                 <fieldset>
                     <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
 
@@ -176,10 +176,10 @@
 
                         <div class="form-group">
                             <label class="form-label" for="employee-avcs-adjustment" th:text="#{contributions.EmployeeAddedYrsLabel}"></label>
-                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <p class="validation-message" id="employee-added-years-adjustment-error" th:errors="*{adjustment.employeeAddedYears}">Employee added years - amount you have entered is incorrect</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="employee-avcs-adjustment" name="employee-avcs-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                                <input type="number" id="employee-avcs-adjustment" name="employee-avcs-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off" th:field="*{adjustment.employeeAddedYears}"> </input>
                             </div>
                         </div>
 
