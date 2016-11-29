@@ -196,6 +196,11 @@ public class FinanceSteps {
         assertThat(contributionsAndPaymentPage.getEmployeeAddedYearsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
 
+    @Then("^'(.*)' error is displayed for employee contributions adjustment$")
+    public void error_is_displayed_for_employee_contributions_adjustment(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage.getEmployeeContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
+    }
+
     @Then("^feature is not yet available page should be displayed$")
     public void feature_is_not_yet_available_page_should_be_displayed() {
         featureIsNotYetAvailablePage = PageFactory.initElements(DriverManager.getDriver(), FeatureIsNotYetAvailablePage.class);

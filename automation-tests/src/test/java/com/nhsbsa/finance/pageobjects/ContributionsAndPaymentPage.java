@@ -67,6 +67,10 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "employee-added-years-adjustment-error")
     private WebElement employeeAddedYearsAdjustmentErrorElement;
 
+    @FindBy(id = "employee-contributions-adjustment-error")
+    private WebElement employeeContributionsAdjustmentErrorElement;
+
+
     public FeatureIsNotYetAvailablePage submit() {
         nextButtonElement.click();
         return PageFactory.initElements(DriverManager.getDriver(), FeatureIsNotYetAvailablePage.class);
@@ -130,6 +134,10 @@ public class ContributionsAndPaymentPage extends BasePage {
 
     public String getEmployeeAddedYearsAdjustmentErrorMessage() {
         return employeeAddedYearsAdjustmentErrorElement.getText();
+    }
+
+    public String getEmployeeContributionsAdjustmentErrorMessage() {
+        return employeeContributionsAdjustmentErrorElement.getText();
     }
 
     public void clickAdjustmentsRequired() {
