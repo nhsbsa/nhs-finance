@@ -44,7 +44,9 @@ public class RequestForTransferTest {
                 .totalPensionablePay(new BigDecimal("100"))
                 .employeeContributions(new BigDecimal("10"))
                 .employerContributions(new BigDecimal("20"))
-                .isGp(true);
+                .isGp(true)
+                .adjustmentsRequired(false);
+
 
     }
 
