@@ -40,11 +40,17 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "employer-contributions-adjustment")
     private WebElement employerContributionsAdjustmentElement;
 
+    @FindBy(id = "errbo-adjustment")
+    private WebElement errboAdjustmentElement;
+
     @FindBy(className = "button")
     private WebElement nextButtonElement;
 
     @FindBy(id = "employer-contributions-adjustment-error")
     private WebElement employerContributionsAdjustmentErrorElement;
+
+    @FindBy(id = "errbo-adjustment-error")
+    private WebElement errboAdjustmentErrorElement;
 
     public FeatureIsNotYetAvailablePage submit() {
         nextButtonElement.click();
@@ -84,7 +90,7 @@ public class ContributionsAndPaymentPage extends BasePage {
     }
 
     public void enterErrboAdjustment(final String errboAdjustment) {
-        enterValue(errboElement, errboAdjustment);
+        enterValue(errboAdjustmentElement, errboAdjustment);
     }
 
     public void enterErrboAdjustment(final double errboAdjustment) {
@@ -97,6 +103,10 @@ public class ContributionsAndPaymentPage extends BasePage {
 
     public String getEmployerContributionsAdjustmentErrorMessage() {
         return employerContributionsAdjustmentErrorElement.getText();
+    }
+
+    public String getErrboAdjustmentErrorMessage() {
+        return errboAdjustmentErrorElement.getText();
     }
 
     public void submitWIthErrors() {
