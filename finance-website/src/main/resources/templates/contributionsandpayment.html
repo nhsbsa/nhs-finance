@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <div class="form-item-wrapper error-layer"  th:classappend="${#fields.hasErrors('adjustment.employerContributions')}? validation-error">
+            <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('adjustment.employerContributions') or #fields.hasErrors('adjustment.errbo')}? validation-error">
                 <fieldset>
                     <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
 
@@ -194,10 +194,10 @@
 
                         <div class="form-group">
                             <label class="form-label" for="errbo-adjustment" th:text="#{contributions.ErrboLabel}"></label>
-                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <p class="validation-message" id="errbo-adjustment-error" th:errors="*{adjustment.errbo}">ERRBO - amount you have entered is incorrect</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="errbo-adjustment" name="errbo-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                                <input type="number" id="errbo-adjustment" name="errbo-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off" th:field="*{adjustment.errbo}"> </input>
                             </div>
                         </div>
 
