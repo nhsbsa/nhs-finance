@@ -153,6 +153,11 @@ public class FinanceSteps {
         contributionsAndPaymentPage.enterErrboAdjustment(errboAdjustment);
     }
 
+    @When("^user enters '(.*)' into additional pension adjustment field$")
+    public void user_enters_values_into_additional_pension_adjustment_field(String additionalPensionAdjustment) {
+        contributionsAndPaymentPage.enterAdditionalPensionAdjustment(additionalPensionAdjustment);
+    }
+
     @Then("^user clicks next button$")
     public void user_clicks_next_button() {
         contributionsAndPaymentPage.submit();

@@ -43,6 +43,9 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "errbo-adjustment")
     private WebElement errboAdjustmentElement;
 
+    @FindBy(id = "additional-pension-adjustment")
+    private WebElement additionalPensionAdjustmentElement;
+
     @FindBy(className = "button")
     private WebElement nextButtonElement;
 
@@ -95,6 +98,10 @@ public class ContributionsAndPaymentPage extends BasePage {
 
     public void enterErrboAdjustment(final double errboAdjustment) {
         enterErrboAdjustment(String.valueOf(errboAdjustment));
+    }
+
+    public void enterAdditionalPensionAdjustment(final String additionalPensionAdjustment) {
+        enterValue(additionalPensionAdjustmentElement, additionalPensionAdjustment);
     }
 
     public void clickAdjustmentsRequired() {
