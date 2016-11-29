@@ -50,4 +50,10 @@ Feature: Adding adjustments
     And user enters '0.50' into additional pension adjustment field
     And user clicks next button with errors
     Then 'Additional pension - amount you have entered is incorrect' error is displayed for additional pension adjustment
+
+  Scenario: Employee added years adjustment - valid
+    When yes is selected on adjustments required
+    And user enters '1.00' into employee added years adjustment field
+    And user clicks next button
+    Then feature is not yet available page should be displayed
     

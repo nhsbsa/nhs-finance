@@ -46,6 +46,9 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "additional-pension-adjustment")
     private WebElement additionalPensionAdjustmentElement;
 
+    @FindBy(id = "employee-added-years-adjustment")
+    private WebElement employeeAddedYearsAdjustmentElement;
+
     @FindBy(className = "button")
     private WebElement nextButtonElement;
 
@@ -91,20 +94,24 @@ public class ContributionsAndPaymentPage extends BasePage {
         enterValue(employerContributionsAdjustmentElement, employerContributionsAdjustment);
     }
 
-    public void enterEmployerContributionsAdjustment(final double employerContributionsAdjustment) {
-        enterEmployerContributionsAdjustment(String.valueOf(employerContributionsAdjustment));
-    }
+//    public void enterEmployerContributionsAdjustment(final double employerContributionsAdjustment) {
+//        enterEmployerContributionsAdjustment(String.valueOf(employerContributionsAdjustment));
+//    }
 
     public void enterErrboAdjustment(final String errboAdjustment) {
         enterValue(errboAdjustmentElement, errboAdjustment);
     }
-
-    public void enterErrboAdjustment(final double errboAdjustment) {
-        enterErrboAdjustment(String.valueOf(errboAdjustment));
-    }
+//
+//    public void enterErrboAdjustment(final double errboAdjustment) {
+//        enterErrboAdjustment(String.valueOf(errboAdjustment));
+//    }
 
     public void enterAdditionalPensionAdjustment(final String additionalPensionAdjustment) {
         enterValue(additionalPensionAdjustmentElement, additionalPensionAdjustment);
+    }
+
+    public void enterEmployeeAddedYearsAdjustment(final String employeeAddedYearsAdjustment) {
+        enterValue(employeeAddedYearsAdjustmentElement, employeeAddedYearsAdjustment);
     }
 
     public String getEmployerContributionsAdjustmentErrorMessage() {

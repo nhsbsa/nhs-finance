@@ -158,6 +158,11 @@ public class FinanceSteps {
         contributionsAndPaymentPage.enterAdditionalPensionAdjustment(additionalPensionAdjustment);
     }
 
+    @When("^user enters '(.*)' into employee added years adjustment field$")
+    public void user_enters_values_into_employee_added_years_adjustment_field(String employeeAddedYearsAdjustment) {
+        contributionsAndPaymentPage.enterEmployeeAddedYearsAdjustment(employeeAddedYearsAdjustment);
+    }
+
     @Then("^user clicks next button$")
     public void user_clicks_next_button() {
         contributionsAndPaymentPage.submit();
