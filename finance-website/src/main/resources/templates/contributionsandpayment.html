@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('adjustment.employerContributions') or #fields.hasErrors('adjustment.errbo')}? validation-error">
+            <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('adjustment.employerContributions') or #fields.hasErrors('adjustment.errbo') or #fields.hasErrors('adjustment.additionalPension')}? validation-error">
                 <fieldset>
                     <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
 
@@ -185,10 +185,10 @@
 
                         <div class="form-group">
                             <label class="form-label" for="additional-pension-adjustment" th:text="#{contributions.AdditionalPensionLabel}"></label>
-                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <p class="validation-message" id="additional-pension-adjustment-error" th:errors="*{adjustment.additionalPension}">Additional pension - amount you have entered is incorrect</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="additional-pension-adjustment" name="additional-pension-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                                <input type="number" id="additional-pension-adjustment" name="additional-pension-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off" th:field="*{adjustment.additionalPension}"> </input>
                             </div>
                         </div>
 
