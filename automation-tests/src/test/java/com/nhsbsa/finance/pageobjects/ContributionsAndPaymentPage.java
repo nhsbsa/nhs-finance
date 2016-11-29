@@ -37,39 +37,38 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "add-outstanding-payments")
     private WebElement adjustmentsRequiredElement;
 
+    @FindBy(id = "employee-contributions-adjustment")
+    private WebElement employeeContributionsAdjustmentElement;
+
     @FindBy(id = "employer-contributions-adjustment")
     private WebElement employerContributionsAdjustmentElement;
-
-    @FindBy(id = "errbo-adjustment")
-    private WebElement errboAdjustmentElement;
-
-    @FindBy(id = "additional-pension-adjustment")
-    private WebElement additionalPensionAdjustmentElement;
 
     @FindBy(id = "employee-added-years-adjustment")
     private WebElement employeeAddedYearsAdjustmentElement;
 
-    @FindBy(id = "employee-contributions-adjustment")
-    private WebElement employeeContributionsAdjustmentElement;
+    @FindBy(id = "additional-pension-adjustment")
+    private WebElement additionalPensionAdjustmentElement;
 
-    @FindBy(className = "button")
-    private WebElement nextButtonElement;
-
-    @FindBy(id = "employer-contributions-adjustment-error")
-    private WebElement employerContributionsAdjustmentErrorElement;
-
-    @FindBy(id = "errbo-adjustment-error")
-    private WebElement errboAdjustmentErrorElement;
-
-    @FindBy(id = "additional-pension-adjustment-error")
-    private WebElement additionalPensionAdjustmentErrorElement;
-
-    @FindBy(id = "employee-added-years-adjustment-error")
-    private WebElement employeeAddedYearsAdjustmentErrorElement;
+    @FindBy(id = "errbo-adjustment")
+    private WebElement errboAdjustmentElement;
 
     @FindBy(id = "employee-contributions-adjustment-error")
     private WebElement employeeContributionsAdjustmentErrorElement;
 
+    @FindBy(id = "employer-contributions-adjustment-error")
+    private WebElement employerContributionsAdjustmentErrorElement;
+
+    @FindBy(id = "employee-added-years-adjustment-error")
+    private WebElement employeeAddedYearsAdjustmentErrorElement;
+
+    @FindBy(id = "additional-pension-adjustment-error")
+    private WebElement additionalPensionAdjustmentErrorElement;
+
+    @FindBy(id = "errbo-adjustment-error")
+    private WebElement errboAdjustmentErrorElement;
+
+    @FindBy(className = "button")
+    private WebElement nextButtonElement;
 
     public FeatureIsNotYetAvailablePage submit() {
         nextButtonElement.click();

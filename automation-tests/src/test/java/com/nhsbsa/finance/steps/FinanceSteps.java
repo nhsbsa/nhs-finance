@@ -143,19 +143,14 @@ public class FinanceSteps {
         contributionsAndPaymentPage.clickAdjustmentsRequired();
     }
 
+    @When("^user enters '(.*)' into employee contributions adjustment field$")
+    public void user_enters_values_into_employee_contributions_adjustment_field(String employeeContributionsAdjustment) {
+        contributionsAndPaymentPage.enterEmployeeContributionsAdjustment(employeeContributionsAdjustment);
+    }
+
     @When("^user enters '(.*)' into employer contributions adjustment field$")
     public void user_enters_values_into_employer_contributions_adjustment_field(String employersContributionsAdjustment) {
         contributionsAndPaymentPage.enterEmployerContributionsAdjustment(employersContributionsAdjustment);
-    }
-
-    @When("^user enters '(.*)' into errbo adjustment field$")
-    public void user_enters_values_into_errbo_adjustment_field(String errboAdjustment) {
-        contributionsAndPaymentPage.enterErrboAdjustment(errboAdjustment);
-    }
-
-    @When("^user enters '(.*)' into additional pension adjustment field$")
-    public void user_enters_values_into_additional_pension_adjustment_field(String additionalPensionAdjustment) {
-        contributionsAndPaymentPage.enterAdditionalPensionAdjustment(additionalPensionAdjustment);
     }
 
     @When("^user enters '(.*)' into employee added years adjustment field$")
@@ -163,9 +158,39 @@ public class FinanceSteps {
         contributionsAndPaymentPage.enterEmployeeAddedYearsAdjustment(employeeAddedYearsAdjustment);
     }
 
-    @When("^user enters '(.*)' into employee contributions adjustment field$")
-    public void user_enters_values_into_employee_contributions_adjustment_field(String employeeContributionsAdjustment) {
-        contributionsAndPaymentPage.enterEmployeeContributionsAdjustment(employeeContributionsAdjustment);
+    @When("^user enters '(.*)' into additional pension adjustment field$")
+    public void user_enters_values_into_additional_pension_adjustment_field(String additionalPensionAdjustment) {
+        contributionsAndPaymentPage.enterAdditionalPensionAdjustment(additionalPensionAdjustment);
+    }
+
+    @When("^user enters '(.*)' into errbo adjustment field$")
+    public void user_enters_values_into_errbo_adjustment_field(String errboAdjustment) {
+        contributionsAndPaymentPage.enterErrboAdjustment(errboAdjustment);
+    }
+
+    @Then("^'(.*)' error is displayed for employee contributions adjustment$")
+    public void error_is_displayed_for_employee_contributions_adjustment(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage.getEmployeeContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
+    }
+
+    @Then("^'(.*)' error is displayed for employer contribution adjustment$")
+    public void error_is_displayed_for_employer_contribution_adjustment(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage.getEmployerContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
+    }
+
+    @Then("^'(.*)' error is displayed for employee added years adjustment$")
+    public void error_is_displayed_for_employee_added_years_adjustment(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage.getEmployeeAddedYearsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
+    }
+
+    @Then("^'(.*)' error is displayed for additional pension adjustment$")
+    public void error_is_displayed_for_additional_pension_adjustment(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage.getAdditionalPensionAdjustmentErrorMessage(), is(equalTo((errorMessage))));
+    }
+
+    @Then("^'(.*)' error is displayed for errbo adjustment$")
+    public void error_is_displayed_for_errbo_adjustment(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage.getErrboAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
 
     @Then("^user clicks next button$")
@@ -174,31 +199,8 @@ public class FinanceSteps {
     }
 
     @Then("^user clicks next button with errors")
-    public void user_clicks_next_button_with_errors() { contributionsAndPaymentPage.submitWIthErrors(); }
-
-    @Then("^'(.*)' error is displayed for employer contribution adjustment$")
-    public void error_is_displayed_for_employer_contribution_adjustment(final String errorMessage) {
-        assertThat(contributionsAndPaymentPage.getEmployerContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
-    }
-
-    @Then("^'(.*)' error is displayed for errbo adjustment$")
-    public void error_is_displayed_for_errbo_adjustment(final String errorMessage) {
-        assertThat(contributionsAndPaymentPage.getErrboAdjustmentErrorMessage(), is(equalTo((errorMessage))));
-    }
-
-    @Then("^'(.*)' error is displayed for additional pension adjustment$")
-    public void error_is_displayed_for_additional_pension_adjustment(final String errorMessage) {
-        assertThat(contributionsAndPaymentPage.getAdditionalPensionAdjustmentErrorMessage(), is(equalTo((errorMessage))));
-    }
-
-    @Then("^'(.*)' error is displayed for employee added years adjustment$")
-    public void error_is_displayed_for_employee_added_years_adjustment(final String errorMessage) {
-        assertThat(contributionsAndPaymentPage.getEmployeeAddedYearsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
-    }
-
-    @Then("^'(.*)' error is displayed for employee contributions adjustment$")
-    public void error_is_displayed_for_employee_contributions_adjustment(final String errorMessage) {
-        assertThat(contributionsAndPaymentPage.getEmployeeContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
+    public void user_clicks_next_button_with_errors() {
+        contributionsAndPaymentPage.submitWIthErrors();
     }
 
     @Then("^feature is not yet available page should be displayed$")
