@@ -61,6 +61,9 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "additional-pension-adjustment-error")
     private WebElement additionalPensionAdjustmentErrorElement;
 
+    @FindBy(id = "employee-added-years-adjustment-error")
+    private WebElement employeeAddedYearsAdjustmentErrorElement;
+
     public FeatureIsNotYetAvailablePage submit() {
         nextButtonElement.click();
         return PageFactory.initElements(DriverManager.getDriver(), FeatureIsNotYetAvailablePage.class);
@@ -94,17 +97,9 @@ public class ContributionsAndPaymentPage extends BasePage {
         enterValue(employerContributionsAdjustmentElement, employerContributionsAdjustment);
     }
 
-//    public void enterEmployerContributionsAdjustment(final double employerContributionsAdjustment) {
-//        enterEmployerContributionsAdjustment(String.valueOf(employerContributionsAdjustment));
-//    }
-
     public void enterErrboAdjustment(final String errboAdjustment) {
         enterValue(errboAdjustmentElement, errboAdjustment);
     }
-//
-//    public void enterErrboAdjustment(final double errboAdjustment) {
-//        enterErrboAdjustment(String.valueOf(errboAdjustment));
-//    }
 
     public void enterAdditionalPensionAdjustment(final String additionalPensionAdjustment) {
         enterValue(additionalPensionAdjustmentElement, additionalPensionAdjustment);
@@ -124,6 +119,10 @@ public class ContributionsAndPaymentPage extends BasePage {
 
     public String getAdditionalPensionAdjustmentErrorMessage() {
         return additionalPensionAdjustmentErrorElement.getText();
+    }
+
+    public String getEmployeeAddedYearsAdjustmentErrorMessage() {
+        return employeeAddedYearsAdjustmentErrorElement.getText();
     }
 
     public void clickAdjustmentsRequired() {

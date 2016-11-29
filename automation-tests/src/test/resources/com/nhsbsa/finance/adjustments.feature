@@ -57,3 +57,9 @@ Feature: Adding adjustments
     And user clicks next button
     Then feature is not yet available page should be displayed
     
+  Scenario: Employee added years adjustment - invalid
+    When yes is selected on adjustments required
+    And user enters '0.50' into employee added years adjustment field
+    And user clicks next button with errors
+    Then 'Employee added years - amount you have entered is incorrect' error is displayed for employee added years adjustment
+    
