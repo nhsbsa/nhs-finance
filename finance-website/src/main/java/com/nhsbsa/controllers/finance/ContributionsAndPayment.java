@@ -42,12 +42,39 @@ public class ContributionsAndPayment {
         return modelAndView;
     }
 
-    // Click on "Next step" on the "Contributions and payment" page, time to do validation checking....
-    @PostMapping(value = "/contributionsandpayment/{rftUuid}")
-    public String saveContributionPayment( @PathVariable("rftUuid") final String rftUuid,
+    // Click on "Next step" on the "Contributions and payment" page, with Adjustment Required set to YES
+    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = "isAdjustment=1")
+    public String saveContributionPaymentWithAdjustment( @PathVariable("rftUuid") final String rftUuid,
                                            @Validated(value = {ContributionsValidationGroup.class, AdjustmentValidationGroup.class})
                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
+
+        return saveContributionPayment(rftUuid, requestForTransfer, bindingResult);
+    }
+
+    // Click on "Next step" on the "Contributions and payment" page, with Adjustment Required set to NO
+    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = {"isAdjustment=0"})
+    public String saveContributionPaymentWithoutAdjustment( @PathVariable("rftUuid") final String rftUuid,
+                                           @Validated(value = ContributionsValidationGroup.class)
+                                           @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
+                                           final BindingResult bindingResult) {
+
+        return saveContributionPayment(rftUuid, requestForTransfer, bindingResult);
+    }
+
+    // Click on "Next step" on the "Contributions and payment" page, with Adjustment Required set to NULL
+    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = {"!isAdjustment"})
+    public String saveContributionPaymentNoAdjustment( @PathVariable("rftUuid") final String rftUuid,
+                                                            @Validated(value = ContributionsValidationGroup.class)
+                                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
+                                                            final BindingResult bindingResult) {
+
+        return saveContributionPayment(rftUuid, requestForTransfer, bindingResult);
+    }
+
+    private String saveContributionPayment( final String rftUuid,
+                                            final RequestForTransfer requestForTransfer,
+                                            final BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return CONTRIBUTIONS_AND_PAYMENT_VIEW;
@@ -59,4 +86,6 @@ public class ContributionsAndPayment {
         log.debug("Data from Finance 'Contributions and payment' page saved ok in the Database");
         return "redirect:/notyetimplementedcontsandpay";
     }
+
+
 }
