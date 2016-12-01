@@ -80,11 +80,6 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Valid
     private Adjustment adjustment;
 
-    @Valid
-    @Transient
-    //@OneToOne
-    private Adjustment adjustment;
-
     private String rftUuid;
 
 

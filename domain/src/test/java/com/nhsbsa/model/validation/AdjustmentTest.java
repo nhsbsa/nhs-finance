@@ -43,7 +43,7 @@ public class AdjustmentTest {
                 .employeeContributions(new BigDecimal("0.50"))
                 .build();
 
-        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, ContributionsValidationGroup.class);
+        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, AdjustmentValidationGroup.class);
 
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{adjustment.employeeContributions.invalid}"))));
     }
@@ -54,7 +54,7 @@ public class AdjustmentTest {
                 .employerContributions(new BigDecimal("57.423"))
                 .build();
 
-        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, ContributionsValidationGroup.class);
+        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, AdjustmentValidationGroup.class);
 
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{adjustment.employerContributions.invalid}"))));
     }
@@ -65,7 +65,7 @@ public class AdjustmentTest {
                 .employeeAddedYears(new BigDecimal("1.5432"))
                 .build();
 
-        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, ContributionsValidationGroup.class);
+        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, AdjustmentValidationGroup.class);
 
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{adjustment.employeeAddedYears.invalid}"))));
     }
@@ -76,7 +76,7 @@ public class AdjustmentTest {
                 .additionalPension(new BigDecimal("12.532"))
                 .build();
 
-        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, ContributionsValidationGroup.class);
+        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, AdjustmentValidationGroup.class);
 
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{adjustment.additionalPension.invalid}"))));
     }
@@ -87,7 +87,7 @@ public class AdjustmentTest {
                 .errbo(new BigDecimal("0.99"))
                 .build();
 
-        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, ContributionsValidationGroup.class);
+        Set<ConstraintViolation<Adjustment>> constraintViolations = validator.validate(adjustment, AdjustmentValidationGroup.class);
 
         assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{adjustment.errbo.invalid}"))));
     }
