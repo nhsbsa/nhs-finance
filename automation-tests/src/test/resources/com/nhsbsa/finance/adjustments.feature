@@ -1,4 +1,4 @@
-@smokeTest  @finance @newtest
+@smokeTest  @finance
 Feature: Adding adjustments
 
   Background:
