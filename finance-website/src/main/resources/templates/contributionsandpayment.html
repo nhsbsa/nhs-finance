@@ -124,8 +124,7 @@
         </div>
 
         <!-- Adjustment Panel, shown/hidden depending on RB selection -->
-        <div class="js-hidden hidden-panel panel-indent" id="outstanding-payments-panel">
-
+            <div class="hidden-panel panel-indent" th:classappend="*{isAdjustment}? '' : js-hidden" id="outstanding-payments-panel">
             <p th:text="#{contributions.AdjInfoMessageLabel}"></p>
 
             <div class="form-item-wrapper error-layer">
