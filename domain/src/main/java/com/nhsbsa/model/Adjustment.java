@@ -1,5 +1,6 @@
 package com.nhsbsa.model;
 
+import com.nhsbsa.model.validation.AdjustmentNotNull;
 import com.nhsbsa.model.validation.AdjustmentValidationGroup;
 import com.nhsbsa.model.validation.Currency;
 import lombok.*;
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@AdjustmentNotNull(message = "{adjustment.notBlank}", groups = AdjustmentValidationGroup.class)
 public class Adjustment extends BaseEntity<Long> {
 
     @Id

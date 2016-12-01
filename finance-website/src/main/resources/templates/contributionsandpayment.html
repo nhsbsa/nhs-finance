@@ -150,9 +150,12 @@
                   </div>
               </div>
 
-            <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('adjustment.employerContributions') or #fields.hasErrors('adjustment.errbo') or #fields.hasErrors('adjustment.additionalPension') or #fields.hasErrors('adjustment.employeeAddedYears') or #fields.hasErrors('adjustment.employeeContributions')}? validation-error">
+            <div class="form-item-wrapper error-layer" th:classappend="${#fields.hasErrors('adjustment.employerContributions') or #fields.hasErrors('adjustment.errbo') or
+            #fields.hasErrors('adjustment.additionalPension') or #fields.hasErrors('adjustment.employeeAddedYears') or #fields.hasErrors('adjustment.employeeContributions')
+            or #fields.hasErrors('adjustment')}? validation-error">
                 <fieldset>
                     <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
+                    <p class="validation-message" id="adjustment-error" th:errors="*{adjustment}"> </p>
 
                     <!-- Two input fields on one row -->
                     <div class="inline-form-groups">
