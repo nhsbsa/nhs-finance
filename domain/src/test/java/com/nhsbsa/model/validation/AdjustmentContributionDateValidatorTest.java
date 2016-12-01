@@ -1,5 +1,6 @@
 package com.nhsbsa.model.validation;
 
+import com.nhsbsa.model.AdjustmentContributionDate;
 import com.nhsbsa.model.ContributionDate;
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -9,39 +10,36 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 
 import javax.validation.ConstraintValidatorContext;
-import javax.validation.Payload;
-import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 /**
- * Created by jeffreya on 14/11/2016.
+ * Created by Nat Hulse on 30/11/2016.
  * ContributionDateValidatorTest
  */
 
 
 @RunWith(Parameterized.class)
-public class ContributionDateValidatorTest {
+public class AdjustmentContributionDateValidatorTest {
 
-    private static ContributionDateValidator contributionDateValidator;
+    private static AdjustmentContributionDateValidator adjustmentContributionDateValidator;
     private static ConstraintValidatorContext constraintValidatorContext;
 
 
     @Before
     public void init() {
-        final ContributionDateValid contributionDateValid = Mockito.mock(ContributionDateValid.class);
-        when(contributionDateValid.monthsInAdvanceLimit()).thenReturn(2);
+        final AdjustmentContributionDateValid adjustmentContributionDateValid = Mockito.mock(AdjustmentContributionDateValid.class);
 
-        contributionDateValidator = new ContributionDateValidator() {
+        adjustmentContributionDateValidator = new AdjustmentContributionDateValidator() {
             @Override
             public DateTime getNow() {
                 return DateTime.now().withYear(2003).withMonthOfYear(1).withDayOfMonth(1);
             }
         };
-        contributionDateValidator.initialize(contributionDateValid);
+        adjustmentContributionDateValidator.initialize(adjustmentContributionDateValid);
 
         constraintValidatorContext = Mockito.mock(ConstraintValidatorContext.class);
 
@@ -56,54 +54,54 @@ public class ContributionDateValidatorTest {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {null, false},
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth(null)
                         .contributionYear(2000)
                         .build(), false},
 
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("January")
                         .contributionYear(null)
                         .build(), false},
 
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("May")
                         .contributionYear(2000)
                         .build(), false},
 
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("January")
                         .contributionYear(2000)
                         .build(), false},
 
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("February")
                         .contributionYear(2003)
-                        .build(), true},
+                        .build(), false},
 
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("March")
                         .contributionYear(2000)
                         .build(), false},
 
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("January")
                         .contributionYear(2003)
                         .build(), true},
 
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("-1")
                         .contributionYear(2003)
                         .build(), false},
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("1")
                         .contributionYear(-2003)
                         .build(), false},
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth(null)
                         .contributionYear(-2003)
                         .build(), false},
-                {ContributionDate.builder()
+                {AdjustmentContributionDate.builder()
                         .contributionMonth("-1")
                         .contributionYear(null)
                         .build(), false},
@@ -112,7 +110,7 @@ public class ContributionDateValidatorTest {
     }
 
     @Parameterized.Parameter
-    public ContributionDate contributionDate;
+    public AdjustmentContributionDate adjustmentContributionDate;
 
     @Parameterized.Parameter(value = 1)
     public boolean valid;
@@ -120,7 +118,7 @@ public class ContributionDateValidatorTest {
     @Test
     public void test() {
 
-        final boolean isValid = contributionDateValidator.isValid(contributionDate, constraintValidatorContext);
+        final boolean isValid = adjustmentContributionDateValidator.isValid(adjustmentContributionDate, constraintValidatorContext);
         assertEquals("Should match", valid, isValid);
     }
 

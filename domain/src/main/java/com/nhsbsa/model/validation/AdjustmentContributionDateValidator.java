@@ -3,6 +3,7 @@ package com.nhsbsa.model.validation;
 
 import com.nhsbsa.model.AdjustmentContributionDate;
 import com.nhsbsa.model.MonthNum;
+import com.nhsbsa.model.RequestForTransfer;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.springframework.beans.factory.annotation.Value;

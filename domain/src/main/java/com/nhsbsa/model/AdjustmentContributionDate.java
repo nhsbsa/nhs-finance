@@ -7,7 +7,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Convert;
+import javax.persistence.Converter;
 import javax.persistence.Embeddable;
+import javax.validation.Valid;
 import java.io.Serializable;
 
 /**
@@ -18,11 +21,12 @@ import java.io.Serializable;
 @Embeddable
 @Data
 @Builder
-@AdjustmentContributionDateValid(message = "{adjustmentContributionDate.in.range}", groups = AdjustmentValidationGroup.class)
+@AdjustmentContributionDateValid(message = "", groups = AdjustmentValidationGroup.class)
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdjustmentContributionDate implements Serializable {
 
+    @Convert(converter = MonthConverter.class)
     private String contributionMonth;
 
     private Integer contributionYear;

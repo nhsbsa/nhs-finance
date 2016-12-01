@@ -1,5 +1,7 @@
 package com.nhsbsa.model;
 
+import static com.sun.tools.javac.util.StringUtils.toUpperCase;
+
 /**
  * Created by nataliehulse on 28/11/2016.
  * Class to transform the Month name in English and Welsh to a number
@@ -9,53 +11,54 @@ public class MonthNum {
 
     public int getMonthNumFromName (String monthName) {
         int monthNum = 0;
-        switch (monthName) {
-            case "January":
-            case "Ionawr":
+        String name = toUpperCase(monthName);
+        switch (name) {
+            case "JANUARY":
+            case "IONAWR":
                 monthNum = 1;
                 break;
-            case "February":
-            case "Chwefror":
+            case "FEBRUARY":
+            case "CHWEFROR":
                 monthNum = 2;
                 break;
-            case "March":
-            case "Mawrth":
+            case "MARCH":
+            case "MAWRTH":
                 monthNum = 3;
                 break;
-            case "April":
-            case "Ebrill":
+            case "APRIL":
+            case "EBRILL":
                 monthNum = 4;
                 break;
-            case "May":
-            case "Mai":
+            case "MAY":
+            case "MAI":
                 monthNum = 5;
                 break;
-            case "June":
-            case "Mehefin":
+            case "JUNE":
+            case "MEHEFIN":
                 monthNum = 6;
                 break;
-            case "July":
-            case "Gorffennaf":
+            case "JULY":
+            case "GORRFFENNAF":
                 monthNum = 7;
                 break;
-            case "August":
-            case "Awst":
+            case "AUGUST":
+            case "AWST":
                 monthNum = 8;
                 break;
-            case "September":
-            case "Medi":
+            case "SEPTEMBER":
+            case "MEDI":
                 monthNum = 9;
                 break;
-            case "October":
-            case "Hydref":
+            case "OCTOBER":
+            case "HYDREF":
                 monthNum = 10;
                 break;
-            case "November":
-            case "Tachwedd":
+            case "NOVEMBER":
+            case "TACHWEDD":
                 monthNum = 11;
                 break;
-            case "December":
-            case "Rhagfyr":
+            case "DECEMBER":
+            case "RHAGFYR":
                 monthNum = 12;
                 break;
 
