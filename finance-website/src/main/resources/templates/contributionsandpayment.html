@@ -98,22 +98,25 @@
             </fieldset>
         </div>
 
+
+
         <!-- Adjustments Radio Buttons -->
-        <div class="inline-form-groups error-layer" th:classappend="${#fields.hasGlobalErrors() or #fields.hasErrors('adjustmentsRequired')}? validation-error">
+        <div class="inline-form-groups error-layer" th:classappend="${#fields.hasGlobalErrors() or #fields.hasErrors('isAdjustment')}? validation-error">
             <div class="form-groups validate-radio-input" data-validate-radio-input="outstanding-payments">
                 <fieldset>
                     <legend class="form-label-bold label-like" th:text="#{contributions.AdjRequiredHeader}"></legend>
-                    <p class="validation-message" th:errors="*{adjustmentsRequired}"></p>
+                    <p class="validation-message" th:errors="*{isAdjustment}"></p>
                     <div class="form-group">
                         <label class="nhsbsa-radio js-toggle" for="add-outstanding-payments" data-show="#outstanding-payments-panel">
-                            <input type="radio" name="outstanding-payments" id="add-outstanding-payments" th:field="*{adjustmentsRequired}" value="1" />
+
+                            <input type="radio" name="outstanding-payments" id="add-outstanding-payments" th:field="*{isAdjustment}" value="1" />
                             <span class="input-text" th:text="#{contributions.AdjRBYesLabel}"></span>
 
                         </label>
                     </div>
                     <div class="form-group">
                         <label class="nhsbsa-radio js-toggle" for="no-outstanding-payments" data-hide="#outstanding-payments-panel">
-                            <input type="radio" name="outstanding-payments" id="no-outstanding-payments" th:field="*{adjustmentsRequired}" value="0" />
+                            <input type="radio" name="outstanding-payments" id="no-outstanding-payments" th:field="*{isAdjustment}" value="0" />
                             <span class="input-text" th:text="#{contributions.AdjRBNoLabel}"></span>
                         </label>
                     </div>
@@ -122,49 +125,59 @@
         </div>
 
         <!-- Adjustment Panel, shown/hidden depending on RB selection -->
-        <div class="js-hidden hidden-panel panel-indent" id="outstanding-payments-panel">
+          <div class="hidden-panel panel-indent" th:classappend="*{isAdjustment}? '' : js-hidden" id="outstanding-payments-panel">
 
-            <p th:text="#{contributions.AdjInfoMessageLabel}"></p>
+              <p th:text="#{contributions.AdjInfoMessageLabel}"></p>
 
-            <div class="form-item-wrapper error-layer">
-                <div class="inline-form-groups">
-                    <fieldset>
-                        <legend class="form-label-bold" th:text="#{contributions.AdjPeriodHeader}"></legend>
-                        <p class="form-hint" th:text="#{contributions.AdjPeriodHintLabel}"></p>
-                        <p class="validation-message display-none">Please fill in all fields</p>
-                        <div class="form-group">
-                            <label class="form-label" for="contribution-month" th:text="#{contributions.AdjPeriodMonthLabel}"></label>
-                            <input class="form-control form-control-11-chars typeahead" id="contribution-month" type="text" maxlength="11" autocomplete="off"> </input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="contribution-year" th:text="#{contributions.AdjPeriodYearLabel}"></label>
-                            <input class="form-control form-control-4-chars validate-secondary-text-input" id="contribution-year" type="number" min="0" autocomplete="off"> </input>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
+        <div class="form-item-wrapper error-layer"
+             th:classappend="${#fields.hasErrors('adjustment.adjustmentContributionDate')}? validation-error">
+                  <div class="inline-form-groups">
+                      <fieldset>
+                          <p class="validation-message" th:errors="*{adjustment.adjustmentContributionDate}"></p>
+                          <legend class="form-label-bold" th:text="#{contributions.AdjPeriodHeader}"></legend>
+                          <p class="form-hint" th:text="#{contributions.AdjPeriodHintLabel}"></p>
+                          <div class="form-group">
+                              <label class="form-label" for="adj-contribution-month" th:text="#{contributions.AdjPeriodMonthLabel}"></label>
+                              <input class="form-control form-control-11-chars typeahead" id="adj-contribution-month" type="text" maxlength="11"
+                                     autocomplete="off" th:field="*{adjustment.adjustmentContributionDate.contributionMonth}"
+                                     th:errorclass="error"> </input>
+                          </div>
+                          <div class="form-group">
+                              <label class="form-label" for="adj-contribution-year" th:text="#{contributions.AdjPeriodYearLabel}"></label>
+                              <input class="form-control form-control-4-chars validate-secondary-text-input" id="adj-contribution-year" type="number"
+                                     min="0" autocomplete="off" th:field="*{adjustment.adjustmentContributionDate.contributionYear}"
+                                     th:errorclass="error"> </input>
+                          </div>
+                      </fieldset>
+                  </div>
+              </div>
 
-            <div class="form-item-wrapper error-layer">
-                <fieldset>
-                    <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
+              <div class="form-item-wrapper error-layer"
+                   th:classappend="${#fields.hasErrors('adjustment.employeeContributions') or #fields.hasErrors('adjustment.employerContributions')}? validation-error">
+                  <fieldset>
+                      <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
 
-                    <!-- Two input fields on one row -->
+                      <!-- Two input fields on one row -->
                     <div class="inline-form-groups">
                         <div class="form-group">
                             <label class="form-label" for="employee-contributions-adjustment" th:text="#{contributions.EmployeeContsLabel}"></label>
                             <!-- Should this also be within 5% and 9% of the TPP like above and not what is in the prototype? -->
-                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <p class="validation-message" th:errors="*{adjustment.employeeContributions}">Enter a numeric value between 1 - 999,999,999.99</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="employee-contributions-adjustment" name="employee-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                                <input type="number" id="employee-contributions-adjustment" name="employee-contributions-adjustment" value=""
+                                       class="form-control form-control-11-chars at-least-one" autocomplete="off"
+                                       th:field="*{adjustment.employeeContributions}" th:errorclass="error"> </input>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="employer-contributions-adjustment" th:text="#{contributions.EmployerContsLabel}"></label>
-                            <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
+                            <p class="validation-message" th:errors="*{adjustment.employerContributions}">Enter a numeric value between 1 - 999,999,999.99</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="employer-contributions-adjustment" name="employer-contributions-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                                <input type="number" id="employer-contributions-adjustment" name="employer-contributions-adjustment" value=""
+                                       class="form-control form-control-11-chars at-least-one" autocomplete="off"
+                                       th:field="*{adjustment.employerContributions}" th:errorclass="error"> </input>
                             </div>
                         </div>
                     </div>
@@ -177,7 +190,7 @@
                             <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="employee-avcs-adjustment" name="employee-avcs-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                                <input type="number" id="employee-avcs-adjustment" name="employee-avcs-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off" th:field="*{adjustment.employeeAddedYears}"> </input>
                             </div>
                         </div>
 
@@ -186,7 +199,7 @@
                             <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="additional-pension-adjustment" name="additional-pension-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                                <input type="number" id="additional-pension-adjustment" name="additional-pension-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off" th:field="*{adjustment.additionalPension}"> </input>
                             </div>
                         </div>
 
@@ -195,7 +208,7 @@
                             <p class="validation-message display-none">Enter a numeric value between 1 - 999,999,999.99</p>
                             <div class="prefixed-input">
                                 <span class="prefix-text">&pound;</span>
-                                <input type="number" id="errbo-adjustment" name="errbo-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off"> </input>
+                                <input type="number" id="errbo-adjustment" name="errbo-adjustment" value="" class="form-control form-control-11-chars at-least-one" autocomplete="off" th:field="*{adjustment.errbo}"> </input>
                             </div>
                         </div>
 

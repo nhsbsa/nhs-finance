@@ -1,6 +1,7 @@
 package com.nhsbsa.model;
 
-import static com.sun.tools.javac.util.StringUtils.toUpperCase;
+
+import static org.hibernate.annotations.common.util.StringHelper.toUpperCase;
 
 /**
  * Created by nataliehulse on 28/11/2016.

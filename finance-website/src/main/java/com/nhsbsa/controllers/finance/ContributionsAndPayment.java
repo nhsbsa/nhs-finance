@@ -2,6 +2,7 @@ package com.nhsbsa.controllers.finance;
 
 import com.nhsbsa.model.Adjustment;
 import com.nhsbsa.model.RequestForTransfer;
+import com.nhsbsa.model.validation.AdjustmentValidationGroup;
 import com.nhsbsa.model.validation.ContributionsValidationGroup;
 import com.nhsbsa.service.RequestForTransferService;
 import lombok.extern.log4j.Log4j;
@@ -44,7 +45,7 @@ public class ContributionsAndPayment {
     // Click on "Next step" on the "Contributions and payment" page, time to do validation checking....
     @PostMapping(value = "/contributionsandpayment/{rftUuid}")
     public String saveContributionPayment( @PathVariable("rftUuid") final String rftUuid,
-                                           @Validated(value = ContributionsValidationGroup.class)
+                                           @Validated(value = {ContributionsValidationGroup.class, AdjustmentValidationGroup.class})
                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                       final BindingResult bindingResult) {
 

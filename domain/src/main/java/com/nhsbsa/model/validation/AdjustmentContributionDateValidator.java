@@ -6,9 +6,13 @@ import com.nhsbsa.model.MonthNum;
 import com.nhsbsa.model.RequestForTransfer;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Value;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AdjustmentContributionDateValidator implements ConstraintValidator<AdjustmentContributionDateValid, AdjustmentContributionDate> {
 
@@ -36,8 +40,8 @@ public class AdjustmentContributionDateValidator implements ConstraintValidator<
     private boolean containsInvalidDate(final AdjustmentContributionDate adjustmentContributionDate, final ConstraintValidatorContext context) {
         final DateTime now = getNow();
         final DateTime dateEntered = contributionDateToDateTime(adjustmentContributionDate, now);
-        final int months = Months.monthsBetween(now, dateEntered).getMonths();
-        final boolean isValid = months == 0;
+
+        final boolean isValid = (dateEntered.isBefore(now));
         if (!isValid) {
             context.buildConstraintViolationWithTemplate(adjustmentContributionDateNotInRange.replace("$", ""))
                     .addConstraintViolation();

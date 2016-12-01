@@ -87,7 +87,7 @@ public class AdjustmentContributionDateValidatorTest {
                 {AdjustmentContributionDate.builder()
                         .contributionMonth("January")
                         .contributionYear(2003)
-                        .build(), true},
+                        .build(), false},
 
                 {AdjustmentContributionDate.builder()
                         .contributionMonth("-1")
