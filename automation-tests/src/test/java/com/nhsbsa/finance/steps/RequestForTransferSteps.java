@@ -165,18 +165,18 @@ public class RequestForTransferSteps {
         validation_summary_should_be_displayed();
     }
 
-    @When("^user enters '(.*)' into total pensionable pay field$")
-    public void user_enters_values_into_total_pensionable_pay_field(String totalPensionablePay) {
+    @When("^(.*)' is entered into Total Pensionable Pay$")
+    public void value_is_entered_into_total_pensionable_pay(String totalPensionablePay) {
         contributionsAndPaymentPage().enterTotalPensionablePay(totalPensionablePay);
     }
 
-    @When("^user enters '(.*)' into employee contributions field$")
-    public void user_enters_values_into_employee_contributions_field(String employeeContributions) {
+    @When("^(.*)' is entered into Employee Contributions$")
+    public void value_is_entered_into_employee_contributions(String employeeContributions) {
         contributionsAndPaymentPage().enterEmployeeContributions(employeeContributions);
     }
 
-    @When("^user enters '(.*)' into employer contributions field$")
-    public void user_enters_values_into_employer_contributions_field(String employersContributions) {
+    @When("^(.*)' is entered into Employer Contributions$")
+    public void value_is_entered_into_employer_contributions(String employersContributions) {
         contributionsAndPaymentPage().enterEmployerContributions(employersContributions);
     }
 
@@ -185,67 +185,69 @@ public class RequestForTransferSteps {
         contributionsAndPaymentPage().clickAdjustmentsRequired();
     }
 
-    @When("^user enters '(.*)' into adjustment period month field$")
-    public void user_enters_values_into_adjustment_period_month_field(String adjustmentPeriodMonth) {
+    //Adjustments
+
+    @When("^'(.*)' is entered into Adjustment Period month$")
+    public void value_is_entered_into_adjustment_period_month(String adjustmentPeriodMonth) {
         contributionsAndPaymentPage().enterAdjustmentsPeriodMonth(adjustmentPeriodMonth);
     }
 
-    @When("^user enters '(.*)' into adjustment period year field$")
-    public void user_enters_values_into_adjustment_period_year_field(String adjustmentPeriodYear) {
+    @When("^'(.*)' is entered into Adjustment Period year$")
+    public void value_is_entered_into_adjustment_period_year(String adjustmentPeriodYear) {
         contributionsAndPaymentPage().enterAdjustmentsPeriodYear(adjustmentPeriodYear);
     }
 
-    @When("^user enters '(.*)' into employee contributions adjustment field$")
-    public void user_enters_values_into_employee_contributions_adjustment_field(String employeeContributionsAdjustment) {
+    @When("^'(.*)' is entered into Employee Contributions adjustment$")
+    public void value_is_entered_into_employee_contributions_adjustment(String employeeContributionsAdjustment) {
         contributionsAndPaymentPage().enterEmployeeContributionsAdjustment(employeeContributionsAdjustment);
     }
 
-    @When("^user enters '(.*)' into employer contributions adjustment field$")
-    public void user_enters_values_into_employer_contributions_adjustment_field(String employersContributionsAdjustment) {
+    @When("^'(.*)' is entered into Employer Contributions adjustment$")
+    public void value_is_entered_into_employer_contributions_adjustment(String employersContributionsAdjustment) {
         contributionsAndPaymentPage().enterEmployerContributionsAdjustment(employersContributionsAdjustment);
     }
 
-    @When("^user enters '(.*)' into employee added years adjustment field$")
-    public void user_enters_values_into_employee_added_years_adjustment_field(String employeeAddedYearsAdjustment) {
+    @When("^'(.*)' is entered into Employee Added Years adjustment$")
+    public void value_is_entered_into_employee_added_years_adjustment(String employeeAddedYearsAdjustment) {
         contributionsAndPaymentPage().enterEmployeeAddedYearsAdjustment(employeeAddedYearsAdjustment);
     }
 
-    @When("^user enters '(.*)' into additional pension adjustment field$")
-    public void user_enters_values_into_additional_pension_adjustment_field(String additionalPensionAdjustment) {
+    @When("^'(.*)' is entered into Additional Pension adjustment$")
+    public void value_is_entered_into_additional_pension_adjustment(String additionalPensionAdjustment) {
         contributionsAndPaymentPage().enterAdditionalPensionAdjustment(additionalPensionAdjustment);
     }
 
-    @When("^user enters '(.*)' into errbo adjustment field$")
-    public void user_enters_values_into_errbo_adjustment_field(String errboAdjustment) {
+    @When("'(.*)' is entered into ERRBO adjustment$")
+    public void value_is_entered_into_errbo_adjustment(String errboAdjustment) {
         contributionsAndPaymentPage().enterErrboAdjustment(errboAdjustment);
     }
 
-    @Then("^'(.*)' error is displayed for adjustment period$")
+    @Then("^Error message '(.*)' is displayed for Adjustment Period$")
     public void error_is_displayed_for_adjustment_period(final String errorMessage) {
         assertThat(contributionsAndPaymentPage().getAdjustmentPeriodErrorMessage(), is(equalTo((errorMessage))));
     }
 
-    @Then("^'(.*)' error is displayed for employee contributions adjustment$")
+    @Then("^Error message '(.*)' is displayed for Employee Contributions adjustment$")
     public void error_is_displayed_for_employee_contributions_adjustment(final String errorMessage) {
         assertThat(contributionsAndPaymentPage().getEmployeeContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
 
-    @Then("^'(.*)' error is displayed for employer contribution adjustment$")
-    public void error_is_displayed_for_employer_contribution_adjustment(final String errorMessage) {
+    @Then("^Error message '(.*)' is displayed for Employer Contributions adjustment$")
+    public void error_is_displayed_for_employer_contributions_adjustment(final String errorMessage) {
         assertThat(contributionsAndPaymentPage().getEmployerContributionsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
 
-    @Then("^'(.*)' error is displayed for employee added years adjustment$")
+    @Then("^Error message '(.*)' is displayed for Employee Added Years adjustment$")
     public void error_is_displayed_for_employee_added_years_adjustment(final String errorMessage) {
         assertThat(contributionsAndPaymentPage().getEmployeeAddedYearsAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
 
-    @Then("^'(.*)' error is displayed for additional pension adjustment$")
+    @Then("^Error message '(.*)' is displayed for Additional Pension adjustment$")
     public void error_is_displayed_for_additional_pension_adjustment(final String errorMessage) {
         assertThat(contributionsAndPaymentPage().getAdditionalPensionAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
 
-    @Then("^'(.*)' error is displayed for errbo adjustment$")
+    @Then("^Error message '(.*)' is displayed for ERRBO adjustment$")
     public void error_is_displayed_for_errbo_adjustment(final String errorMessage) {
         assertThat(contributionsAndPaymentPage().getErrboAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
