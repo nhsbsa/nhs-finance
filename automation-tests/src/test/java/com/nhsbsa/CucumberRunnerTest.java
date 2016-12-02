@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @Cucumber.Options(
         format = {"pretty", "html:reports/test-report"},
 
-        tags = {"@smokeTest"})
+        tags = {"@newTest"})
 public class CucumberRunnerTest {
 
 

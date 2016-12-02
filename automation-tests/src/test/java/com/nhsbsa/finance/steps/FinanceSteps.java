@@ -143,6 +143,16 @@ public class FinanceSteps {
         contributionsAndPaymentPage.clickAdjustmentsRequired();
     }
 
+    @When("^user enters '(.*)' into adjustment period month field$")
+    public void user_enters_values_into_adjustment_period_month_field(String adjustmentPeriodMonth) {
+        contributionsAndPaymentPage.enterAdjustmentsPeriodMonth(adjustmentPeriodMonth);
+    }
+
+    @When("^user enters '(.*)' into adjustment period year field$")
+    public void user_enters_values_into_adjustment_period_year_field(String adjustmentPeriodYear) {
+        contributionsAndPaymentPage.enterAdjustmentsPeriodYear(adjustmentPeriodYear);
+    }
+
     @When("^user enters '(.*)' into employee contributions adjustment field$")
     public void user_enters_values_into_employee_contributions_adjustment_field(String employeeContributionsAdjustment) {
         contributionsAndPaymentPage.enterEmployeeContributionsAdjustment(employeeContributionsAdjustment);
@@ -166,6 +176,11 @@ public class FinanceSteps {
     @When("^user enters '(.*)' into errbo adjustment field$")
     public void user_enters_values_into_errbo_adjustment_field(String errboAdjustment) {
         contributionsAndPaymentPage.enterErrboAdjustment(errboAdjustment);
+    }
+
+    @Then("^'(.*)' error is displayed for adjustment period$")
+    public void error_is_displayed_for_adjustment_period(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage.getAdjustmentPeriodErrorMessage(), is(equalTo((errorMessage))));
     }
 
     @Then("^'(.*)' error is displayed for employee contributions adjustment$")

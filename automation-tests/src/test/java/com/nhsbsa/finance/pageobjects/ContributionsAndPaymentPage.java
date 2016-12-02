@@ -37,6 +37,12 @@ public class ContributionsAndPaymentPage extends BasePage {
     @FindBy(id = "add-outstanding-payments")
     private WebElement adjustmentsRequiredElement;
 
+    @FindBy(id = "adj-contribution-month")
+    private WebElement adjustmentsPeriodMonthElement;
+
+    @FindBy(id = "adj-contribution-year")
+    private WebElement adjustmentsPeriodYearElement;
+
     @FindBy(id = "employee-contributions-adjustment")
     private WebElement employeeContributionsAdjustmentElement;
 
@@ -66,6 +72,9 @@ public class ContributionsAndPaymentPage extends BasePage {
 
     @FindBy(id = "errbo-adjustment-error")
     private WebElement errboAdjustmentErrorElement;
+
+    @FindBy(className = "validation-message")
+    private WebElement adjustmentPeriodErrorElement;
 
     @FindBy(className = "button")
     private WebElement nextButtonElement;
@@ -99,6 +108,14 @@ public class ContributionsAndPaymentPage extends BasePage {
         enterEmployerContributions(String.valueOf(employerContributions));
     }
 
+    public void enterAdjustmentsPeriodMonth(final String adjustmentsPeriodMonth) {
+        enterValue(adjustmentsPeriodMonthElement, adjustmentsPeriodMonth);
+    }
+
+    public void enterAdjustmentsPeriodYear(final String adjustmentsPeriodYear) {
+        enterValue(adjustmentsPeriodYearElement, adjustmentsPeriodYear);
+    }
+
     public void enterEmployerContributionsAdjustment(final String employerContributionsAdjustment) {
         enterValue(employerContributionsAdjustmentElement, employerContributionsAdjustment);
     }
@@ -117,6 +134,10 @@ public class ContributionsAndPaymentPage extends BasePage {
 
     public void enterEmployeeContributionsAdjustment(final String employeeContributionsAdjustment) {
         enterValue(employeeContributionsAdjustmentElement, employeeContributionsAdjustment);
+    }
+
+    public String getAdjustmentPeriodErrorMessage() {
+        return adjustmentPeriodErrorElement.getText();
     }
 
     public String getEmployerContributionsAdjustmentErrorMessage() {
