@@ -58,9 +58,7 @@ public class ContributionsAndPayment {
                                            @Validated(value = ContributionsValidationGroup.class)
                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                            final BindingResult bindingResult) {
-        if (!requestForTransfer.getAdjustmentsRequired()) {
-            requestForTransfer.setAdjustment(Adjustment.builder().build());
-        }
+        requestForTransfer.removeAdjustment();
         return saveContributionPayment(rftUuid, requestForTransfer, bindingResult);
     }
 
@@ -70,10 +68,7 @@ public class ContributionsAndPayment {
                                                             @Validated(value = ContributionsValidationGroup.class)
                                                             @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                                             final BindingResult bindingResult) {
-        if (!requestForTransfer.getAdjustmentsRequired()) {
-            requestForTransfer.setAdjustment(Adjustment.builder().build());
-        }
-
+        requestForTransfer.removeAdjustment();
         return saveContributionPayment(rftUuid, requestForTransfer, bindingResult);
     }
 
