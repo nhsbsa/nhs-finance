@@ -165,21 +165,6 @@ public class RequestForTransferSteps {
         validation_summary_should_be_displayed();
     }
 
-    @When("^(.*)' is entered into Total Pensionable Pay$")
-    public void value_is_entered_into_total_pensionable_pay(String totalPensionablePay) {
-        contributionsAndPaymentPage().enterTotalPensionablePay(totalPensionablePay);
-    }
-
-    @When("^(.*)' is entered into Employee Contributions$")
-    public void value_is_entered_into_employee_contributions(String employeeContributions) {
-        contributionsAndPaymentPage().enterEmployeeContributions(employeeContributions);
-    }
-
-    @When("^(.*)' is entered into Employer Contributions$")
-    public void value_is_entered_into_employer_contributions(String employersContributions) {
-        contributionsAndPaymentPage().enterEmployerContributions(employersContributions);
-    }
-
     @When("^yes is selected on adjustments required")
     public void yes_is_selected_on_adjustments_required() {
         contributionsAndPaymentPage().clickAdjustmentsRequired();
