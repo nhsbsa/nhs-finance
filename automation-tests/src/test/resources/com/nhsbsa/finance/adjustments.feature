@@ -23,6 +23,14 @@ Feature: Adding adjustments
     And user clicks next button
     Then feature is not yet available page should be displayed
 
+  Scenario: Adjustment period - current or future
+    When yes is selected on adjustments required
+    And user enters 'January' into adjustment period month field
+    And user enters '2030' into adjustment period year field
+    And user enters '1.00' into employer contributions adjustment field
+    And user clicks next button with errors
+    Then 'Adjustment period cannot be for a current or future month' error is displayed for adjustment period
+
   Scenario: Employee contributions adjustment - valid
     When yes is selected on adjustments required
     And user enters '1.00' into employee added years adjustment field
