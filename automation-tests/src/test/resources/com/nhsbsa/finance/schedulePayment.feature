@@ -36,11 +36,7 @@ Feature: Schedule a payment
     When submit button is clicked
     Then Error message 'What month is this payment for? is required' is displayed for Contribution Date
 
-    When '0' and '2010' is entered into Contribution Date
-    And submit button is clicked
-    Then Error message 'What month is this payment for? month must be between 1 and 12, year must be 2001 onwards' is displayed for Contribution Date
-
-    When 'Lishvember' and '2010' is entered into Contribution Date
+    When 'invalid' and '2010' is entered into Contribution Date
     And submit button is clicked
     Then Error message 'What month is this payment for? month must be between 1 and 12, year must be 2001 onwards' is displayed for Contribution Date
 
@@ -52,6 +48,6 @@ Feature: Schedule a payment
 
     Given tomorrows date is entered into Date of Transfer
     And staff radio button is clicked
-    And '11' and '2010' is entered into Contribution Date
+    And 'January' and '2010' is entered into Contribution Date
     When submit button is clicked
     Then contributions and payment page is displayed

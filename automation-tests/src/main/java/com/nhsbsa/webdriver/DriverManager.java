@@ -17,8 +17,7 @@ public class DriverManager {
 
     // In your .profile setup environment variable to point to where the chromedriver exe is downloaded, like
     // /Users/joebloggs/software/chromedriver/chromedriver
-    //private static final String CHROME_DRIVER = System.getenv("CHROME_DRIVER");
-    private static final String CHROME_DRIVER = "/Users/MattHood/software/chromedriver/chromedriver";
+    private static final String CHROME_DRIVER = System.getenv("CHROME_DRIVER");
 
     static {
         if (StringUtils.isBlank(CHROME_DRIVER)) {
