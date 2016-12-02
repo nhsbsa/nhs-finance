@@ -65,7 +65,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
 
     @Transient
     @NotNull(message = "{adjustmentsRequired.notNull}", groups = ContributionsValidationGroup.class)
-    private Boolean isAdjustment;
+    private Boolean adjustmentsRequired;
 
 
     // Nothing in story about validating the Total Amount To Be Debited so commented out for now.

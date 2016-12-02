@@ -43,7 +43,7 @@ public class ContributionsAndPayment {
     }
 
     // Click on "Next step" on the "Contributions and payment" page, with Adjustment Required set to YES
-    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = "isAdjustment=1")
+    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = "adjustmentsRequired=1")
     public String saveContributionPaymentWithAdjustment( @PathVariable("rftUuid") final String rftUuid,
                                            @Validated(value = {ContributionsValidationGroup.class, AdjustmentValidationGroup.class})
                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
@@ -53,24 +53,24 @@ public class ContributionsAndPayment {
     }
 
     // Click on "Next step" on the "Contributions and payment" page, with Adjustment Required set to NO
-    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = {"isAdjustment=0"})
+    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = {"adjustmentsRequired=0"})
     public String saveContributionPaymentWithoutAdjustment( @PathVariable("rftUuid") final String rftUuid,
                                            @Validated(value = ContributionsValidationGroup.class)
                                            @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                            final BindingResult bindingResult) {
-        if (!requestForTransfer.getIsAdjustment()) {
+        if (!requestForTransfer.getAdjustmentsRequired()) {
             requestForTransfer.setAdjustment(Adjustment.builder().build());
         }
         return saveContributionPayment(rftUuid, requestForTransfer, bindingResult);
     }
 
     // Click on "Next step" on the "Contributions and payment" page, with Adjustment Required set to NULL
-    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = {"!isAdjustment"})
+    @PostMapping(value = "/contributionsandpayment/{rftUuid}", params = {"!adjustmentsRequired"})
     public String saveContributionPaymentNoAdjustment( @PathVariable("rftUuid") final String rftUuid,
                                                             @Validated(value = ContributionsValidationGroup.class)
                                                             @ModelAttribute("rft") final RequestForTransfer requestForTransfer,
                                                             final BindingResult bindingResult) {
-        if (!requestForTransfer.getIsAdjustment()) {
+        if (!requestForTransfer.getAdjustmentsRequired()) {
             requestForTransfer.setAdjustment(Adjustment.builder().build());
         }
 

@@ -45,7 +45,7 @@ public class RequestForTransferTest {
                 .employeeContributions(new BigDecimal("10"))
                 .employerContributions(new BigDecimal("20"))
                 .isGp(true)
-                .isAdjustment(false);
+                .adjustmentsRequired(false);
 
 
     }
