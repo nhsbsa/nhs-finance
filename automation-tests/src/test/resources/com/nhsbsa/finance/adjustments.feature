@@ -1,81 +1,71 @@
-@smokeTest  @finance
+@smokeTest  @finance @adjustments
 Feature: Adding adjustments
 
   Background:
 
     Given user navigates to login page
     And user enters valid email 'sam.jones@email.com' and password 'password'
-    And schedule payment page should be displayed
-    And user enters tomorrows date into Date of Transfer field
-    And user clicks on staff
-    And user enters 'November' and '2010' into Contribution Date field
-    And user clicks submit button
+    And schedule payment page is displayed
+    And tomorrows date is entered into Date of Transfer
+    And staff radio button is clicked
+    And 'November' and '2010' is entered into Contribution Date
+    And submit button is clicked
     And contributions and payment page is displayed
-    And user enters '100.00' into total pensionable pay field
-    And user enters '10.00' into employee contributions field
-    And user enters '14.00' into employer contributions field
-    And yes is selected on adjustments required
-    And user enters 'December' into adjustment period month field
-    And user enters '2010' into adjustment period year field
+    And '100.00' is entered into into Total Pensionable Pay
+    And '10.00' is entered into into Employee Contributions
+    And '14.00' is entered into into Employer Contributions
+    And yes radio button is clicked for adjustments required
+    And 'December' is entered into Adjustment Period month
+    And '2010' is entered into Adjustment Period year
+
+  Scenario: Adjustments inputs - invalid
+    When 'January' is entered into Adjustment Period month
+    And '2030' is entered into Adjustment Period year
+    And '1.00' is entered into Employer Contributions adjustment
+    And submit button is clicked
+    Then Error message 'Adjustment period cannot be for a current or future month' is displayed for Adjustment Period
+
+    When '0.50' is entered into Employee Contributions adjustment
+    And submit button is clicked
+    Then Error message 'Employee contribution - amount you have entered is incorrect' is displayed for Employee Contributions adjustment
+
+    When '0.50' is entered into Employer Contributions adjustment
+    And submit button is clicked
+    Then Error message 'Employers contribution - amount you have entered is incorrect' is displayed for Employer Contributions adjustment
+
+    When '0.50' is entered into Employee Added Years adjustment
+    And submit button is clicked
+    Then Error message 'Employee added years - amount you have entered is incorrect' is displayed for Employee Added Years adjustment
+
+    When '0.50' is entered into Additional Pension adjustment
+    And submit button is clicked
+    Then Error message 'Additional pension - amount you have entered is incorrect' is displayed for Additional Pension adjustment
+
+    When '0.50' is entered into ERRBO adjustment
+    And submit button is clicked
+    Then Error message 'ERRBO - amount you have entered is incorrect' is displayed for ERRBO adjustment
 
   Scenario: Adjustment period - valid
-    When user enters '1.00' into employee contributions adjustment field
-    And user clicks next button
-    Then feature is not yet available page should be displayed
-
-  Scenario: Adjustment period - current or future
-    When user enters 'January' into adjustment period month field
-    And user enters '2030' into adjustment period year field
-    And user enters '1.00' into employer contributions adjustment field
-    And user clicks next button with errors
-    Then 'Adjustment period cannot be for a current or future month' error is displayed for adjustment period
-
-  Scenario: Employee contributions adjustment - valid
-    When user enters '1.00' into employee added years adjustment field
-    And user clicks next button
-    Then feature is not yet available page should be displayed
-
-  Scenario: Employee contributions adjustment - invalid
-    When user enters '0.50' into employee contributions adjustment field
-    And user clicks next button with errors
-    Then 'Employee contribution - amount you have entered is incorrect' error is displayed for employee contributions adjustment
+    When '1.00' is entered into Employee Contributions adjustment
+    And submit button is clicked
+    Then feature is not yet available page is displayed
 
   Scenario: Employers contribution adjustment - valid
-    When user enters '1.00' into employer contributions adjustment field
-    And user clicks next button
-    And feature is not yet available page should be displayed
-
-  Scenario: Employers contribution adjustment - invalid
-    When user enters '0.50' into employer contributions adjustment field
-    And user clicks next button with errors
-    Then 'Employers contribution - amount you have entered is incorrect' error is displayed for employer contribution adjustment
+    When '1.00' is entered into Employer Contributions adjustment
+    And submit button is clicked
+    Then feature is not yet available page is displayed
 
   Scenario: Employee added years adjustment - valid
-    When user enters '1.00' into employee added years adjustment field
-    And user clicks next button
-    Then feature is not yet available page should be displayed
-
-  Scenario: Employee added years adjustment - invalid
-    When user enters '0.50' into employee added years adjustment field
-    And user clicks next button with errors
-    Then 'Employee added years - amount you have entered is incorrect' error is displayed for employee added years adjustment
+    When '1.00' is entered into Employee Added Years adjustment
+    And submit button is clicked
+    Then feature is not yet available page is displayed
 
   Scenario: Additional pension adjustment - valid
-    When user enters '1.00' into additional pension adjustment field
-    And user clicks next button
-    Then feature is not yet available page should be displayed
-
-  Scenario: Additional pension adjustment - invalid
-    When user enters '0.50' into additional pension adjustment field
-    And user clicks next button with errors
-    Then 'Additional pension - amount you have entered is incorrect' error is displayed for additional pension adjustment
+    When '1.00' is entered into Additional Pension adjustment
+    And submit button is clicked
+    Then feature is not yet available page is displayed
 
   Scenario: ERRBO adjustment - valid
-    When user enters '1.00' into errbo adjustment field
-    And user clicks next button with errors
-    Then feature is not yet available page should be displayed
-
-  Scenario: ERRBO adjustment - invalid
-    When user enters '0.50' into errbo adjustment field
-    And user clicks next button with errors
-    Then 'ERRBO - amount you have entered is incorrect' error is displayed for errbo adjustment
+    When '1.00' is entered into ERRBO adjustment
+    And submit button is clicked
+    Then feature is not yet available page is displayed

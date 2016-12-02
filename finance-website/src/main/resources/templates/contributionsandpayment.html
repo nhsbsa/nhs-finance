@@ -131,7 +131,7 @@
              th:classappend="${#fields.hasErrors('adjustment.adjustmentContributionDate')}? validation-error">
                   <div class="inline-form-groups">
                       <fieldset>
-                          <p class="validation-message" th:errors="*{adjustment.adjustmentContributionDate}"></p>
+                          <p class="validation-message" id="adjustment-period-error" th:errors="*{adjustment.adjustmentContributionDate}"></p>
                           <legend class="form-label-bold" th:text="#{contributions.AdjPeriodHeader}"></legend>
                           <p class="form-hint" th:text="#{contributions.AdjPeriodHintLabel}"></p>
                           <div class="form-group">

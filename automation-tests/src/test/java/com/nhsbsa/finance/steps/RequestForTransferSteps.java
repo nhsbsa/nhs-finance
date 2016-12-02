@@ -1,6 +1,7 @@
 package com.nhsbsa.finance.steps;
 
 import com.nhsbsa.finance.pageobjects.ContributionsAndPaymentPage;
+import com.nhsbsa.finance.pageobjects.FeatureIsNotYetAvailablePage;
 import com.nhsbsa.finance.pageobjects.FinancePages;
 import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
 import com.nhsbsa.webdriver.DriverManager;
@@ -165,10 +166,16 @@ public class RequestForTransferSteps {
         validation_summary_should_be_displayed();
     }
 
-    @When("^yes is selected on adjustments required")
-    public void yes_is_selected_on_adjustments_required() {
+    @When("^yes radio button is clicked for adjustments required$")
+    public void adjustments_required_radio_button_is_clicked() {
         contributionsAndPaymentPage().clickAdjustmentsRequired();
     }
+
+    @When("^no radio button is clicked for adjustments required$")
+    public void adjustments_not_required_radio_button_is_clicked() {
+        contributionsAndPaymentPage().clickAdjustmentsNotRequired();
+    }
+
 
     //Adjustments
 
@@ -235,5 +242,13 @@ public class RequestForTransferSteps {
     @Then("^Error message '(.*)' is displayed for ERRBO adjustment$")
     public void error_is_displayed_for_errbo_adjustment(final String errorMessage) {
         assertThat(contributionsAndPaymentPage().getErrboAdjustmentErrorMessage(), is(equalTo((errorMessage))));
+    }
+
+    //feature not available
+
+    @Then("^feature is not yet available page is displayed$")
+    public void feature_is_not_yet_available_page_is_displayed() {
+        FeatureIsNotYetAvailablePage featureIsNotYetAvailablePage = PageFactory.initElements(DriverManager.getDriver(), FeatureIsNotYetAvailablePage.class);
+        FinancePages.setCurrentPage(featureIsNotYetAvailablePage);
     }
 }

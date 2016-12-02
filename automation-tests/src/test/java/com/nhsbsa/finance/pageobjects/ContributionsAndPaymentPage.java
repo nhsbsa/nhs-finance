@@ -1,12 +1,9 @@
 package com.nhsbsa.finance.pageobjects;
 
-import com.nhsbsa.BasePage;
 import com.nhsbsa.FormPage;
-import com.nhsbsa.webdriver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Mark Lishman on 14/11/2016.
@@ -62,6 +59,9 @@ public class ContributionsAndPaymentPage extends FormPage {
     @FindBy(id = "add-outstanding-payments")
     private WebElement adjustmentsRequiredElement;
 
+    @FindBy(id = "no-outstanding-payments")
+    private WebElement adjustmentsNotRequiredElement;
+
     @FindBy(id = "adj-contribution-month")
     private WebElement adjustmentsPeriodMonthElement;
 
@@ -98,16 +98,9 @@ public class ContributionsAndPaymentPage extends FormPage {
     @FindBy(id = "errbo-adjustment-error")
     private WebElement errboAdjustmentErrorElement;
 
-    @FindBy(className = "validation-message")
+    @FindBy(id = "adjustment-period-error")
     private WebElement adjustmentPeriodErrorElement;
 
-    @FindBy(className = "button")
-    private WebElement nextButtonElement;
-
-//    public FeatureIsNotYetAvailablePage submit() {
-//        nextButtonElement.click();
-//        return PageFactory.initElements(DriverManager.getDriver(), FeatureIsNotYetAvailablePage.class);
-//    }
 
     // Total Pensionable Pay
 
@@ -249,7 +242,8 @@ public class ContributionsAndPaymentPage extends FormPage {
         adjustmentsRequiredElement.click();
     }
 
-    public void submitWIthErrors() {
-        nextButtonElement.click();
+    public void clickAdjustmentsNotRequired() {
+        adjustmentsNotRequiredElement.click();
     }
+
 }

@@ -49,4 +49,11 @@ public class FinancePages {
         throw new RuntimeException("Not a FinanceLoginPage");
     }
 
+    public static FeatureIsNotYetAvailablePage featureIsNotYetAvailablePage() {
+        if (currentPage instanceof FeatureIsNotYetAvailablePage) {
+            return (FeatureIsNotYetAvailablePage) currentPage;
+        }
+        throw new RuntimeException("Not a FeatureIsNotYetAvailablePage");
+    }
+
 }

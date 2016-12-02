@@ -83,7 +83,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     private String rftUuid;
 
     public void removeAdjustment() {
-        this.adjustment = Adjustment.builder().build();
+        this.adjustment = null;
     }
 
 }
