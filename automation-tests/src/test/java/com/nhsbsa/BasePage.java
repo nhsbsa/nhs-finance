@@ -22,9 +22,4 @@ public class BasePage {
             throw new IllegalStateException(format("Page title is %s, title looking for is %s", driver.getTitle(), title));
         }
     }
-
-    protected void enterValue(WebElement element, String value) {
-        element.clear();
-        element.sendKeys(value);
-    }
 }

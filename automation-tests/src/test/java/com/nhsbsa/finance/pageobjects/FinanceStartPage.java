@@ -20,9 +20,8 @@ public class FinanceStartPage extends BasePage {
     private WebElement loginElement;
 
     // Clicked on "Start now" in the Finance Start Page which takes us to the Finance Login Page
-    public FinanceLoginPage startNowButton() {
+    public void startNowButton() {
         loginElement.click();
-        return PageFactory.initElements(DriverManager.getDriver(), FinanceLoginPage.class);
     }
 
 
