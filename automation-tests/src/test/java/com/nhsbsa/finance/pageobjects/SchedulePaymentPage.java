@@ -121,7 +121,7 @@ public class SchedulePaymentPage extends FormPage {
         return contributionDateObjectErrorElement.getText();
     }
 
-    //TODO remove this
+    //TODO remove th
     public void submitWIthErrors() {
         submitButtonElement.click();
     }
