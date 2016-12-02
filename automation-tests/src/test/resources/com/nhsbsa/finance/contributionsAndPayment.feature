@@ -8,7 +8,7 @@ Feature: Contributions and payment
     And schedule payment page is displayed
     And tomorrows date is entered into Date of Transfer
     And staff radio button is clicked
-    And '11' and '2010' is entered into Contribution Date
+    And 'November' and '2010' is entered into Contribution Date
     And submit button is clicked
     And contributions and payment page is displayed
 
