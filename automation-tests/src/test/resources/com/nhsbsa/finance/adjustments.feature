@@ -19,6 +19,24 @@ Feature: Adding adjustments
     And '2010' is entered into Adjustment Period year
 
   Scenario: Adjustments inputs - invalid
+    When '' is entered into Adjustment Period month
+    And '' is entered into Adjustment Period year
+    And '1.00' is entered into Employee Added Years adjustment
+    And submit button is clicked
+    Then Error message 'Adjustment period in format Month and Year is required.' is displayed for Adjustment Period
+
+    When 'Sept' is entered into Adjustment Period month
+    And '2010' is entered into Adjustment Period year
+    And '1.00' is entered into Employee Added Years adjustment
+    And submit button is clicked
+    Then Error message 'Adjustment period in format Month and Year is required.' is displayed for Adjustment Period
+
+    When '#$?/.,' is entered into Adjustment Period month
+    And '-2010' is entered into Adjustment Period year
+    And '1.00' is entered into Employee Added Years adjustment
+    And submit button is clicked
+    Then Error message 'Adjustment period in format Month and Year is required.' is displayed for Adjustment Period
+
     When 'January' is entered into Adjustment Period month
     And '2030' is entered into Adjustment Period year
     And '1.00' is entered into Employer Contributions adjustment
@@ -44,6 +62,10 @@ Feature: Adding adjustments
     When '0.50' is entered into ERRBO adjustment
     And submit button is clicked
     Then Error message 'ERRBO - amount you have entered is incorrect' is displayed for ERRBO adjustment
+
+    When '0' is entered into Employer Contributions adjustment
+    And submit button is clicked
+    Then Error message 'Employers contribution - amount you have entered is incorrect' is displayed for Employer Contributions adjustment
 
   Scenario: Adjustment period - valid
     When '1.00' is entered into Employee Contributions adjustment
