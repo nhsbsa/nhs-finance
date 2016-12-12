@@ -135,7 +135,7 @@ public class RequestForTransferSteps {
 
     @When("^'(.*)' is entered into into Employee Added Years$")
     public void value_is_entered_into_employee_added_years(final String employeeAddedYears) {
-        contributionsAndPaymentPage().enterEmployeeContributions(employeeAddedYears);
+        contributionsAndPaymentPage().enterEmployeeAddedYearsValue(employeeAddedYears);
     }
 
     @Then("^Error message '(.*)' is displayed for Employee Added Years$")
