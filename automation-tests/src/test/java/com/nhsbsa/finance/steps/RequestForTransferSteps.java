@@ -214,6 +214,11 @@ public class RequestForTransferSteps {
         contributionsAndPaymentPage().enterErrboAdjustment(errboAdjustment);
     }
 
+    @Then("^Error message '(.*)' is displayed for Adjustment Section$")
+    public void error_is_displayed_for_adjustment_section(final String errorMessage) {
+        assertThat(contributionsAndPaymentPage().getContributionsDetailsErrorElementErrorMessage(), is(equalTo((errorMessage))));
+    }
+
     @Then("^Error message '(.*)' is displayed for Adjustment Period$")
     public void error_is_displayed_for_adjustment_period(final String errorMessage) {
         assertThat(contributionsAndPaymentPage().getAdjustmentPeriodErrorMessage(), is(equalTo((errorMessage))));
