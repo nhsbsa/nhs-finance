@@ -15,7 +15,7 @@ stages:
   - open source
 
 maven build:
-  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
+  image: $DOCKER_REGISTRY/nhs-shared/app-builder:latest
   stage: build
   artifacts:
     paths:
@@ -39,7 +39,7 @@ maven build:
     - master
 
 maven build (no sonar):
-  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
+  image: $DOCKER_REGISTRY/nhs-shared/app-builder:latest
   stage: build
   before_script:
     - eval $(ssh-agent -s)
