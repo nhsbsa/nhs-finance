@@ -10,8 +10,6 @@
     <modules>
         <module>modules/nhs-base-docker</module>
         <module>modules/database-docker</module>
-        <module>modules/website-assets</module>
-        <module>modules/authorization</module>
         <module>base-website</module>
         <module>domain</module>
         <module>finance-website</module>
