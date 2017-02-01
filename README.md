@@ -49,9 +49,6 @@ To allow IntelliJ to support Lombok install the plugin:
 - Type: ./up.sh -b
 - Project should now be accessible e.g. 192.168.99.100:8080/login
 
-##### Docker & Postgres setup
-- https://bsa2468.atlassian.net/wiki/pages/viewpage.action?pageId=10977291
-
 ##### JIRA
 - https://bsa2468.atlassian.net
 
