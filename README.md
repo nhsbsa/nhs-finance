@@ -1,15 +1,5 @@
 # NHSBSA FINANCE
 
-# PREREQUISITES
-You need to clone and install:
-- nhs-shared/website-assets  https://gitlab.nhs-bsa.com/nhs-shared/website-assets
-
-# Note - remove these lines from pom.xml to build project
-    <module>modules/nhs-base-docker</module>
-    <module>modules/database-docker</module>
-    <module>modules/website-assets</module>
-    <module>modules/authorization</module>
-
 # GitLab
 https://bsa2468.atlassian.net/wiki/display/NHSBSA/Accessing+project+repos
 
@@ -34,7 +24,7 @@ https://bsa2468.atlassian.net/wiki/display/NHSBSA/Accessing+project+repos
 ##### Docker setup
  - docker-machine create --driver virtualbox default
  - docker-machine env default
-
+ 
 ##### IDE
 - We use IntelliJ from JetBrains https://www.jetbrains.com/idea/
 You can use other IDE if you wish, e.g. Eclipse, but make sure the formatting of code follow our standards.
@@ -56,7 +46,7 @@ To allow IntelliJ to support Lombok install the plugin:
 
 ##### Building the project
 - You need to get shared modules:  git submodule update --init --recursive
-- Type "./up.sh"
+- Type: ./up.sh -b
 - Project should now be accessible e.g. 192.168.99.100:8080/login
 
 ##### Docker & Postgres setup
