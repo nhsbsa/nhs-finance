@@ -9,10 +9,6 @@ import javax.sql.DataSource;
 
 /**
  * Created by Mark Lishman on 12/09/2016.
- *
- * NOTE: If you create other "runners" that have new @AnnotationNames in and are to be run
- * you need to add the new @AnnotationNames in the list below or else the DriverManager.shutdown()
- * will not be called and then you can get Chrome Driver issues as run out of spawning memory.
  */
 public class TestSupport {
 
@@ -20,7 +16,7 @@ public class TestSupport {
 
     @Before
     public void before() {
-       // Script that pre-populates DB items so a generic starting point, if required.
+       // Script that sets the database to a consistent state.
        // ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
        // populator.addScripts(new ClassPathResource("/test-data/member.sql"));
        // populator.execute(dataSource);
