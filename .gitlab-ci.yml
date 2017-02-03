@@ -1,13 +1,13 @@
 variables:
   DOCKER_PROJECT_ID: "finance$CI_BUILD_REF"
   COMPOSE: "docker-compose -f ${CI_PROJECT_DIR}/docker-compose.yml -p finance$CI_BUILD_REF"
-  DOCKER_REGISTRY: "docker-registry.nhs-bsa.aws:5000"
+  DOCKER_REGISTRY: "***REMOVED***"
   NAMESPACE: "nhs-finance"
   MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2"
   TAG_NAME: "build-$CI_PIPELINE_ID"
-  SONAR_URL: "http://sonar.nhs-bsa.aws:9000/"
+  SONAR_URL: "***REMOVED***/"
   ANSIBLE_DIR: "/ansible"
-  ANSIBLE_REPO: "git@gitlab.nhs-bsa.com:ansible/docker-deploy.git"
+  ANSIBLE_REPO: "***REMOVED***"
   NODE_ENV: production
 
 stages:
