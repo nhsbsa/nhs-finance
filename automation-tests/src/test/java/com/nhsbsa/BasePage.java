@@ -2,7 +2,6 @@ package com.nhsbsa;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static java.lang.String.format;
 
@@ -21,10 +20,5 @@ public class BasePage {
         if (!StringUtils.equals(driver.getTitle(), title)) {
             throw new IllegalStateException(format("Page title is %s, title looking for is %s", driver.getTitle(), title));
         }
-    }
-
-    protected void enterValue(WebElement element, String value) {
-        element.clear();
-        element.sendKeys(value);
     }
 }

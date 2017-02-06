@@ -1,16 +1,14 @@
 package com.nhsbsa.finance.pageobjects;
 
-import com.nhsbsa.BasePage;
-import com.nhsbsa.webdriver.DriverManager;
+import com.nhsbsa.FormPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Mark Lishman on 11/11/2016.
  */
-public class SchedulePaymentPage extends BasePage {
+public class SchedulePaymentPage extends FormPage {
 
     @FindBy(className = "validation-summary")
     private WebElement validationSummaryElement;
@@ -47,12 +45,6 @@ public class SchedulePaymentPage extends BasePage {
 
     @FindBy(id = "contributionDate.error")
     private WebElement contributionDateObjectErrorElement;
-
-    @FindBy(id = "contributionDate.month.error")
-    private WebElement contributionDateMonthErrorElement;
-
-    @FindBy(id = "contributionDate.year.error")
-    private WebElement contributionDateYearErrorElement;
 
     @FindBy(id = "submit")
     private WebElement submitButtonElement;
@@ -127,21 +119,6 @@ public class SchedulePaymentPage extends BasePage {
 
     public String getContributionDateObjectErrorMessage() {
         return contributionDateObjectErrorElement.getText();
-    }
-
-    public String getContributionDateMonthErrorMessage() {
-        return contributionDateMonthErrorElement.getText();
-    }
-
-    public String getContributionDateYearErrorMessage() {
-        return contributionDateYearErrorElement.getText();
-    }
-
-    // Submit
-
-    public ContributionsAndPaymentPage submit() {
-        submitButtonElement.click();
-        return PageFactory.initElements(DriverManager.getDriver(), ContributionsAndPaymentPage.class);
     }
 
     public void submitWIthErrors() {

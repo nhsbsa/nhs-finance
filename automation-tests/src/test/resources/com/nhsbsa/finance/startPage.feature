@@ -1,4 +1,4 @@
-@smokeTest
+@smokeTest @start
 Feature: Go to the start page of the Finance site
 
   Scenario: Get to the starting Finance Page

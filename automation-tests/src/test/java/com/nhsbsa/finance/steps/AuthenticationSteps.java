@@ -1,5 +1,6 @@
 package com.nhsbsa.finance.steps;
 
+import com.nhsbsa.finance.pageobjects.FinancePages;
 import com.nhsbsa.finance.pageobjects.FinanceStartPage;
 import com.nhsbsa.finance.pageobjects.FinanceLoginPage;
 import cucumber.annotation.en.Given;
@@ -11,41 +12,34 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
-import static com.nhsbsa.finance.pageobjects.FinancePages.financeStartPage;
-import static com.nhsbsa.finance.pageobjects.FinancePages.financeLoginPage;
-import static com.nhsbsa.finance.pageobjects.FinancePages.schedulePaymentPage;
 
 import com.nhsbsa.webdriver.accessibility.AccessibilityChecker;
+
+import static com.nhsbsa.finance.pageobjects.FinancePages.*;
 
 /**
  * Created by ianfulcher on 01/11/2016.
  */
 public class AuthenticationSteps {
 
-
     // Given
 
     @Given("^user navigates to finance start page$")
     public void user_navigates_to_finance_start_page() {
         NavigationManager.navigateToStartPage(NavigationManager.FINANCE_WEBSITE);
-        financeStartPage = PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);
-
-        // Let the user actually see something! Comment out when not required. Value is in milliseconds.
-        //try {
-        //    Thread.sleep(5000);
-        //} catch (InterruptedException ex) { }
+        FinancePages.setCurrentPage(PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class));
     }
 
     @Given("^user navigates to finance start page slash$")
     public void user_navigates_to_finance_start_page_slash() {
         NavigationManager.navigateToStartPageSlash(NavigationManager.FINANCE_WEBSITE);
-        financeStartPage = PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);
+        FinancePages.setCurrentPage(PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class));
     }
 
     @Given("^user navigates to login page$")
     public void user_navigates_to_login_page() {
         NavigationManager.navigateToLoginPage(NavigationManager.FINANCE_WEBSITE);
-        financeLoginPage = PageFactory.initElements(DriverManager.getDriver(), FinanceLoginPage.class);
+        FinancePages.setCurrentPage(PageFactory.initElements(DriverManager.getDriver(), FinanceLoginPage.class));
     }
 
     // Then
@@ -57,17 +51,19 @@ public class AuthenticationSteps {
 
     @Then("^finance start page is displayed$")
     public void finance_start_page_is_displayed() {
-        financeStartPage = PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);
+        FinanceStartPage financeStartPage = PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class);
+        setCurrentPage(financeStartPage);
     }
 
     @Then("^click start now button on finance start page")
     public void click_start_now_button_on_finance_start_page () {
-        financeLoginPage = financeStartPage.startNowButton();
+        financeStartPage().startNowButton();
     }
 
     @Then("^finance login page is displayed$")
     public void finance_login_page_is_displayed() {
-        financeLoginPage = PageFactory.initElements(DriverManager.getDriver(), FinanceLoginPage.class);
+        FinanceLoginPage financeLoginPage = PageFactory.initElements(DriverManager.getDriver(), FinanceLoginPage.class);
+        FinancePages.setCurrentPage(financeLoginPage);
     }
 
     @Then("^error text should be displayed on finance login page$")
@@ -80,7 +76,7 @@ public class AuthenticationSteps {
 
     @Then("^user clicks on logout button in finance login page")
     public void user_clicks_on_logout_button_in_finance_login_page() {
-        financeLoginPage = financeLoginPage.logoutButton();
+        financeLoginPage().logoutButton();
     }
 
     @Then("^logout text should be displayed on finance login page$")
@@ -100,17 +96,15 @@ public class AuthenticationSteps {
 
     @When("^user enters valid email '(.*)' and password '(.*)'$")
     public void user_enters_valid_email_and_password(String email, String password) {
-        financeLoginPage.enterUserName(email);
-        financeLoginPage.enterPassword(password);
-        schedulePaymentPage = financeLoginPage.submit();
+        financeLoginPage().enterUserName(email);
+        financeLoginPage().enterPassword(password);
+        financeLoginPage().submit();
     }
 
     @When("^user enters invalid email '(.*)' and password '(.*)'$")
     public void user_enters_invalid_email_and_password(String email, String password) {
-        financeLoginPage.enterUserName(email);
-        financeLoginPage.enterPassword(password);
-        financeLoginPage.submitWithErrors();
+        financeLoginPage().enterUserName(email);
+        financeLoginPage().enterPassword(password);
+        financeLoginPage().submitWithErrors();
     }
-
-
 }

@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.given;
 @RunWith(MockitoJUnitRunner.class)
 public class FinanceServiceTest {
 
-    public static final String RFT_UUID = 123L;
+    public static final String RFT_UUID = "123";
     @Mock private RequestForTransferRepository requestForTransferRepository;
 
     private FinanceService financeService;
