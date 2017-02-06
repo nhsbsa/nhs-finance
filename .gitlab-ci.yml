@@ -1,14 +1,10 @@
 variables:
   DOCKER_PROJECT_ID: "finance$CI_BUILD_REF"
   COMPOSE: "docker-compose -f ${CI_PROJECT_DIR}/docker-compose.yml -p finance$CI_BUILD_REF"
-  DOCKER_REGISTRY: "***REMOVED***"
   NAMESPACE: "nhs-finance"
   MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2"
   TAG_NAME: "build-$CI_PIPELINE_ID"
-  SONAR_URL: "***REMOVED***/"
   ANSIBLE_DIR: "/ansible"
-  ANSIBLE_REPO: "***REMOVED***"
-  NODE_ENV: production
 
 stages:
   - build
@@ -16,9 +12,10 @@ stages:
   - prepare
   - deploy
   - clean
+  - open source
 
 maven build:
-  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
+  image: $DOCKER_REGISTRY/nhs-shared/app-builder:latest
   stage: build
   artifacts:
     paths:
@@ -42,7 +39,7 @@ maven build:
     - master
 
 maven build (no sonar):
-  image: $DOCKER_REGISTRY/nhs-pensions/app-builder:latest
+  image: $DOCKER_REGISTRY/nhs-shared/app-builder:latest
   stage: build
   before_script:
     - eval $(ssh-agent -s)
@@ -141,3 +138,16 @@ clean docker:
   tags:
     - docker
   when: always
+
+Github NHSBSA:
+  image: $DOCKER_REGISTRY/nhs-shared/git-branch-publisher:latest
+  stage: open source
+  before_script:
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
+  script:
+    - publish-branch
+  tags:
+    - docker
+  only:
+    - branches
+  when: manual
