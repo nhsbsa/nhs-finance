@@ -26,8 +26,14 @@ Feature: Adding adjustments
     And submit button is clicked
     Then Error message 'At least one value is required if adding adjustments' is displayed for Adjustment Section
 
-    When '' is entered into Adjustment Period month
+    When 'Sept' is entered into Adjustment Period month
     And '' is entered into Adjustment Period year
+    And '1.00' is entered into Employee Added Years adjustment
+    And submit button is clicked
+    Then Error message 'Adjustment period in format Month and Year is required.' is displayed for Adjustment Period
+
+    When '' is entered into Adjustment Period month
+    And '2010' is entered into Adjustment Period year
     And '1.00' is entered into Employee Added Years adjustment
     And submit button is clicked
     Then Error message 'Adjustment period in format Month and Year is required.' is displayed for Adjustment Period
