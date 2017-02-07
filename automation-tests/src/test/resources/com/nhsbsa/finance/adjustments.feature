@@ -14,13 +14,16 @@ Feature: Adding adjustments
     And '100.00' is entered into into Total Pensionable Pay
     And '10.00' is entered into into Employee Contributions
     And '14.00' is entered into into Employer Contributions
-    And yes radio button is clicked for adjustments required
-    And 'December' is entered into Adjustment Period month
-    And '2010' is entered into Adjustment Period year
 
   Scenario: Adjustments inputs - invalid
 
     When submit button is clicked
+    Then Error message 'Adjustments is required' is displayed for Adjustment Option
+
+    When yes radio button is clicked for adjustments required
+    And 'December' is entered into Adjustment Period month
+    And '2010' is entered into Adjustment Period year
+    And submit button is clicked
     Then Error message 'At least one value is required if adding adjustments' is displayed for Adjustment Section
 
     When '' is entered into Adjustment Period month
@@ -73,7 +76,10 @@ Feature: Adding adjustments
 
   Scenario: Adjustment period - valid
 
-    When '1.00' is entered into Employee Contributions adjustment
+    When yes radio button is clicked for adjustments required
+    And 'December' is entered into Adjustment Period month
+    And '2010' is entered into Adjustment Period year
+    And '1.00' is entered into Employee Contributions adjustment
     And '1.00' is entered into Employer Contributions adjustment
     And '1.00' is entered into Employee Added Years adjustment
     And '1.00' is entered into Additional Pension adjustment

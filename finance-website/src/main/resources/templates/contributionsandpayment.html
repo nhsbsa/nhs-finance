@@ -103,7 +103,7 @@
             <div class="form-groups validate-radio-input" data-validate-radio-input="outstanding-payments">
                 <fieldset>
                     <legend class="form-label-bold label-like" th:text="#{contributions.AdjRequiredHeader}"></legend>
-                    <p class="validation-message" th:errors="*{adjustmentsRequired}"></p>
+                    <p class="validation-message" id="adjustment-option-error" th:errors="*{adjustmentsRequired}"></p>
                     <div class="form-group">
                         <label class="nhsbsa-radio js-toggle" for="add-outstanding-payments" data-show="#outstanding-payments-panel">
 
@@ -155,7 +155,7 @@
             or #fields.hasErrors('adjustment')}? validation-error">
                 <fieldset>
                     <legend class="form-label-bold" th:text="#{contributions.ContsDetailsHeader}"></legend>
-                    <p class="validation-message" id="adjustment-error" th:errors="*{adjustment}"> </p>
+                    <p class="validation-message" id="adjustment-mandatory-error" th:errors="*{adjustment}"> </p>
 
                     <!-- Two input fields on one row -->
                     <div class="inline-form-groups">
