@@ -83,6 +83,9 @@ public class ContributionsAndPaymentPage extends FormPage {
     @FindBy(id = "errbo-adjustment")
     private WebElement errboAdjustmentElement;
 
+    @FindBy(id = "adjustment-error")
+    private WebElement adjustmentErrorElement;
+
     @FindBy(id = "employee-contributions-adjustment-error")
     private WebElement employeeContributionsAdjustmentErrorElement;
 
@@ -236,6 +239,10 @@ public class ContributionsAndPaymentPage extends FormPage {
 
     public String getEmployeeContributionsAdjustmentErrorMessage() {
         return employeeContributionsAdjustmentErrorElement.getText();
+    }
+
+    public String getAdjustmentErrorMessage() {
+        return adjustmentErrorElement.getText();
     }
 
     public void clickAdjustmentsRequired() {

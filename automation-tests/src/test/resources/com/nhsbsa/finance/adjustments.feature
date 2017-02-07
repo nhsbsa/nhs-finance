@@ -19,6 +19,7 @@ Feature: Adding adjustments
     And '2010' is entered into Adjustment Period year
 
   Scenario: Adjustments inputs - invalid
+
     When submit button is clicked
     Then Error message 'At least one value is required if adding adjustments' is displayed for Adjustment Section
 
@@ -71,26 +72,11 @@ Feature: Adding adjustments
     Then Error message 'Employers contribution - amount you have entered is incorrect' is displayed for Employer Contributions adjustment
 
   Scenario: Adjustment period - valid
+
     When '1.00' is entered into Employee Contributions adjustment
-    And submit button is clicked
-    Then feature is not yet available page is displayed
-
-  Scenario: Employers contribution adjustment - valid
-    When '1.00' is entered into Employer Contributions adjustment
-    And submit button is clicked
-    Then feature is not yet available page is displayed
-
-  Scenario: Employee added years adjustment - valid
-    When '1.00' is entered into Employee Added Years adjustment
-    And submit button is clicked
-    Then feature is not yet available page is displayed
-
-  Scenario: Additional pension adjustment - valid
-    When '1.00' is entered into Additional Pension adjustment
-    And submit button is clicked
-    Then feature is not yet available page is displayed
-
-  Scenario: ERRBO adjustment - valid
-    When '1.00' is entered into ERRBO adjustment
+    And '1.00' is entered into Employer Contributions adjustment
+    And '1.00' is entered into Employee Added Years adjustment
+    And '1.00' is entered into Additional Pension adjustment
+    And '1.00' is entered into ERRBO adjustment
     And submit button is clicked
     Then feature is not yet available page is displayed

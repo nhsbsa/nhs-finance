@@ -216,7 +216,7 @@ public class RequestForTransferSteps {
 
     @Then("^Error message '(.*)' is displayed for Adjustment Section$")
     public void error_is_displayed_for_adjustment_section(final String errorMessage) {
-        assertThat(contributionsAndPaymentPage().getContributionsDetailsErrorElementErrorMessage(), is(equalTo((errorMessage))));
+        assertThat(contributionsAndPaymentPage().getAdjustmentErrorMessage(), is(equalTo((errorMessage))));
     }
 
     @Then("^Error message '(.*)' is displayed for Adjustment Period$")
