@@ -55,6 +55,10 @@ Feature: Contributions and payment
     And submit button is clicked
     Then Error message 'Ychwanegodd Gweithwyr mlynedd - swm a nodwyd gennych yn anghywir' is displayed for Employee Added Years
 
+    When '0' is entered into into Employee Added Years
+    And submit button is clicked
+    Then Error message 'Ychwanegodd Gweithwyr mlynedd - swm a nodwyd gennych yn anghywir' is displayed for Employee Added Years
+
     # Additional Pension
 
 #    When '-1' is entered into into Additional Pension

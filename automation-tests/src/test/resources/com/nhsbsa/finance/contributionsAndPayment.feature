@@ -54,6 +54,10 @@ Feature: Contributions and payment
     And submit button is clicked
     Then Error message 'Employee added years - amount you have entered is incorrect' is displayed for Employee Added Years
 
+    When '0' is entered into into Employee Added Years
+    And submit button is clicked
+    Then Error message 'Employee added years - amount you have entered is incorrect' is displayed for Employee Added Years
+
     # Additional Pension
 
     When '-1' is entered into into Additional Pension
