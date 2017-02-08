@@ -72,4 +72,9 @@ Feature: Contributions and payment
 
     When '-1' is entered into into ERRBO
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for ERRBO
+    Then Error message 'ERRBO - amount you have entered is incorrect' is displayed for ERRBO
+
+    When '0' is entered into into ERRBO
+    And submit button is clicked
+    Then Error message 'ERRBO - amount you have entered is incorrect' is displayed for ERRBO
+

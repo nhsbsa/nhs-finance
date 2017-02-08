@@ -60,7 +60,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Currency(message = "{additionalPension.invalid}")
     private BigDecimal additionalPension;
 
-    @Currency
+    @Currency(message = "{errbo.invalid}")
     private BigDecimal errbo;
 
     @Transient

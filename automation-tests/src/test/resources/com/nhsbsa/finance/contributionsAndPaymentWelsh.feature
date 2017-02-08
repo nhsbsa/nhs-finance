@@ -71,6 +71,11 @@ Feature: Contributions and payment
 
     # ERRBO
 
-#    When '-1' is entered into into ERRBO
-#    And submit button is clicked
-#    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for ERRBO
+    When '-1' is entered into into ERRBO
+    And submit button is clicked
+    Then Error message 'ERRBO - swm a nodwyd gennych yn anghywir' is displayed for ERRBO
+
+    When '0' is entered into into ERRBO
+    And submit button is clicked
+    Then Error message 'ERRBO - swm a nodwyd gennych yn anghywir' is displayed for ERRBO
+
