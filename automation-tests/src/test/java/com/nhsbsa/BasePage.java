@@ -1,7 +1,10 @@
 package com.nhsbsa;
 
+import com.nhsbsa.finance.pageobjects.FinancePages;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import static java.lang.String.format;
 
@@ -10,6 +13,14 @@ import static java.lang.String.format;
  */
 public class BasePage {
     protected WebDriver driver;
+
+    // "English" link from common footer
+    @FindBy(linkText = "English")
+    private WebElement viewInEnglishElement;
+
+    // "Cymraeg" link from common footer
+    @FindBy(linkText = "Cymraeg")
+    private WebElement viewInWelshElement;
 
     /*
      * driver - WebDriver for calls to the browser for information
@@ -20,5 +31,21 @@ public class BasePage {
         if (!StringUtils.equals(driver.getTitle(), title)) {
             throw new IllegalStateException(format("Page title is %s, title looking for is %s", driver.getTitle(), title));
         }
+    }
+
+    /**
+     * Switch to displaying the site in the English locale
+     */
+    public void viewInEnglish() {
+        viewInEnglishElement.click();
+        FinancePages.setViewEnglishPage();
+    }
+
+    /**
+     * Switch to displaying the site in the Welsh locale
+     */
+    public void viewInWelsh() {
+        viewInWelshElement.click();
+        FinancePages.setViewWelshPage();
     }
 }
