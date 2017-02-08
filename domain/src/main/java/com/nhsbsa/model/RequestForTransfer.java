@@ -57,7 +57,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Currency(message = "{employeeAddedYears.invalid}")
     private BigDecimal employeeAddedYears;
 
-    @Currency
+    @Currency(message = "{employeeAdditionalPension.invalid}")
     private BigDecimal additionalPension;
 
     @Currency

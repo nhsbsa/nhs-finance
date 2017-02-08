@@ -1,4 +1,4 @@
-@smokeTest @finance @contributionPayment
+@smokeTest @finance @contributionPayment @pen139
 Feature: Contributions and payment
 
   Background:
@@ -62,7 +62,11 @@ Feature: Contributions and payment
 
     When '-1' is entered into into Additional Pension
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Additional Pension
+    Then Error message 'Additional pension - amount you have entered is incorrect' is displayed for Additional Pension
+
+    When '0' is entered into into Additional Pension
+    And submit button is clicked
+    Then Error message 'Additional pension - amount you have entered is incorrect' is displayed for Additional Pension
 
     # ERRBO
 

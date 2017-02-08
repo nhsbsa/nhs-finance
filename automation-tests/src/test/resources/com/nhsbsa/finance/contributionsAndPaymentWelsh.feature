@@ -1,4 +1,4 @@
-@smokeTest @finance @contributionPayment @welsh
+@smokeTest @finance @contributionPayment @welsh @pen139
 Feature: Contributions and payment
 
   Background:
@@ -61,9 +61,13 @@ Feature: Contributions and payment
 
     # Additional Pension
 
-#    When '-1' is entered into into Additional Pension
-#    And submit button is clicked
-#    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Additional Pension
+    When '-1' is entered into into Additional Pension
+    And submit button is clicked
+    Then Error message 'Pensiwn ychwanegol - swm a nodwyd gennych yn anghywir' is displayed for Additional Pension
+
+    When '0' is entered into into Additional Pension
+    And submit button is clicked
+    Then Error message 'Pensiwn ychwanegol - swm a nodwyd gennych yn anghywir' is displayed for Additional Pension
 
     # ERRBO
 
