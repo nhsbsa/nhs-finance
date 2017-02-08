@@ -5,6 +5,7 @@ import com.nhsbsa.finance.pageobjects.FeatureIsNotYetAvailablePage;
 import com.nhsbsa.finance.pageobjects.FinancePages;
 import com.nhsbsa.finance.pageobjects.SchedulePaymentPage;
 import com.nhsbsa.webdriver.DriverManager;
+import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import org.joda.time.LocalDate;
@@ -17,6 +18,16 @@ import static org.junit.Assert.assertThat;
 
 public class RequestForTransferSteps {
 
+    @Given("^page is in Welsh$")
+    public void click_welsh_link() {
+        currentPage().viewInWelsh();
+    }
+
+    @Given("^page is in English$")
+    public void click_english_link() {
+        currentPage().viewInEnglish();
+    }
+
     // General
 
     @When("^submit button is clicked$")
@@ -26,7 +37,11 @@ public class RequestForTransferSteps {
 
     @Then("^validation summary should be displayed$")
     public void validation_summary_should_be_displayed() {
-        assertThat(currentFormPage().getValidationSummary(), is(equalTo("Some questions have not been answered correctly.\nPlease see the errors below.")));
+        if (FinancePages.isWelshPage()) {
+            assertThat(currentFormPage().getValidationSummary(), is(equalTo("Nid yw rhai cwestiynau wedi'u hateb yn gywir.\nGweler y wallau isod.")));
+        } else {
+            assertThat(currentFormPage().getValidationSummary(), is(equalTo("Some questions have not been answered correctly.\nPlease see the errors below.")));
+        }
     }
 
     // Schedule Payment

@@ -8,10 +8,19 @@ import com.nhsbsa.FormPage;
  */
 public class FinancePages {
 
+    enum PageLocale {
+        ENGLISH, WELSH
+    }
+
     private static BasePage currentPage;
+    private static PageLocale pageLocale;
 
     public static void setCurrentPage(BasePage basePage) {
         currentPage = basePage;
+    }
+
+    public static BasePage currentPage() {
+        return currentPage;
     }
 
     public static FormPage currentFormPage() {
@@ -56,4 +65,15 @@ public class FinancePages {
         throw new RuntimeException("Not a FeatureIsNotYetAvailablePage");
     }
 
+    public static void setViewEnglishPage() {
+        pageLocale = PageLocale.ENGLISH;
+    }
+
+    public static void setViewWelshPage() {
+        pageLocale = PageLocale.WELSH;
+    }
+
+    public static boolean isWelshPage() {
+        return pageLocale == PageLocale.WELSH;
+    }
 }
