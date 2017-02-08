@@ -54,7 +54,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @NotNull(message = "{employerContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employerContributions;
 
-    @Currency
+    @Currency(message = "{employeeAddedYears.invalid}")
     private BigDecimal employeeAddedYears;
 
     @Currency

@@ -52,7 +52,7 @@ Feature: Contributions and payment
 
     When '-1' is entered into into Employee Added Years
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Employee Added Years
+    Then Error message 'Employee added years - amount you have entered is incorrect' is displayed for Employee Added Years
 
     # Additional Pension
 
