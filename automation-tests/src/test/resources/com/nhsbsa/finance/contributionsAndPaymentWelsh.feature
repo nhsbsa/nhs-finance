@@ -49,9 +49,13 @@ Feature: Contributions and payment
 
     # Employer Contributions
 
-#    When '-1' is entered into into Employer Contributions
-#    And submit button is clicked
-#    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Employer Contributions
+    When '-1' is entered into into Employer Contributions
+    And submit button is clicked
+    Then Error message 'Cyflogwyr cyfraniad - swm a nodwyd gennych yn anghywir' is displayed for Employer Contributions
+
+    When '0' is entered into into Employer Contributions
+    And submit button is clicked
+    Then Error message 'Cyflogwyr cyfraniad - swm a nodwyd gennych yn anghywir' is displayed for Employer Contributions
 
     # Employee Added Years
 

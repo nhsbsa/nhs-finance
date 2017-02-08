@@ -51,7 +51,11 @@ Feature: Contributions and payment
 
     When '-1' is entered into into Employer Contributions
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Employer Contributions
+    Then Error message 'Employers contribution - amount you have entered is incorrect' is displayed for Employer Contributions
+
+    When '0' is entered into into Employer Contributions
+    And submit button is clicked
+    Then Error message 'Employers contribution - amount you have entered is incorrect' is displayed for Employer Contributions
 
     # Employee Added Years
 
