@@ -28,12 +28,14 @@ public class AuthenticationSteps {
     public void user_navigates_to_finance_start_page() {
         NavigationManager.navigateToStartPage(NavigationManager.FINANCE_WEBSITE);
         FinancePages.setCurrentPage(PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class));
+        FinancePages.setViewEnglishPage();
     }
 
     @Given("^user navigates to finance start page slash$")
     public void user_navigates_to_finance_start_page_slash() {
         NavigationManager.navigateToStartPageSlash(NavigationManager.FINANCE_WEBSITE);
         FinancePages.setCurrentPage(PageFactory.initElements(DriverManager.getDriver(), FinanceStartPage.class));
+        FinancePages.setViewEnglishPage();
     }
 
     @Given("^user navigates to login page$")

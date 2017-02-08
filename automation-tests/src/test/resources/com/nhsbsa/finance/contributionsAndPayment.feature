@@ -1,4 +1,4 @@
-@smokeTest @finance @contributionPayment @pen139
+@smokeTest @finance @contributionPayment
 Feature: Contributions and payment
 
   Background:
