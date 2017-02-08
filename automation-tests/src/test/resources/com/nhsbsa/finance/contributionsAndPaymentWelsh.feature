@@ -39,9 +39,13 @@ Feature: Contributions and payment
 
     # Employee Contributions
 
-#    When '-1' is entered into into Employee Contributions
-#    And submit button is clicked
-#    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Employee Contributions
+    When '-1' is entered into into Employee Contributions
+    And submit button is clicked
+    Then Error message 'Gweithwyr cyfraniad - swm a nodwyd gennych yn anghywir' is displayed for Employee Contributions
+
+    When '0' is entered into into Employee Contributions
+    And submit button is clicked
+    Then Error message 'Gweithwyr cyfraniad - swm a nodwyd gennych yn anghywir' is displayed for Employee Contributions
 
     # Employer Contributions
 
