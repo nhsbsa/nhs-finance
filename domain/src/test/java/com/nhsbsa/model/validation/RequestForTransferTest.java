@@ -177,7 +177,7 @@ public class RequestForTransferTest {
 
         Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
         assertThat(constraintViolations, hasSize(1));
-        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{contsAndPayments.currencyRange}"))));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{totalPensionablePay.invalid}"))));
     }
 
     @Test
@@ -188,7 +188,7 @@ public class RequestForTransferTest {
 
         Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
         assertThat(constraintViolations, hasSize(1));
-        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{contsAndPayments.currencyRange}"))));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{totalPensionablePay.invalid}"))));
     }
 
     @Test
@@ -199,7 +199,7 @@ public class RequestForTransferTest {
 
         Set<ConstraintViolation<RequestForTransfer>> constraintViolations = validator.validate(requestForTransfer);
         assertThat(constraintViolations, hasSize(1));
-        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{contsAndPayments.currencyRange}"))));
+        assertThat(constraintViolations.iterator().next().getMessage(), is(equalTo(("{totalPensionablePay.invalid}"))));
     }
 
     @Test

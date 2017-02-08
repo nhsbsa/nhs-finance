@@ -42,7 +42,7 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Embedded
     private ContributionDate contributionDate = ContributionDate.builder().build();
 
-    @Currency
+    @Currency(message = "{totalPensionablePay.invalid}")
     @NotNull(message = "{totalPensionablePay.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal totalPensionablePay;
 

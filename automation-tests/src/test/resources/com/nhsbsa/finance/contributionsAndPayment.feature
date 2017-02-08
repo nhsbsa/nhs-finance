@@ -18,15 +18,15 @@ Feature: Contributions and payment
 
     When '-1' is entered into into Total Pensionable Pay
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Total Pensionable Pay
+    Then Error message 'Total pensionable pay - amount you have entered is incorrect' is displayed for Total Pensionable Pay
 
     When '0' is entered into into Total Pensionable Pay
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Total Pensionable Pay
+    Then Error message 'Total pensionable pay - amount you have entered is incorrect' is displayed for Total Pensionable Pay
 
     When '100000000' is entered into into Total Pensionable Pay
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Total Pensionable Pay
+    Then Error message 'Total pensionable pay - amount you have entered is incorrect' is displayed for Total Pensionable Pay
 
     When '' is entered into into Total Pensionable Pay
     And submit button is clicked
