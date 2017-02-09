@@ -1,8 +1,12 @@
 package com.nhsbsa.model;
 
+import com.nhsbsa.model.validation.AdjustmentNotNull;
+import com.nhsbsa.model.validation.AdjustmentValidationGroup;
+import com.nhsbsa.model.validation.Currency;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.math.BigDecimal;
 
 /**
@@ -15,6 +19,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@AdjustmentNotNull(message = "{adjustment.notBlank}", groups = AdjustmentValidationGroup.class)
 public class Adjustment extends BaseEntity<Long> {
 
     @Id
@@ -22,12 +27,23 @@ public class Adjustment extends BaseEntity<Long> {
     @Column(name = "adj_id", insertable = false, updatable = false)
     private Long id;
 
-    private int contributionMonth;
-    private int contributionYear;
+    @Valid
+    @Embedded
+    private AdjustmentContributionDate adjustmentContributionDate = AdjustmentContributionDate.builder().build();
+
+    @Currency(message = "{adjustment.employeeContributions.invalid}", groups = AdjustmentValidationGroup.class)
     private BigDecimal employeeContributions;
+
+    @Currency(message = "{adjustment.employeeAddedYears.invalid}", groups = AdjustmentValidationGroup.class)
     private BigDecimal employeeAddedYears;
+
+    @Currency(message = "{adjustment.additionalPension.invalid}", groups = AdjustmentValidationGroup.class)
     private BigDecimal additionalPension;
+
+    @Currency(message = "{adjustment.errbo.invalid}", groups = AdjustmentValidationGroup.class)
     private BigDecimal errbo;
+
+    @Currency(message = "{adjustment.employerContributions.invalid}", groups = AdjustmentValidationGroup.class)
     private BigDecimal employerContributions;
 
 }

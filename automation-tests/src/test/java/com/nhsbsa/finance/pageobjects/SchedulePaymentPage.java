@@ -46,9 +46,6 @@ public class SchedulePaymentPage extends FormPage {
     @FindBy(id = "contributionDate.error")
     private WebElement contributionDateObjectErrorElement;
 
-    @FindBy(id = "submit")
-    private WebElement submitButtonElement;
-
     public SchedulePaymentPage(WebDriver driver) {
         super(driver, "Schedule your payment");
     }
@@ -120,10 +117,5 @@ public class SchedulePaymentPage extends FormPage {
     public String getContributionDateObjectErrorMessage() {
         return contributionDateObjectErrorElement.getText();
     }
-
-    public void submitWIthErrors() {
-        submitButtonElement.click();
-    }
-
 
 }

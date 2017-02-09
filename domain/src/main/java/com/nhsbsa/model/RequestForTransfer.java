@@ -42,26 +42,31 @@ public class RequestForTransfer extends BaseEntity<Long> {
     @Embedded
     private ContributionDate contributionDate = ContributionDate.builder().build();
 
-    @Currency
+    @Currency(message = "{totalPensionablePay.invalid}")
     @NotNull(message = "{totalPensionablePay.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal totalPensionablePay;
 
-    @Currency
+    @Currency(message = "{employeeContributions.invalid}")
     @NotNull(message = "{employeeContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employeeContributions;
 
-    @Currency
+    @Currency(message = "{employerContributions.invalid}")
     @NotNull(message = "{employerContributions.notNull}", groups = ContributionsValidationGroup.class)
     private BigDecimal employerContributions;
 
-    @Currency
+    @Currency(message = "{employeeAddedYears.invalid}")
     private BigDecimal employeeAddedYears;
 
-    @Currency
+    @Currency(message = "{additionalPension.invalid}")
     private BigDecimal additionalPension;
 
-    @Currency
+    @Currency(message = "{errbo.invalid}")
     private BigDecimal errbo;
+
+    @Transient
+    @NotNull(message = "{adjustmentsRequired.notNull}", groups = ContributionsValidationGroup.class)
+    private Boolean adjustmentsRequired;
+
 
     // Nothing in story about validating the Total Amount To Be Debited so commented out for now.
     // @Currency
@@ -69,11 +74,16 @@ public class RequestForTransfer extends BaseEntity<Long> {
 
     private Date receiveDate = new Date();
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    // Where any adjustments are stored, table (see class definition) is "adjustment" and linked on rft_id
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "rft_id")
-    private List<Adjustment> adjustmentList;
+    @Valid
+    private Adjustment adjustment;
 
     private String rftUuid;
 
+    public void removeAdjustment() {
+        this.adjustment = null;
+    }
 
 }

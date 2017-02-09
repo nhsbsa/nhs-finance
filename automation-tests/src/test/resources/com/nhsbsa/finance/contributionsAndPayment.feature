@@ -8,7 +8,7 @@ Feature: Contributions and payment
     And schedule payment page is displayed
     And tomorrows date is entered into Date of Transfer
     And staff radio button is clicked
-    And '11' and '2010' is entered into Contribution Date
+    And 'November' and '2010' is entered into Contribution Date
     And submit button is clicked
     And contributions and payment page is displayed
 
@@ -18,15 +18,15 @@ Feature: Contributions and payment
 
     When '-1' is entered into into Total Pensionable Pay
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Total Pensionable Pay
+    Then Error message 'Total pensionable pay - amount you have entered is incorrect' is displayed for Total Pensionable Pay
 
     When '0' is entered into into Total Pensionable Pay
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Total Pensionable Pay
+    Then Error message 'Total pensionable pay - amount you have entered is incorrect' is displayed for Total Pensionable Pay
 
     When '100000000' is entered into into Total Pensionable Pay
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Total Pensionable Pay
+    Then Error message 'Total pensionable pay - amount you have entered is incorrect' is displayed for Total Pensionable Pay
 
     When '' is entered into into Total Pensionable Pay
     And submit button is clicked
@@ -40,28 +40,50 @@ Feature: Contributions and payment
 
     When '-1' is entered into into Employee Contributions
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Employee Contributions
+    Then Error message 'Employee contribution - amount you have entered is incorrect' is displayed for Employee Contributions
+
+    When '0' is entered into into Employee Contributions
+    And submit button is clicked
+    Then Error message 'Employee contribution - amount you have entered is incorrect' is displayed for Employee Contributions
+
 
     # Employer Contributions
 
     When '-1' is entered into into Employer Contributions
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Employer Contributions
+    Then Error message 'Employers contribution - amount you have entered is incorrect' is displayed for Employer Contributions
+
+    When '0' is entered into into Employer Contributions
+    And submit button is clicked
+    Then Error message 'Employers contribution - amount you have entered is incorrect' is displayed for Employer Contributions
 
     # Employee Added Years
 
     When '-1' is entered into into Employee Added Years
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Employee Added Years
+    Then Error message 'Employee added years - amount you have entered is incorrect' is displayed for Employee Added Years
+
+    When '0' is entered into into Employee Added Years
+    And submit button is clicked
+    Then Error message 'Employee added years - amount you have entered is incorrect' is displayed for Employee Added Years
 
     # Additional Pension
 
     When '-1' is entered into into Additional Pension
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for Additional Pension
+    Then Error message 'Additional pension - amount you have entered is incorrect' is displayed for Additional Pension
+
+    When '0' is entered into into Additional Pension
+    And submit button is clicked
+    Then Error message 'Additional pension - amount you have entered is incorrect' is displayed for Additional Pension
 
     # ERRBO
 
     When '-1' is entered into into ERRBO
     And submit button is clicked
-    Then Error message 'Enter a numeric value between 1 - 99,999,999.99' is displayed for ERRBO
+    Then Error message 'ERRBO - amount you have entered is incorrect' is displayed for ERRBO
+
+    When '0' is entered into into ERRBO
+    And submit button is clicked
+    Then Error message 'ERRBO - amount you have entered is incorrect' is displayed for ERRBO
+

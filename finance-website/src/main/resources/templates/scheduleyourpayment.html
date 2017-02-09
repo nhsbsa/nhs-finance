@@ -96,8 +96,7 @@
 
                     <div class="form-group">
                         <label class="form-label" for="contribution-month" th:text="#{schedule.PaymentLabel1}"></label>
-                        <input class="form-control form-control-2-chars" id="contribution-month" type="number" min="0"
-                               max="12" th:field="*{contributionDate.contributionMonth}" th:errorclass="error"> </input>
+                        <input class="form-control form-control-11-chars typeahead" id="contribution-month" type="text" maxlength="11" th:field="*{contributionDate.contributionMonth}" th:errorclass="error" autocomplete="off"> </input>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contribution-year" th:text="#{schedule.PaymentLabel2}"></label>

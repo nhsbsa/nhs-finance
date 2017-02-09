@@ -10,6 +10,10 @@ import org.openqa.selenium.support.FindBy;
  */
 public class ContributionsAndPaymentPage extends FormPage {
 
+    public ContributionsAndPaymentPage(WebDriver driver) {
+        super(driver, "Contributions and payment");
+    }
+
     @FindBy(id = "total-pensionable-pay")
     private WebElement totalPensionablePayElement;
 
@@ -52,9 +56,57 @@ public class ContributionsAndPaymentPage extends FormPage {
     @FindBy(id = "totalDebitAmount.error")
     private WebElement totalAmountDebitedErrorElement;
 
-    public ContributionsAndPaymentPage(WebDriver driver) {
-        super(driver, "Contributions and payment");
-    }
+    @FindBy(id = "add-outstanding-payments")
+    private WebElement adjustmentsRequiredElement;
+
+    @FindBy(id = "no-outstanding-payments")
+    private WebElement adjustmentsNotRequiredElement;
+
+    @FindBy(id = "adj-contribution-month")
+    private WebElement adjustmentsPeriodMonthElement;
+
+    @FindBy(id = "adj-contribution-year")
+    private WebElement adjustmentsPeriodYearElement;
+
+    @FindBy(id = "employee-contributions-adjustment")
+    private WebElement employeeContributionsAdjustmentElement;
+
+    @FindBy(id = "employer-contributions-adjustment")
+    private WebElement employerContributionsAdjustmentElement;
+
+    @FindBy(id = "employee-added-years-adjustment")
+    private WebElement employeeAddedYearsAdjustmentElement;
+
+    @FindBy(id = "additional-pension-adjustment")
+    private WebElement additionalPensionAdjustmentElement;
+
+    @FindBy(id = "errbo-adjustment")
+    private WebElement errboAdjustmentElement;
+
+    @FindBy(id = "adjustment-option-error")
+    private WebElement adjustmentOptionErrorElement;
+
+    @FindBy(id = "adjustment-mandatory-error")
+    private WebElement adjustmentMandatoryErrorElement;
+
+    @FindBy(id = "employee-contributions-adjustment-error")
+    private WebElement employeeContributionsAdjustmentErrorElement;
+
+    @FindBy(id = "employer-contributions-adjustment-error")
+    private WebElement employerContributionsAdjustmentErrorElement;
+
+    @FindBy(id = "employee-added-years-adjustment-error")
+    private WebElement employeeAddedYearsAdjustmentErrorElement;
+
+    @FindBy(id = "additional-pension-adjustment-error")
+    private WebElement additionalPensionAdjustmentErrorElement;
+
+    @FindBy(id = "errbo-adjustment-error")
+    private WebElement errboAdjustmentErrorElement;
+
+    @FindBy(id = "adjustment-period-error")
+    private WebElement adjustmentPeriodErrorElement;
+
 
     // Total Pensionable Pay
 
@@ -114,6 +166,98 @@ public class ContributionsAndPaymentPage extends FormPage {
 
     public String getErrboErrorMessage() {
         return errboErrorElement.getText();
+    }
+
+    public void enterTotalPensionablePay(final String totalPensionablePay) {
+        enterValue(totalPensionablePayElement, totalPensionablePay);
+    }
+
+    public void enterTotalPensionablePay(final double totalPensionablePay) {
+        enterTotalPensionablePay(String.valueOf(totalPensionablePay));
+    }
+
+    public void enterEmployeeContributions(final String employeeContributions) {
+        enterValue(employeeContributionsElement, employeeContributions);
+    }
+
+    public void enterEmployeeContributions(final double employeeContributions) {
+        enterEmployeeContributions(String.valueOf(employeeContributions));
+    }
+
+    public void enterEmployerContributions(final String employerContributions) {
+        enterValue(employerContributionsElement, employerContributions);
+    }
+
+    public void enterEmployerContributions(final double employerContributions) {
+        enterEmployerContributions(String.valueOf(employerContributions));
+    }
+
+    public void enterAdjustmentsPeriodMonth(final String adjustmentsPeriodMonth) {
+        enterValue(adjustmentsPeriodMonthElement, adjustmentsPeriodMonth);
+    }
+
+    public void enterAdjustmentsPeriodYear(final String adjustmentsPeriodYear) {
+        enterValue(adjustmentsPeriodYearElement, adjustmentsPeriodYear);
+    }
+
+    public void enterEmployerContributionsAdjustment(final String employerContributionsAdjustment) {
+        enterValue(employerContributionsAdjustmentElement, employerContributionsAdjustment);
+    }
+
+    public void enterErrboAdjustment(final String errboAdjustment) {
+        enterValue(errboAdjustmentElement, errboAdjustment);
+    }
+
+    public void enterAdditionalPensionAdjustment(final String additionalPensionAdjustment) {
+        enterValue(additionalPensionAdjustmentElement, additionalPensionAdjustment);
+    }
+
+    public void enterEmployeeAddedYearsAdjustment(final String employeeAddedYearsAdjustment) {
+        enterValue(employeeAddedYearsAdjustmentElement, employeeAddedYearsAdjustment);
+    }
+
+    public void enterEmployeeContributionsAdjustment(final String employeeContributionsAdjustment) {
+        enterValue(employeeContributionsAdjustmentElement, employeeContributionsAdjustment);
+    }
+
+    public String getAdjustmentPeriodErrorMessage() {
+        return adjustmentPeriodErrorElement.getText();
+    }
+
+    public String getEmployerContributionsAdjustmentErrorMessage() {
+        return employerContributionsAdjustmentErrorElement.getText();
+    }
+
+    public String getErrboAdjustmentErrorMessage() {
+        return errboAdjustmentErrorElement.getText();
+    }
+
+    public String getAdditionalPensionAdjustmentErrorMessage() {
+        return additionalPensionAdjustmentErrorElement.getText();
+    }
+
+    public String getEmployeeAddedYearsAdjustmentErrorMessage() {
+        return employeeAddedYearsAdjustmentErrorElement.getText();
+    }
+
+    public String getEmployeeContributionsAdjustmentErrorMessage() {
+        return employeeContributionsAdjustmentErrorElement.getText();
+    }
+
+    public String getAdjustmentOptionErrorMessage() {
+        return adjustmentOptionErrorElement.getText();
+    }
+
+    public String getAdjustmentMandatoryErrorMessage() {
+        return adjustmentMandatoryErrorElement.getText();
+    }
+
+    public void clickAdjustmentsRequired() {
+        adjustmentsRequiredElement.click();
+    }
+
+    public void clickAdjustmentsNotRequired() {
+        adjustmentsNotRequiredElement.click();
     }
 
 }
